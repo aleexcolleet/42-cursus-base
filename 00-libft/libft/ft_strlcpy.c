@@ -1,15 +1,12 @@
 #include <stdio.h>
 
-size_t strlcpy(char *dest, const char *src, size_t size) // size of dest
+size_t ft_strlcpy(char *dest, const char *src, size_t size) // size of dest
 {
     size_t i;
 
     i = 0;
-    // primero lo protegemos
     if (!size)
         return (ft_strlen(src));
-
-    // Copiar string a dest
     while (i < (size - 1) && src[i])
     {
         dest[i] = src[i];
