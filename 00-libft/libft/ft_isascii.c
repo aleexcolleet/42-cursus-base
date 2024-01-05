@@ -1,12 +1,24 @@
-#include <stdio.h>
+#include "libft.h"
 
-char ft_isascii(char z)
+/**************************************************************
+*						  FT_ISASCII:						  *
+*	La función ft_isascii se utiliza para determinar		  *
+*	si un valor de tipo int representa un carácter ASCII      *
+*	válido. Devuelve 1 si el valor está en el rango 0-127     *
+*	(inclusive), que es el rango de los caracteres ASCII,     *
+*	y 0 en caso contrario.									  *
+*															  *
+*	Argumentos:												  *
+*	c: Un valor de tipo int que se verifica como carácter	  *
+*	ASCII válido.											  *
+*															  *
+\*************************************************************/
+
+int ft_isascii(int c)
 {
-    if (z >= 0 && z <= 127)
-        return (1);
-    return (0);
+    return (c >= 0 && c <= 127);
 }
-
+/*
 int main(void)
 {
     char check = 23;
@@ -18,4 +30,4 @@ int main(void)
     printf("its not an ascii");
 
     return (0);
-}
+}*/

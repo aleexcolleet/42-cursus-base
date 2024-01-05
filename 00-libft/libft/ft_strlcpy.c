@@ -1,27 +1,53 @@
-#include <stdio.h>
+#include "libft.h"
 
-size_t ft_strlcpy(char *dest, const char *src, size_t size) // size of dest
+/***************************************************************
+*						FT_STRLCPY:							   *
+*	La función ft_strlcpy copia una cadena de origen (src) en  *
+*	una cadena de destino (dst) con un límite de tamaño        *
+*	especificado (size). Devuelve la longitud de la cadena     *
+*	de origen (src) que intentó copiar.                        *
+*															   *
+*	Argumentos:												   *
+*	dst: La cadena de destino donde se copiará src.            *
+*	src: La cadena de origen que se copiará en dst.            *
+*	size: El tamaño máximo de dst, incluyendo el carácter      *
+*	nulo de terminación.                                       *
+*															   *
+\**************************************************************/
+
+size_t ft_strlcpy(char *dst, const char *src, size_t size)
 {
-    size_t i;
+    unsigned int i;
 
     i = 0;
-    if (!size)
-        return (ft_strlen(src));
-    while (i < (size - 1) && src[i])
+    if (size != 0)
     {
-        dest[i] = src[i];
-        i++;
+        while (src[i] && i < size - 1)
+        {
+            dst[i] = src[i];
+            i++;
+        }
+        dst[i] = '\0';
     }
-    dest[i] = '\0';
     return (ft_strlen(src));
 }
-
-int main(void)
+/*
+#include <string.h>
+#include <stdio.h>
+int main()
 {
-    char dest[0];
-    char src[] = "comoestatuhermana";
-    printf("original %s\n", src);
-    printf("tiene %d bytes\n", strlcpy(dest, src, sizeof(dest)));
-    printf("dest es: %s\n", dest);
-    return (0);
-}
+    char destino[20];
+    char fuente[] = "Hola, mundo!";
+    size_t limite = 20;
+
+    size_t resultado_ft_strlcpy = ft_strlcpy(destino, fuente, limite);
+    //size_t resultado_strlcpy = strlcpy(destino, fuente, limite);
+
+    printf("Resultado ft_strlcpy: %zu\n", resultado_ft_strlcpy);
+    printf("Cadena de destino: %s\n", destino);
+
+    //printf("Resultado strlcpy: %zu\n", resultado_strlcpy);
+   // printf("Cadena de destino: %s\n", destino);
+
+    return 0;
+}*/

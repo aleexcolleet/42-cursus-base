@@ -1,25 +1,28 @@
-#include <stdlib.h>
-
-void *ft_calloc(size_t num, size_t size)
+#include "libft.h"
+/*					FT_CALLOC:
+    Asigna memoria para un número especificado de elementos
+    de un tamaño dado, y la inicializa a cero.
+    Es útil para asignar y preparar memoria para estructuras
+    de datos, como arreglos.
+*/
+void *ft_calloc(size_t num_elements, size_t size)
 {
-    int i;
-    size_t total;
-    unsigned char *array;
-    void *p;
+    void *result;
 
-    total = num * size;
-    p = (void *)malloc(total);
-    if (p != NULL)
-        array = (unsigned char *)p;
-    i = 0;
-    while (i < total)
-        array[i++] = 0;
-    return p;
+    result = malloc(num_elements * size);
+    if (!result)
+        return (NULL);
+    else
+    {
+        ft_bzero(result, num_elements * size);
+        return (result);
+    }
 }
+/*
 int main(void)
 {
     int *result = ft_calloc(5, 4);
     free(result);
 
     return (0);
-}
+}*/

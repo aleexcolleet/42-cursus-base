@@ -1,16 +1,24 @@
-#include <stdio.h>
-#include <stdlib.h>
 
-int main(void)
-{
-    char str[] = "como estatuhermana";
-    char *result = ft_substr(str, 5, 8);
+#include "libft.h"
 
-    printf("elmio---> %s\n", result);
-    free(result);
-
-    return 0;
-}
+/***************************************************************
+*						FT_SUBSTR:							   *
+*	La función ft_substr crea una nueva cadena de caracteres   *
+*	a partir de una cadena existente `s`. La nueva cadena      *
+*	empieza en la posición `start` y tiene una longitud de     *
+*	hasta `len` caracteres. Devuelve un puntero a la nueva     *
+*	cadena o NULL si hay un error de asignación de memoria.    *
+*															   *
+*	Argumentos:												   *
+*	s: La cadena de caracteres de la que se creará la nueva    *
+*	cadena.													   *
+*	start: La posición desde la cual comenzar la nueva cadena. *
+*	len: La longitud máxima de la nueva cadena.                *
+*															   *
+*	Devuelve: Un puntero a la nueva cadena de caracteres o     *
+*	NULL si hay un error.									   *
+*															   *
+\**************************************************************/
 
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -26,5 +34,18 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
     if (!new)
         return NULL;
     ft_strlcpy(new, s + start, len + 1);
-    return new;
+    return (new);
 }
+
+/*
+int main(void)
+{
+    char str[] = "como estatuhermana";
+    char *result = ft_substr(str, 5, 8);
+
+    printf("elmio---> %s\n", result);
+    free(result);
+
+    return 0;
+}
+*/

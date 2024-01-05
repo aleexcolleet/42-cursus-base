@@ -1,13 +1,21 @@
-#include <stdio.h>
-#include <stddef.h>
+#include "libft.h"
 
-char ft_isdigit(char z)
+/**************************************************************
+*						FT_ISDIGIT:							  *
+*	La función ft_isdigit se utiliza para determinar si       *
+*	un carácter representa un dígito decimal. Devuelve 1      *
+*	si el carácter es un dígito (0-9) y 0 si no lo es.		  *
+*															  *
+*	Argumentos:												  *
+*	c: Un valor de tipo int que representa un carácter.		  *
+*															  *
+\*************************************************************/
+
+int ft_isdigit(int c)
 {
-    if (z >= '0' && z <= '9')
-        return (1);
-    return (0);
+    return ((c >= 48) && (c <= 57));
 }
-
+/*
 int main(void)
 {
     int check = '4';
@@ -19,4 +27,4 @@ int main(void)
     printf("its not");
 
     return (0);
-}
+}*/

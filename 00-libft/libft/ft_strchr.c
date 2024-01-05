@@ -1,26 +1,28 @@
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
+
+/**************************************************************
+*						FT_STRCHR:							  *
+*	La función ft_strchr busca la primera aparición de un     *
+*	carácter (c) en una cadena de caracteres (s).             *
+*	Devuelve un puntero al carácter encontrado o NULL si el   *
+*	carácter no se encuentra en la cadena.                    *
+*															  *
+*	Argumentos:												  *
+*	s: La cadena de caracteres en la que se realizará la      *
+*	búsqueda.												  *
+*	c: El carácter que se buscará en la cadena.               *
+*															  *
+\*************************************************************/
 
 char *ft_strchr(const char *s, int c)
 {
-    char *p;
-
-    p = (char *)s;
-    if (!p)
-        return (0);
-    while (*p)
-    {
-        if ((unsigned char)c == *p)
-        {
-            return (p);
-        }
-        p++;
-    }
-    if (c == 0)
-        return (p);
+    while (*s != '\0' && (char)c != *s)
+        s++;
+    if ((char)c == *s)
+        return ((char *)s);
     return (0);
 }
-
+/*
 int main(void)
 {
 
@@ -29,4 +31,4 @@ int main(void)
     printf("elmio------> %s\n", ft_strchr(str, 'a'));
 
     return (0);
-}
+}*/

@@ -1,12 +1,23 @@
-#include <stdio.h>
+#include "libft.h"
 
-char ft_isalnum(char z)
+/**********************************************************
+*						 FT_ISALPHA:					  *
+*	La función ft_isalpha se utiliza para determinar	  *
+*	si un carácter es una letra del alfabeto. Devuelve 1  *
+*	si el carácter es una letra (mayúscula o minúscula)   *
+*	y 0 si no lo es.									  *
+*														  *
+*	Argumentos:											  *
+*	c: Un valor de tipo int que representa un carácter,	  *
+*	generalmente en forma de su valor ASCII.			  *
+*														  *
+\*********************************************************/
+
+int ft_isalpha(int c)
 {
-    if ((z >= 'a' && z <= 'z') || (z >= 'A' && z <= 'Z'))
-        return (1);
-    return (0);
+    return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }
-
+/*
 int main(void)
 {
     char check = 'a';
@@ -18,4 +29,4 @@ int main(void)
     printf("its nos an alhp");
 
     return (0);
-}
+}*/

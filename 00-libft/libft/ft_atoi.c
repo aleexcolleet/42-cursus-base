@@ -1,6 +1,10 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+
+#include "libft.h"
+
+/*						FT_ATOI:
+ Convierte una cadena de caracteres en un número entero,
+ teniendo en cuenta los signos (+/-) y los dígitos numéricos en la cadena.
+*/
 
 int ft_atoi(const char *str)
 {
@@ -12,20 +16,19 @@ int ft_atoi(const char *str)
     sign = 1;
     result = 0;
 
-    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)) // evita los espacios
+    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
         i++;
-    if (str[i] == '-' || str[i] == '+') // calcula el signo real
+    if (str[i] == '-' || str[i] == '+')
     {
         if (str[i] == '-')
             sign = -1;
         i++;
     }
     while (str[i] >= '0' && str[i] <= '9')
-        result = result * 10 + str[i++] - '0'; // suma digito y canvia a int
-                                               // str[i++] - '0';
+        result = result * 10 + str[i++] - '0';
     return (result * sign);
 }
-
+/*
 int main(int argc, char **argv)
 {
 
@@ -34,4 +37,4 @@ int main(int argc, char **argv)
     printf("atoi orignial----> %d\n", atoi(argv[1]));
     printf("elmio------------> %d\n", ft_atoi(argv[1]));
     return (0);
-}
+}*/

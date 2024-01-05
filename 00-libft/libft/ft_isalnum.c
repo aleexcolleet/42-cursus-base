@@ -1,12 +1,16 @@
-#include <stdio.h>
+#include "libft.h"
 
-char ft_isalnum(char z)
+/*						FT_ISALNUM:
+ * Determina si un carácter es alfanumérico, es decir,
+ * si es una letra (mayúscula o minúscula) o un dígito,
+ * y devuelve 1 si es alfanumérico y 0 si no lo es.
+ */
+
+int ft_isalnum(int c)
 {
-    if ((z >= 'a' && z <= 'z') || (z >= 'A' && z <= 'Z') || (z >= '0' && z <= '9'))
-        return (1);
-    return (0);
+    return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= 48 && c <= 57));
 }
-
+/*
 int main(void)
 {
     char check = '6';
@@ -18,4 +22,4 @@ int main(void)
     printf("its nos an alhp");
 
     return (0);
-}
+}*/

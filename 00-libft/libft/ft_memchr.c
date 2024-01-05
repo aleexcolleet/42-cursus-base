@@ -1,4 +1,24 @@
-#include <stdio.h>
+
+#include "libft.h"
+
+/**************************************************************
+*						FT_MEMCHR:							  *
+*	La función ft_memchr busca la primera aparición de un     *
+*	caracter (representado como un valor de tipo int) en      *
+*	un bloque de memoria (representado por el puntero s)      *
+*	de tamaño n. Si encuentra el carácter, devuelve un        *
+*	puntero al lugar en la memoria donde lo encontró; si      *
+*	no lo encuentra, devuelve un puntero nulo (NULL).         *
+*															  *
+*	Argumentos:												  *
+*	s: Un puntero a un bloque de memoria donde se realizará   *
+*	la búsqueda.											  *
+*	c: El valor de tipo int que se busca en el bloque de      *
+*	memoria.												  *
+*	n: El número de bytes en el bloque de memoria que se      *
+*	analizará.											      *
+*															  *
+\*************************************************************/
 
 void *ft_memchr(const void *s, int c, size_t n)
 {
@@ -13,6 +33,7 @@ void *ft_memchr(const void *s, int c, size_t n)
     }
     return (0);
 }
+/*
 int main()
 {
     unsigned char buffer[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -34,4 +55,4 @@ int main()
     else
         printf("El valor %d no fue encontrado.\n", target_value);
     return 0;
-}
+}*/

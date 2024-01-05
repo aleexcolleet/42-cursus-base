@@ -1,40 +1,52 @@
-#include <stdio.h>
+#include "libft.h"
 
-size_t ft_strlcat(char *dst, const char *src, size_t size)
+/***************************************************************
+*						FT_STRLCAT:							   *
+*	La función ft_strlcat concatena dos cadenas de caracteres  *
+*	(src y dest) en la cadena de destino (dest) con un límite  *
+*	de tamaño especificado (size). Devuelve la longitud total  *
+*	de la cadena resultante después de la concatenación.       *
+*															   *
+*	Argumentos:												   *
+*	dest: La cadena de destino donde se concatenará src.       *
+*	src: La cadena de origen que se concatenará en dest.       *
+*	size: El tamaño máximo de dest, incluyendo el carácter     *
+*	nulo de terminación.                                       *
+*															   *
+\**************************************************************/
+
+unsigned int ft_strlcat(char *dest, char *src, unsigned int size)
 {
-    size_t i;
-    size_t j;
-    char *pt_src;
+    unsigned int i;
+    unsigned int x;
+    unsigned int destlen;
+    unsigned int srclen;
 
-    pt_src = (char *)src;
     i = 0;
-    j = 0;
-
-    while (i < size && *dst)
+    x = ft_strlen(dest);
+    destlen = ft_strlen(dest);
+    srclen = ft_strlen(src);
+    while (src[i] != '\0' && x < size - 1 && size > 0)
     {
-        dst++;
+        dest[x] = src[i];
         i++;
+        x++;
     }
-    if (i == size)
-        return (i + ft_strlen(src));
-    while (pt_src[j])
-    {
-        if (j < size - i - 1)
-            *dst++ = pt_src[j];
-        j++;
-    }
-    *dst = 0;
-    return (i + j);
+    dest[x] = '\0';
+    if (destlen > size)
+        destlen = size;
+    return (destlen + srclen);
 }
 /*
-int main(void)
+#include <stdio.h>
+int main()
 {
-    char src[] = "Hola, Alex!";
-    char dst[40] = "hola";
-
-    printf("the lenght is : %d\n", ft_strlcat(dst, src, sizeof(dst)));
-    printf("el string final: %s\n", dst);
-
-    return (0);
-}
-*/
+    char destino[20] = "Hola, ";
+    char fuente[] = "mundo!";
+    unsigned int limite = 20;
+    unsigned int resultado_ft_strlcat = ft_strlcat(destino, fuente, limite);
+    printf("Fuente: %s\nDestino: %s\n", fuente, destino);
+    printf("Resultado ft_strlcat: %u\n", resultado_ft_strlcat);
+    printf("Cadena concatenada: %s\n", destino);
+    return 0;
+}*/

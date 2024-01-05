@@ -1,21 +1,30 @@
-#include <stdio.h>
+#include "libft.h"
 
-void *ft_memset(void *ptr, int value, size_t num)
+/**************************************************************
+*						FT_MEMSET:							  *
+*	La función ft_memset establece los primeros len bytes     *
+*	de una zona de memoria (b) con un valor específico (c).   *
+*	Devuelve un puntero a la zona de memoria modificada.      *
+*															  *
+*	Argumentos:												  *
+*	b: Un puntero a la zona de memoria donde se realizará     *
+*	la operación de establecimiento de valores.               *
+*	c: El valor que se establecerá en los bytes de memoria.   *
+*	len: El número de bytes que se establecerán con el valor  *
+*	específico.												  *
+*															  *
+\*************************************************************/
+
+void *ft_memset(void *b, int c, size_t len)
 {
-    size_t i;
-    char *str;
+    unsigned char *tmp;
 
-    i = 0;
-    str = (char *)ptr;
-
-    while (num > i)
-    {
-        str[i] = value;
-        i++;
-    }
-    return (ptr);
+    tmp = (unsigned char *)b;
+    while (len--)
+        *tmp++ = (unsigned char)c;
+    return (b);
 }
-
+/*
 int main(void)
 {
     char str[20];
@@ -24,4 +33,4 @@ int main(void)
     printf("%s", str);
 
     return (0);
-}
+}*/

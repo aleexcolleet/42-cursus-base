@@ -1,27 +1,45 @@
-#include <stdio.h>
-#include <string.h>
+
+#include "libft.h"
+
+/**************************************************************
+*						FT_STRRCHR:							  *
+*	La función ft_strrchr busca la última aparición de un     *
+*	carácter (c) en una cadena de caracteres (s). Devuelve    *
+*	un puntero al carácter encontrado o NULL si no se         *
+*	encuentra.                                                *
+*															  *
+*	Argumentos:												  *
+*	s: La cadena de caracteres en la que se buscará el        *
+*	carácter.												  *
+*	c: El carácter que se buscará en la cadena.               *
+*															  *
+\*************************************************************/
 
 char *ft_strrchr(const char *s, int c)
 {
-    char *ptr;
+    char *str;
+    char l;
 
-    ptr = NULL;
+    str = NULL;
+    l = (char)c;
     while (*s)
     {
-        if (*s == (unsigned char)c)
-            ptr = (char *)s;
+        if (*s == l)
+            str = (char *)s;
         s++;
     }
-    if (c == 0)
-        return ((char *)s);
-    return (ptr);
+    if (*s == l)
+        str = (char *)s;
+    return (str);
 }
-int main(void)
+/*
+#include <string.h>
+#include <stdio.h>
+int main()
 {
-    char str[] = "holaholahola";
-
-    printf("elmio-----> %s\n", ft_strrchr(str, 'o'));
-    printf("original--> %s\n", strrchr(str, 'o'));
-
-    return (0);
-}
+  char *str = "hola como estas";
+  int c = 'h';
+  printf("%s\n", strrchr(str,c));
+  printf("%s", ft_strrchr(str,c));
+  return 0;
+}*/

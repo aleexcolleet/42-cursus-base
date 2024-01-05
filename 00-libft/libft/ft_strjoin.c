@@ -1,37 +1,41 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-size_t ft_strlen(const char *str)
-{
-    size_t i;
+/**************************************************************
+*						FT_STRJOIN:							  *
+*	La función ft_strjoin concatena dos cadenas de caracteres *
+*	(s1 y s2) en una nueva cadena de caracteres.              *
+*	Devuelve un puntero a la nueva cadena concatenada o NULL  *
+*	en caso de error de asignación de memoria.                *
+*															  *
+*	Argumentos:												  *
+*	s1: La primera cadena de caracteres que se concatenará.   *
+*	s2: La segunda cadena de caracteres que se concatenará.   *
+*															  *
+\*************************************************************/
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
 char *ft_strjoin(char const *s1, char const *s2)
 {
     size_t i;
     size_t j;
-    char *p;
-    size_t total;
+    char *new;
 
-    total = (ft_strlen(s1) + ft_strlen(s2));
+    new = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+    if (!new || !s1 || !s2)
+        return (NULL);
     i = 0;
-    j = 0;
-    if (!(s1[i] || s2[i]))
-        return (0);
-    p = (char *)malloc(total * sizeof(char));
-    while (s1[i] || s2[j])
+    while (s1[i] != '\0')
     {
-        if (s1[i])
-            p[i] = s1[i];
-        else
-            p[i + j] = s2[i];
+        new[i] = s1[i];
+        i++;
     }
-    return (p);
+    j = 0;
+    while (s2[j] != '\0')
+        new[i++] = s2[j++];
+    new[i] = '\0';
+    return (new);
 }
+
+/*
 int main(void)
 {
     char const s1[] = "hola buenas";
@@ -41,4 +45,4 @@ int main(void)
     free(result);
 
     return (0);
-}
+}*/
