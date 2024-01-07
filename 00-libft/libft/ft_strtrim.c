@@ -38,12 +38,16 @@ char *ft_strtrim(char const *s1, char const *set)
         return (NULL);
     return (str);
 }
+#include <stdio.h>
 
-int main(void)
+int main() 
 {
-    char const s1[] = "hola";
-    char const s2[] = "oa";
-    char *result = ft_strtrim(s1, s2);
-    free(result);
-    return (0);
+    char *cadena = "  Hola  ";
+    char *conjunto = " ";
+    char *resultado_ft_strtrim = ft_strtrim(cadena, conjunto);
+	
+	printf("Cadena sin limpiar: <%s>\n", cadena);
+    printf("Resultado ft_strtrim: <%s>\n", resultado_ft_strtrim);
+    free(resultado_ft_strtrim);
+	return 0;
 }

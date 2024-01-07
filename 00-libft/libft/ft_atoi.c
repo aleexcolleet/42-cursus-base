@@ -28,13 +28,13 @@ int ft_atoi(const char *str)
         result = result * 10 + str[i++] - '0';
     return (result * sign);
 }
-/*
+
 int main(int argc, char **argv)
 {
-
-    if (argc != 2)
-        return (0);
-    printf("atoi orignial----> %d\n", atoi(argv[1]));
-    printf("elmio------------> %d\n", ft_atoi(argv[1]));
-    return (0);
-}*/
+	#include <stdio.h>
+	if (argc != 2)
+		return (0);
+	printf("atoi orignial----> %d\n", atoi(argv[1]));
+	printf("elmio------------> %d\n", ft_atoi(argv[1]));
+	return (0);
+}

@@ -37,16 +37,16 @@ unsigned int ft_strlcat(char *dest, char *src, unsigned int size)
         destlen = size;
     return (destlen + srclen);
 }
-/*
+
 #include <stdio.h>
 int main()
 {
-    char destino[20] = "Hola, ";
-    char fuente[] = "mundo!";
+    char destino[20] = "como esta ";
+    char fuente[] = "tu hermana!";
     unsigned int limite = 20;
     unsigned int resultado_ft_strlcat = ft_strlcat(destino, fuente, limite);
     printf("Fuente: %s\nDestino: %s\n", fuente, destino);
     printf("Resultado ft_strlcat: %u\n", resultado_ft_strlcat);
     printf("Cadena concatenada: %s\n", destino);
     return 0;
-}*/
+}
