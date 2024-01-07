@@ -4,20 +4,8 @@
 The function return the array of new strs resulting from the split. NULL
 if the allocation fails.
 */
-static char *function_2(const char *str, int start, int end)
-{
-    char *rtn;
-    int i;
 
-    rtn = (char *)malloc(sizeof(char) * ((end - start) + 1))
-        i = 0;
-    while (start < end)
-        rtn[i++] = str[start++];
-    rtn[i] = 0;
-    return (rtn);
-}
-
-static int function_1(const char *str, char c) // para que solo pueda usarse en este archivo. Entiendo porqe es un nombre comun y puede haber problemas con otros programas;
+static int function_1(const char *str, char c)
 {
     int counter;
     int warn;
@@ -37,16 +25,34 @@ static int function_1(const char *str, char c) // para que solo pueda usarse en 
     }
     return (counter);
 }
+/*function_1 is used as counter for word.*/
+
+static char *function_2(const char *str, int start, int end)
+{
+    char *rtn;
+    int i;
+
+    rtn = (char *)malloc(sizeof(char) * ((end - start) + 1));
+    i = 0;
+    while (start < end)
+        rtn[i++] = str[start++];
+    rtn[i] = 0;
+    return (rtn);
+}
+/*function_2 is used as method to copy the words*/
+
 static int function_3(const char *str)
 {
     int i;
+
     i = 0;
     while (str[i])
         i++;
     return (i);
 }
+/*function 3 is used as strlen, but with static_int*/
 
-char **ft_split(char cosnt *s, char c)
+char **ft_split(char const *s, char c)
 {
     char **out;
     int i;
@@ -61,7 +67,7 @@ char **ft_split(char cosnt *s, char c)
     start = -1;
     i = -1;
     j = 0;
-    while (++i <= function_3(s)) // i = 0; start = 0;
+    while (++i <= function_3(s))
     {
         if (s[i] != c && start < 0)
             start = i;
@@ -71,6 +77,8 @@ char **ft_split(char cosnt *s, char c)
             start = -1;
         }
     }
+    out[j] = 0;
+    return (out);
 }
 
 /*
