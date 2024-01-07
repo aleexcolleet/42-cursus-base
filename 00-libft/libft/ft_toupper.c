@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**************************************************************
 *						FT_TOUPPER:							  *
 *	La función ft_toupper convierte un carácter en minúscula  *
@@ -27,5 +26,6 @@ int main(void)
 {
     int c = 'z';
     printf("la letra es: %c", ft_toupper(c));
+    printf(origina---> %d)
     return (0);
 }*/
