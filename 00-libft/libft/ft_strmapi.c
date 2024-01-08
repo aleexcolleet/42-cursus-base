@@ -34,7 +34,7 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
     str[i] = '\0';
     return (str);
 }
-
+/*
 char to_mayus(unsigned int posicion, char c)
 {
     if (c >= 'a' && c <= 'z')
@@ -51,4 +51,4 @@ int main()
     printf("Resultado ft_strmapi: %s\n", resultado_ft_strmapi);
     free(resultado_ft_strmapi);
     return 0;
-}
+}*/
