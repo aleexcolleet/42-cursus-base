@@ -1,6 +1,7 @@
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+// hola
 /**************************************************************
 *						FT_STRMAPI:							  *
 *	La función ft_strmapi aplica una función (f) a cada       *
