@@ -1,6 +1,5 @@
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
+
 /**************************************************************
 *						FT_STRMAPI:							  *
 *	La función ft_strmapi aplica una función (f) a cada       *
@@ -42,7 +41,7 @@ char to_mayus(unsigned int posicion, char c)
         return c - 32;
     return (c);
 }
-
+/*
 int main()
 {
     char *cadena = "Hola, mundo!";
@@ -52,4 +51,4 @@ int main()
     printf("Resultado ft_strmapi: %s\n", resultado_ft_strmapi);
     free(resultado_ft_strmapi);
     return 0;
-}
+}*/
