@@ -5,18 +5,18 @@
     Es útil para asignar y preparar memoria para estructuras
     de datos, como arreglos.
 */
-void *ft_calloc(size_t num_elements, size_t size)
+void	*ft_calloc(size_t num_elements, size_t size)
 {
-    void *result;
+	void	*result;
 
-    result = malloc(num_elements * size);
-    if (!result)
-        return (NULL);
-    else
-    {
-        ft_bzero(result, num_elements * size);
-        return (result);
-    }
+	result = malloc(num_elements * size);
+	if (!result)
+		return (NULL);
+	else
+	{
+		ft_bzero(result, num_elements * size);
+		return (result);
+	}
 }
 /*
 int main(void)

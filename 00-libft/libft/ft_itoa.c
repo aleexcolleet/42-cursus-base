@@ -9,11 +9,11 @@ is division and % module. The problem of --len is caused by
 the differences from position and lenght
 */
 
-static size_t ft_counter(long n)
+static	size_t	ft_counter(long n)
 {
-    int i;
+    int	i;
 
-    i = 0;
+	i = 0;
     if (n < 0)
     {
         n *= -1;

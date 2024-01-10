@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**************************************************************
 *						FT_ISPRINT:							  *
 *	La función ft_isprint se utiliza para determinar si      *
@@ -13,8 +12,7 @@
 *	código de carácter ASCII.								  *
 *															  *
 \*************************************************************/
-
-int ft_isprint(char c)
+int	ft_isprint(char c)
 {
-    return (c >= 32 && c <= 126);
+	return (c >= 32 && c <= 126);
 }

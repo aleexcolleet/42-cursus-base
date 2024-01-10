@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**********************************************************
 *						 FT_ISALPHA:					  *
 *	La función ft_isalpha se utiliza para determinar	  *
@@ -12,10 +11,9 @@
 *	generalmente en forma de su valor ASCII.			  *
 *														  *
 \*********************************************************/
-
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
-    return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }
 /*
 int main(void)

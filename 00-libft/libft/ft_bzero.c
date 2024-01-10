@@ -1,14 +1,11 @@
-
 #include "libft.h"
-
 /*						FT_BZERO:
  *	Establece todos los bytes de un bloque de memoria a cero.
  *	Es útil para inicializar o "borrar" la memoria de manera eficiente.
  */
-
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-    ft_memset(s, '\0', n);
+	ft_memset(s, '\0', n);
 }
 /*
 int main()
