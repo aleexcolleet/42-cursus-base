@@ -1,3 +1,4 @@
+#include "libc.h"
 /*it converts the int to a str (char *). Negative numbers must be handled
 static int is a variable that exist till the end of the program
 once initialized. int will be destroyed when the function ends.
@@ -7,9 +8,6 @@ len is +1 because there is null at the end of the string.
 is division and % module. The problem of --len is caused by
 the differences from position and lenght
 */
-
-#include <stdio.h>
-#include <stdlib.h>
 
 static size_t ft_counter(long n)
 {
@@ -51,7 +49,7 @@ char *ft_itoa(int n)
     }
     return (str);
 }
-
+/*
 int main(void)
 {
     int c = -1234;
@@ -59,4 +57,4 @@ int main(void)
     printf("elmio---> %s\n", result);
     free(result);
     return (0);
-}
+}*/

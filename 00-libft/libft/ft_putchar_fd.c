@@ -1,31 +1,29 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include "libft.h"
+
+/**************************************************************
+*						FT_PUTCHAR_FD:						  *
+*	La función ft_putchar_fd escribe un carácter (c) en el    *
+*	descriptor de archivo especificado (fd).				  *
+*															  *
+*	Argumentos:												  *
+*	c: El carácter que se escribirá en el descriptor de       *
+*	archivo.												  *
+*	fd: El descriptor de archivo donde se escribirá el        *
+*	carácter.												  *
+*															  *
+\*************************************************************/
 
 void ft_putchar_fd(char c, int fd)
 {
-    // open file
-    fd = open("myExample.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-
-    if (fd = -1)
-    {
-        perror("Error opening myExample");
-        exit(EXIT_FAILURE);
-    }
-
-    // write into the file
-    const char *message;
-    ssize_t bytes_written;
-
-    message = "Hello, File descriptor!'n";
-    bytes_written = write(fd, message, strlen(message))
+    write(fd, &c, 1);
 }
-
+/*
 int main(void)
 {
-    int fd;
+    char caracter = 'A';
+    int descriptor_de_archivo = 1;
+// 1 corresponde a la salida estándar (stdout)
 
+    ft_putchar_fd(caracter, descriptor_de_archivo);
     return (0);
-}
+}*/
