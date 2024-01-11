@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /***************************************************************
 *						FT_STRLCAT:							   *
 *	La función ft_strlcat concatena dos cadenas de caracteres  *
@@ -14,7 +13,6 @@
 *	nulo de terminación.                                       *
 *															   *
 \**************************************************************/
-
 unsigned int ft_strlcat(char *dest, char *src, unsigned int size)
 {
     unsigned int i;
@@ -37,7 +35,7 @@ unsigned int ft_strlcat(char *dest, char *src, unsigned int size)
         destlen = size;
     return (destlen + srclen);
 }
-
+/*
 #include <stdio.h>
 int main()
 {
@@ -49,4 +47,4 @@ int main()
     printf("Resultado ft_strlcat: %u\n", resultado_ft_strlcat);
     printf("Cadena concatenada: %s\n", destino);
     return 0;
-}
+}*/

@@ -1,5 +1,3 @@
-#include "libft.h"
-
 /**************************************************************
 *						FT_STRCHR:							  *
 *	La función ft_strchr busca la primera aparición de un     *
@@ -13,14 +11,22 @@
 *	c: El carácter que se buscará en la cadena.               *
 *															  *
 \*************************************************************/
+#include "libft.h"
 
-char *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
-    while (*s != '\0' && (char)c != *s)
-        s++;
-    if ((char)c == *s)
-        return ((char *)s);
-    return (0);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
+		i++;
+	}
+	if (str[i] == (char)c)
+		return ((char *)&str[i]);
+	return (0);
 }
 /*
 int main(void)

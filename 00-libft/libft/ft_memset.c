@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**************************************************************
 *						FT_MEMSET:							  *
 *	La función ft_memset establece los primeros len bytes     *
@@ -14,15 +13,17 @@
 *	específico.												  *
 *															  *
 \*************************************************************/
-
-void *ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *dest, int ch, size_t len)
 {
-    unsigned char *tmp;
+	unsigned char	*ptr;
 
-    tmp = (unsigned char *)b;
-    while (len--)
-        *tmp++ = (unsigned char)c;
-    return (b);
+	ptr = (unsigned char *)dest;
+	while (len > 0)
+	{
+		ptr [len - 1] = ch;
+		len--;
+	}
+	return (dest);
 }
 /*
 int main(void)

@@ -1,5 +1,5 @@
 
-NME = libft.a
+NAME = libft.a
 SRCS = ft_calloc.c \
 	   ft_isdigit.c \
 	   ft_memcpy.c \

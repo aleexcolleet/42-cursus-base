@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**************************************************************
 *						FT_PUTCHAR_FD:						  *
 *	La función ft_putchar_fd escribe un carácter (c) en el    *
@@ -12,10 +11,9 @@
 *	carácter.												  *
 *															  *
 \*************************************************************/
-
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-    write(fd, &c, 1);
+	write(fd, &c, 1);
 }
 /*
 int main(void)

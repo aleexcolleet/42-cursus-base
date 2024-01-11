@@ -1,18 +1,14 @@
 #include "libft.h"
 
-void ft_putstr_fd(char *c, int fd)
+void	ft_putstr_fd(char const *s, int fd)
 {
-    size_t i;
-
-    i = 0;
-    while (i < ft_strlen(i))
-    {
-        ft_putchar_fd(c[i], fd);
-        i++;
-    }
+	if (!s)
+		return ;
+	while (*s)
+		write(fd, &(*s++), 1);
 }
 
-/*
+/*Outputs the string ’s’ to the given file descriptor.
 int main(void)
 {
     int fd;

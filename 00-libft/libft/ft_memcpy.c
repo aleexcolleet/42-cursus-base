@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**************************************************************
 *						FT_MEMCPY:							  *
 *	La función ft_memcpy copia n bytes de una zona de memoria *
@@ -14,14 +13,24 @@
 *	n: El número de bytes que se copiarán desde src a dest.   *
 *															  *
 \*************************************************************/
+#include "libft.h"
+/*#include <stddef.h>*/
 
-void *ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t len)
 {
-    if (!dest && !src && n > 0)
-        return (NULL);
-    return (ft_memmove(dest, src, n));
+	size_t	i;
+
+	if (!dest && !src)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dest);
 }
-/*
+/*memcpy is used to copy a block of memory from a location to another.
 int main(void)
 {
     char dest[] = "ooooooo";

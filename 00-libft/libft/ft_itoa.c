@@ -8,53 +8,79 @@ len is +1 because there is null at the end of the string.
 is division and % module. The problem of --len is caused by
 the differences from position and lenght
 */
+#include "libft.h"
 
-static	size_t	ft_counter(long n)
+static int    largo_num(int n, int contador)
 {
-    int	i;
 
-	i = 0;
     if (n < 0)
-    {
-        n *= -1;
-        i++;
-    }
-    while (n / 10 > 0 && i++)
-        n = n / 10;
-    return (i);
+        return (largo_num(-n, contador + 1));
+    if (n > 0)
+        return (largo_num(n / 10, contador + 1));
+    return (contador);
 }
-char *ft_itoa(int n)
-{
-    char *str;
-    long l;
-    size_t len;
 
-    l = n;
-    len = ft_counter(l) + 1;
-    str = (char *)malloc(sizeof(char) * len);
+static char    *alstring(int n, int largo)
+{
+    char    *str;
+    size_t    i;
+
+    str = (char *)malloc(largo * sizeof(char) + 1);
     if (!str)
         return (NULL);
-    if (l < 0)
+    i = 0;
+    if (n < 0)
     {
-        l *= -1;
-        str[0] = '-';
+        n = -n;
+        str[i] = '-';
+        i++;
     }
-    str[--len] = '\0';
-    if (l == 0)
-        str[0] = '0';
-    while (l)
+    while (n > 0)
     {
-        str[--len] = (l % 10) + '0';
-        l /= 10;
+        str[--largo] = (n % 10) + '0';
+        n /= 10;
+        i++;
     }
+    str[i] = '\0';
     return (str);
 }
-/*
-int main(void)
+
+char    *ft_itoa(int n)
 {
-    int c = -1234;
-    char *result = ft_itoa(c);
-    printf("elmio---> %s\n", result);
-    free(result);
+    int largo;
+
+    if (n == 0)
+        return (ft_strdup("0"));
+    else if (n < -2147483647)
+        return (ft_strdup("-2147483648"));
+    else if (n > 2147483647)
+        return (ft_strdup("2147483647"));
+    largo = largo_num(n, 0);
+    return (alstring(n, largo));
+}
+/*
+int    main(void)
+{
+    char *result_ft_itoa1 = ft_itoa(-1500);
+    char *result_ft_itoa2 = ft_itoa(556566);
+    char *result_ft_itoa3 = ft_itoa(0);
+    char *result_ft_itoa4 = ft_itoa(-45454);
+    char *result_ft_itoa5 = ft_itoa(17);
+
+
+    printf("result itoa1: %s\n", result_ft_itoa1);
+    printf("result itoa2: %s\n", result_ft_itoa2);
+    printf("result itoa3: %s\n", result_ft_itoa3);
+    printf("result itoa4: %s\n", result_ft_itoa4);
+    printf("result itoa5: %s\n", result_ft_itoa5);
+
+
+    free (result_ft_itoa1);
+    free (result_ft_itoa2);
+    free (result_ft_itoa3);
+    free (result_ft_itoa4);
+    free (result_ft_itoa5);
+
+
     return (0);
 }*/

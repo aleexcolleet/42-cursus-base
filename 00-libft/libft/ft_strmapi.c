@@ -34,14 +34,15 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
     str[i] = '\0';
     return (str);
 }
-
+/*
 char to_mayus(unsigned int posicion, char c)
 {
+	posicion = 32;
     if (c >= 'a' && c <= 'z')
-        return c - 32;
+        return (c - posicion);
     return (c);
 }
-/*
+
 int main()
 {
     char *cadena = "Hola, mundo!";
