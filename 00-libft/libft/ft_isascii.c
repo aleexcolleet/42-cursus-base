@@ -19,8 +19,8 @@ int	ft_isascii(int c)
 /*
 int main(void)
 {
-    char check = 23;
-    if (ft_isascii(check) == 1)
+		char check = 23;
+		if (ft_isascii(check) == 1)
     {
         printf("it's an ascii character");
         return (0);
