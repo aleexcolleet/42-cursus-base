@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**************************************************************
 *						FT_STRLEN:							  *
 *	La función ft_strlen calcula la longitud de una cadena de *
@@ -10,15 +9,14 @@
 *	str: La cadena de caracteres cuya longitud se calculará.  *
 *															  *
 \*************************************************************/
-
-size_t ft_strlen    (const char *str)
+size_t	ft_strlen(const char *str)
 {
-    size_t  i;
+	size_t	i;
 
-    i = 0;
-    while (str[i] != '\0')
-        i++;
-    return (i);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 /*
 #include <stdio.h>

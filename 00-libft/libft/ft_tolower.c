@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /***************************************************************
 *						FT_TOLOWER:							   *
 *	La función ft_tolower convierte un carácter en mayúscula   *
@@ -14,12 +13,11 @@
 *	carácter si no es una letra mayúscula.					   *
 *															   *
 \**************************************************************/
-
-int ft_tolower(int c)
+int	ft_tolower(int c)
 {
-    if (c >= 'A' && c <= 'Z')
-        return (c += 32);
-    return (c);
+	if (c >= 'A' && c <= 'Z')
+		return (c += 32);
+	return (c);
 }
 /*
 int main(void)

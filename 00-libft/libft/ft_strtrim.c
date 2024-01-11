@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /*******************************************************************
 *						FT_STRTRIM:								   *
 *	La función ft_strtrim elimina los caracteres especificados	   *
@@ -16,25 +15,24 @@
 *	resultante, o NULL si hay un error de asignación de memoria.   *
 *															       *
 \******************************************************************/
-
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-    char *str;
-    size_t j;
+	char	*str;
+	size_t	j;
 
-    if (!s1)
-        return (NULL);
-    if (!set)
-        return ((char *)s1);
-    while (*s1 && ft_strchr(set, *s1))
-        s1++;
-    j = ft_strlen(s1);
-    while (j && ft_strchr(set, s1[j]))
-        j--;
-    str = ft_substr(s1, 0, j + 1);
-    if (!str)
-        return (NULL);
-    return (str);
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return ((char *)s1);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	j = ft_strlen(s1);
+	while (j && ft_strchr(set, s1[j]))
+		j--;
+	str = ft_substr(s1, 0, j + 1);
+	if (!str)
+		return (NULL);
+	return (str);
 }
 /*
 #include <stdio.h>

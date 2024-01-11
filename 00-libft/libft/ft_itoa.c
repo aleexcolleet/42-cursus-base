@@ -1,4 +1,4 @@
-#include "libc.h"
+#include "libft.h"
 /*it converts the int to a str (char *). Negative numbers must be handled
 static int is a variable that exist till the end of the program
 once initialized. int will be destroyed when the function ends.
@@ -8,55 +8,52 @@ len is +1 because there is null at the end of the string.
 is division and % module. The problem of --len is caused by
 the differences from position and lenght
 */
-#include "libft.h"
-
-static int    largo_num(int n, int contador)
+static int	largo_num(int n, int contador)
 {
-
-    if (n < 0)
-        return (largo_num(-n, contador + 1));
-    if (n > 0)
-        return (largo_num(n / 10, contador + 1));
-    return (contador);
+	if (n < 0)
+		return (largo_num(-n, contador + 1));
+	if (n > 0)
+		return (largo_num(n / 10, contador + 1));
+	return (contador);
 }
 
-static char    *alstring(int n, int largo)
+static char	*alstring(int n, int largo)
 {
-    char    *str;
-    size_t    i;
+	char	*str;
+	size_t	i;
 
-    str = (char *)malloc(largo * sizeof(char) + 1);
-    if (!str)
-        return (NULL);
-    i = 0;
-    if (n < 0)
-    {
-        n = -n;
-        str[i] = '-';
-        i++;
-    }
-    while (n > 0)
-    {
-        str[--largo] = (n % 10) + '0';
-        n /= 10;
-        i++;
-    }
-    str[i] = '\0';
-    return (str);
+	str = (char *)malloc(largo * sizeof(char) + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	if (n < 0)
+	{
+		n = -n;
+		str[i] = '-';
+		i++;
+	}
+	while (n > 0)
+	{
+		str[--largo] = (n % 10) + '0';
+		n /= 10;
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 
-char    *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-    int largo;
+	int	largo;
 
-    if (n == 0)
-        return (ft_strdup("0"));
-    else if (n < -2147483647)
-        return (ft_strdup("-2147483648"));
-    else if (n > 2147483647)
-        return (ft_strdup("2147483647"));
-    largo = largo_num(n, 0);
-    return (alstring(n, largo));
+	if (n == 0)
+		return (ft_strdup("0"));
+	else if (n < -2147483647)
+		return (ft_strdup("-2147483648"));
+	else if (n > 2147483647)
+		return (ft_strdup("2147483647"));
+	largo = largo_num(n, 0);
+	return (alstring(n, largo));
 }
 /*
 int    main(void)

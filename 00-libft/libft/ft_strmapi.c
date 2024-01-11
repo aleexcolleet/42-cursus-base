@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**************************************************************
 *						FT_STRMAPI:							  *
 *	La función ft_strmapi aplica una función (f) a cada       *
@@ -16,30 +15,29 @@
 *	carácter como segundo argumento.                          *
 *															  *
 \*************************************************************/
-
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-    unsigned int i;
-    char *str;
+	unsigned int	i;
+	char			*str;
 
-    str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
-    if (!s || !f || !str)
-        return (NULL);
-    i = 0;
-    while (i < ft_strlen(s))
-    {
-        str[i] = f(i, s[i]);
-        i++;
-    }
-    str[i] = '\0';
-    return (str);
+	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!s || !f || !str)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 /*
-char to_mayus(unsigned int posicion, char c)
+char	to_mayus(unsigned int posicion, char c)
 {
 	posicion = 32;
-    if (c >= 'a' && c <= 'z')
-        return (c - posicion);
+	if (c >= 'a' && c <= 'z')
+        return c - posicion;
     return (c);
 }
 

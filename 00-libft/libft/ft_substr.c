@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /***************************************************************
 *						FT_SUBSTR:							   *
 *	La función ft_substr crea una nueva cadena de caracteres   *
@@ -18,24 +17,22 @@
 *	NULL si hay un error.									   *
 *															   *
 \**************************************************************/
-
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    char *new;
+	char	*new;
 
-    if (!s)
-        return NULL;
-    else if (start >= ft_strlen(s))
-        return ft_strdup("");
-    else if ((ft_strlen(s) - start) < len)
-        len = ft_strlen(s) - start;
-    new = (char *)malloc((len + 1) * sizeof(char));
-    if (!new)
-        return NULL;
-    ft_strlcpy(new, s + start, len + 1);
-    return (new);
+	if (!s)
+		return (NULL);
+	else if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	else if ((ft_strlen(s) - start) < len)
+		len = ft_strlen(s) - start;
+	new = (char *)malloc((len + 1) * sizeof(char));
+	if (!new)
+		return (NULL);
+	ft_strlcpy(new, s + start, len + 1);
+	return (new);
 }
-
 /*
 int main(void)
 {

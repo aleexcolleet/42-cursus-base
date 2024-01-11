@@ -1,6 +1,4 @@
-
 #include "libft.h"
-
 /**************************************************************
 *						FT_STRRCHR:							  *
 *	La función ft_strrchr busca la última aparición de un     *
@@ -14,23 +12,22 @@
 *	c: El carácter que se buscará en la cadena.               *
 *															  *
 \*************************************************************/
-
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-    char *str;
-    char l;
+	char	*str;
+	char	l;
 
-    str = NULL;
-    l = (char)c;
-    while (*s)
-    {
-        if (*s == l)
-            str = (char *)s;
-        s++;
-    }
-    if (*s == l)
-        str = (char *)s;
-    return (str);
+	str = NULL;
+	l = (char)c;
+	while (*s)
+	{
+		if (*s == l)
+			str = (char *)s;
+		s++;
+	}
+	if (*s == l)
+		str = (char *)s;
+	return (str);
 }
 /*
 #include <string.h>

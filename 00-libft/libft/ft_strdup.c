@@ -1,5 +1,4 @@
 #include "libft.h"
-
 /**************************************************************
 *						FT_STRDUP:							  *
 *	La función ft_strdup duplica una cadena de caracteres     *
@@ -11,16 +10,15 @@
 *	str: La cadena de caracteres que se duplicará.            *
 *															  *
 \*************************************************************/
-
-char *ft_strdup(const char *str)
+char	*ft_strdup(const char *str)
 {
-    char *cpy;
+	char	*cpy;
 
-    cpy = (char *)malloc(ft_strlen(str) + 1);
-    if (!cpy)
-        return (0);
-    ft_memcpy(cpy, str, ft_strlen(str) + 1);
-    return (cpy);
+	cpy = (char *)malloc(ft_strlen(str) + 1);
+	if (!cpy)
+		return (0);
+	ft_memcpy(cpy, str, ft_strlen(str) + 1);
+	return (cpy);
 }
 /*
 int main(void)

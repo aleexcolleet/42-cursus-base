@@ -1,6 +1,4 @@
-
 #include "libft.h"
-
 /***************************************************************
 *						FT_STRNSTR:							   *
 *	La función ft_strnstr busca una subcadena (little) dentro  *
@@ -15,27 +13,26 @@
 *	len: El límite de longitud hasta el cual buscar.           *
 *															   *
 \**************************************************************/
-
-char *ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-    size_t i;
-    size_t x;
+	size_t	i;
+	size_t	x;
 
-    i = 0;
-    if (*little == '\0' || !little)
-        return ((char *)big);
-    while (big[i] && i < len)
-    {
-        x = 0;
-        while (big[i + x] == little[x] && (i + x < len))
-        {
-            if (!little[x + 1])
-                return ((char *)big + i);
-            x++;
-        }
-        i++;
-    }
-    return (NULL);
+	i = 0;
+	if (*little == '\0' || !little)
+		return ((char *)big);
+	while (big[i] && i < len)
+	{
+		x = 0;
+		while (big[i + x] == little[x] && (i + x < len))
+		{
+			if (!little[x + 1])
+				return ((char *)big + i);
+			x++;
+		}
+		i++;
+	}
+	return (NULL);
 }
 /*
 #include <stdio.h>
