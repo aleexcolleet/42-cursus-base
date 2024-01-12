@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/12 15:34:13 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:34:14 by acollet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 /***************************************************************
 *						FT_STRNSTR:							   *
@@ -13,27 +25,27 @@
 *	len: El límite de longitud hasta el cual buscar.           *
 *															   *
 \**************************************************************/
- char    *ft_strnstr(const char *big, const char *little, size_t len)
- {
-     size_t  i;
-     size_t  x;
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+	size_t	x;
 
-     i = 0;
-     if (*little == '\0' || !little)
-         return ((char *)big);
-     while (big[i] && i < len)
-     {
-         x = 0;
-         while (big[i + x] == little[x] && (i + x < len))
-         {
-             if (!little[x + 1])
-                 return ((char *)big + i);
-             x++;
-         }
-         i++;
-     }
-     return (NULL);
- }
+	i = 0;
+	if (*little == '\0' || !little)
+		return ((char *)big);
+	while (big[i] && i < len)
+	{
+		x = 0;
+		while (big[i + x] == little[x] && (i + x < len))
+		{
+			if (!little[x + 1])
+				return ((char *)big + i);
+			x++;
+		}
+		i++;
+	}
+	return (NULL);
+}
 /*
 #include <stdio.h>
 int	main(int argc, char **argv)
