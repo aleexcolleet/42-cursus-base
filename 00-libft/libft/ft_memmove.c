@@ -26,19 +26,28 @@
 *	len: El número de bytes que se copiarán desde src a dst.  *
 *															  *
 \*************************************************************/
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char			*d;
-	const unsigned char		*s;
+	char	*srce;
+	char	*dest;
+	size_t	i;
 
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	if (!(src && dest))
+	i = len;
+	srce = (char *)src;
+	dest = (char *)dst;
+	if (srce == dest)
 		return (dest);
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	while (n--)
-		d[n] = s[n];
+	if (srce < dest)
+	{
+		while (i-- > 0)
+			dest[i] = srce[i];
+	}
+	else
+	{
+		i = -1;
+		while (++i < len)
+			dest[i] = srce[i];
+	}
 	return (dest);
 }
 /*
