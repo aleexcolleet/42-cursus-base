@@ -26,20 +26,20 @@
 \*************************************************************/
 char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
-	char	*ptr;
+	char	*str;
+	char	l;
 
-	i = 0;
-	ptr = 0;
-	while (s[i])
+	str = NULL;
+	l = (char)c;
+	while (*s)
 	{
-		if (s[i] == c)
-			ptr = (char *)(s + i);
-		i++;
+		if (*s == l)
+			str = (char *)s;
+		s++;
 	}
-	if (s[i] == c)
-		ptr = (char *)(s + i);
-	return (ptr);
+	if (*s == l)
+		str = (char *)s;
+	return (str);
 }
 /*
 #include <string.h>

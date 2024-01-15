@@ -25,14 +25,14 @@
 *	específico.												  *
 *															  *
 \*************************************************************/
-void	*ft_memset(void *dest, int ch, size_t len)
+void	*ft_memset(void *dest, int c, size_t len)
 {
 	unsigned char	*ptr;
 
 	ptr = (unsigned char *)dest;
 	while (len > 0)
 	{
-		ptr [len - 1] = ch;
+		ptr [len - 1] = c;
 		len--;
 	}
 	return (dest);
