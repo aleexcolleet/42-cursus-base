@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:34:35 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/12 15:34:37 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:13:15 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ int				ft_tolower(int c);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_putnbr_fd(int n, int fd);
 t_list			*ft_lstnew(void *content);
+void			ft_lstadd_front(t_list **lst, t_list *new);
 #endif
