@@ -38,6 +38,7 @@ SRCS = ft_calloc.c \
 SRCS_BONUS = ft_lstnew.c \
 		ft_lstadd_front.c \
 		ft_lstsize.c \
+		ft_lstlast.c \
 
 FLAGS = -Wall -Wextra -Werror -MMD 
 OBJS = $(SRCS:.c=.o)
