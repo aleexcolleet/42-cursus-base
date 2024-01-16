@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/12 15:31:42 by acollet-          #+#    #+#              #
-#    Updated: 2024/01/12 15:31:45 by acollet-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 NAME = libft.a
 SRCS = ft_calloc.c \
@@ -44,11 +33,18 @@ SRCS = ft_calloc.c \
 	   ft_putchar_fd.c \
 	   ft_putstr_fd.c \
 	   ft_putendl_fd.c \
-	   ft_putnbr_fd.c \
+	   ft_putnbr_fd.c
+
+SRCS_BONUS = ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
 
 FLAGS = -Wall -Wextra -Werror -MMD 
 OBJS = $(SRCS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 DEPS = $(SRCS:.c=.d)
+DEPS_BONUS = $(SRCS_BONUS:.c=.d)
+BONUS = .bonus
 all: $(NAME)
 CC = gcc
 
@@ -57,9 +53,15 @@ CC = gcc
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
+
+bonus: $(BONUS)
 	
+$(BONUS): $(OBJS) $(OBJS_BONUS)
+	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+	touch $@
+
 clean:
-	rm -f $(OBJS) $(DEPS)
+	rm -f $(OBJS) $(OBJS_BONUS) $(DEPS) $(DEPS_BONUS)
 
 fclean: clean
 	rm -f $(NAME)
@@ -67,5 +69,6 @@ fclean: clean
 re: fclean all
 
 -include $(DEPS)
+-include $(DEPS_BONUS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus 
