@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:34:35 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/17 10:43:47 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:58:11 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstlast(t_list *lst);
+void			ft_lstadd_back(t_list **lst, t_list *new);
 #endif
