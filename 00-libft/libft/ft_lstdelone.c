@@ -1,29 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 11:14:43 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/16 15:46:08 by acollet-         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	int	i;
-	t_list	*d;
+	if (!lst || !del)
+		return ;
+	(*del)(lst->content);
+	free(lst);
+}
+/*
+void	del(void *content)
+{
+	free(content);
+}
 
-	d = lst;
-	i = 0;
-	if (!lst)
-		return (0);
+int main(void)
+{
+	t_list *d;
+	d = ft_lstnew("hola");
+	d->next = ft_lstnew("bones");
+	t_list *s = d;
+	while (s)
+	{
+		printf("%s\t", (char *)s->content);
+		s = s->next;
+	}
+	printf("\n");
+	ft_lstdelone(d, del);
 	while(d)
 	{
+		printf("%s\t", (char *)d->content);
 		d = d->next;
-		i++;
-	}
-	return (i);
-}
+	}	
+	free (d);
+	return (0);
+}*/
