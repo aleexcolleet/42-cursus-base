@@ -12,80 +12,81 @@
 
 #include "libft.h"
 
-static int	function_1(const char *str, char c)
+static size_t	how_much_for_next(char *str, char c)
 {
-	int	counter;
-	int	warn;
-
-	counter = 0;
-	warn = 0;
-	while (*str)
-	{
-		if (*str != c && warn == 0)
-		{
-			warn = 1;
-			counter++;
-		}
-		else if (*str == c)
-			warn = 0;
-		str++;
-	}
-	return (counter);
-}
-/*function_1 is used as counter for word.*/
-
-static char	*function_2(const char *str, int start, int end)
-{
-	char	*rtn;
-	int		i;
-
-	rtn = (char *)malloc(sizeof(char) * ((end - start) + 1));
-	i = 0;
-	while (start < end)
-		rtn[i++] = str[start++];
-	rtn[i] = 0;
-	return (rtn);
-}
-/*function_2 is used as method to copy the words*/
-
-static int	function_3(const char *str)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
-		i++;
-	return (i);
-}
-/*function 3 is used as strlen, but with static_int*/
-
-char	**ft_split(char const *s, char c)
-{
-	char	**out;
-	int		i;
-	int		start;
-	int		j;
-
-	if (!s)
-		return (NULL);
-	out = (char **)malloc(sizeof(char *) * (function_1(s, c) + 1));
-	if (!out)
-		return (NULL);
-	start = -1;
-	i = -1;
-	j = 0;
-	while (++i <= function_3(s))
 	{
-		if (s[i] != c && start < 0)
-			start = i;
-		else if (start >= 0 && (s[i] == c || i == function_3(s)))
-		{
-			out[j++] = function_2(s, start, i);
-			start = -1;
-		}
+		if (str[i] == c)
+			return (i);
+		i++;
 	}
-	out[j] = 0;
-	return (out);
+	return (0);
+}
+
+static int	how_much_str(const char *str, char c)
+{
+	int	i;
+	int	nb_str;
+
+	if (str == 0 || str[0] == '\0')
+		return (0);
+	i = 0;
+	if (str[i] == c)
+		nb_str = 0;
+	else
+		nb_str = 1;
+	while (str[i] && (size_t)i <= ft_strlen(str))
+	{
+		if (str[i] == c)
+		{
+			nb_str++;
+			while (str[i] == c)
+				i++;
+		}
+		else
+			i++;
+	}
+	if (str[i - 1] == c)
+		nb_str--;
+	return (nb_str);
+}
+
+static char	*str_set(char *str, char c)
+{
+	while (*str == c)
+		str++;
+	return (str);
+}
+
+static void	retour_fil(char **retour, const char *s, char c)
+{
+	int		nb_str;
+	char	*str;
+	char	*new_str;
+
+	str = (char *)s;
+	nb_str = -1;
+	while (nb_str++ < (how_much_str(s, c) - 1))
+	{
+		str = str_set(str, c);
+		if (str[0] == '\0')
+			break ;
+		new_str = ft_substr(str, 0, how_much_for_next(str, c));
+		if (new_str[0] == '\0')
+		{
+			free(new_str);
+			new_str = ft_substr(str, 0, ft_strlen(str));
+		}
+		if (*new_str)
+			retour[nb_str] = ft_strdup(new_str);
+		else
+			retour[nb_str] = ft_strdup(str);
+		free(new_str);
+		str = ft_strchr(str, c);
+	}
 }
 /*s is the str to be split. c is the delimiter char.
 The function return the array of new strs resulting from the split. NULL
@@ -101,3 +102,20 @@ int main(void)
     }
 	return (0);
 }*/
+char	**ft_split(char const *s, char c)
+{
+	char	**retour;
+
+	retour = ft_calloc(how_much_str(s, c) + 1, sizeof(char *));
+	if (s == 0)
+	{
+		*retour = malloc(sizeof(char));
+		*retour = 0;
+		return (retour);
+	}
+	if (!retour)
+		return (NULL);
+	retour_fil(retour, s, c);
+	retour[how_much_str(s, c)] = NULL;
+	return (retour);
+}
