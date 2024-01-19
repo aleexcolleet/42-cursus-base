@@ -9,113 +9,89 @@
 /*   Updated: 2024/01/12 15:33:17 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-static size_t	how_much_for_next(char *str, char c)
+static int	count_words(const char *str, char c)
 {
-	size_t	i;
+	int	contador;
+	int	warn;
 
-	i = 0;
-	while (str[i])
+	contador = 0;
+	warn = 0;
+	while (*str)
 	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (0);
-}
-
-static int	how_much_str(const char *str, char c)
-{
-	int	i;
-	int	nb_str;
-
-	if (str == 0 || str[0] == '\0')
-		return (0);
-	i = 0;
-	if (str[i] == c)
-		nb_str = 0;
-	else
-		nb_str = 1;
-	while (str[i] && (size_t)i <= ft_strlen(str))
-	{
-		if (str[i] == c)
+		if (*str != c && warn == 0)
 		{
-			nb_str++;
-			while (str[i] == c)
-				i++;
+			warn = 1;
+			contador++;
 		}
-		else
-			i++;
-	}
-	if (str[i - 1] == c)
-		nb_str--;
-	return (nb_str);
-}
-
-static char	*str_set(char *str, char c)
-{
-	while (*str == c)
+		else if (*str == c)
+			warn = 0;
 		str++;
-	return (str);
-}
-
-static void	retour_fil(char **retour, const char *s, char c)
-{
-	int		nb_str;
-	char	*str;
-	char	*new_str;
-
-	str = (char *)s;
-	nb_str = -1;
-	while (nb_str++ < (how_much_str(s, c) - 1))
-	{
-		str = str_set(str, c);
-		if (str[0] == '\0')
-			break ;
-		new_str = ft_substr(str, 0, how_much_for_next(str, c));
-		if (new_str[0] == '\0')
-		{
-			free(new_str);
-			new_str = ft_substr(str, 0, ft_strlen(str));
-		}
-		if (*new_str)
-			retour[nb_str] = ft_strdup(new_str);
-		else
-			retour[nb_str] = ft_strdup(str);
-		free(new_str);
-		str = ft_strchr(str, c);
 	}
+	return (contador);
 }
-/*s is the str to be split. c is the delimiter char.
-The function return the array of new strs resulting from the split. NULL
-if the allocation fails.
-int main(void)
+
+static int	len_word(char const *s, char c)
 {
-    char str[] = "dajedajedaje";
-    char **str1;
-    str1 = ft_split(str, 'd');
-    while (*str1)
-    {
-        printf("%s\n", *str1++);
-    }
-	return (0);
-}*/
+	int	counter;
+
+	counter = 0;
+	while (*s == c)
+		s++;
+	while (*s != c && *s)
+	{
+		counter++;
+		s++;
+	}
+	return (counter);
+}
+
+static char	**free_m(char **split, int i)
+{
+	while (i >= 0)
+	{
+		free(split[i]);
+		--i;
+	}
+	free(split);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	char	**retour;
+	char	**array;
+	int		i;
+	int		j;
 
-	retour = ft_calloc(how_much_str(s, c) + 1, sizeof(char *));
-	if (s == 0)
-	{
-		*retour = malloc(sizeof(char));
-		*retour = 0;
-		return (retour);
-	}
-	if (!retour)
+	if (!s)
 		return (NULL);
-	retour_fil(retour, s, c);
-	retour[how_much_str(s, c)] = NULL;
-	return (retour);
+	array = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!array)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (i < count_words(s, c))
+	{
+		while (s[j] == c && s[j] != '\0')
+			j++;
+		array[i] = ft_substr(s, j, len_word(&s[j], c));
+		if (!array[i])
+			return (free_m(array, i));
+		j += len_word(&s[j], c);
+		i++;
+	}
+	array[i] = 0;
+	return (array);
 }
+/*
+int	main(void)
+{
+	char str[] = "AlexAlohaAlejoAsturias";
+	char **str1;
+	str1 = ft_split(str, 'A');
+	printf("resultado--->");
+	while(*str1)
+		printf("%s\t", *str1++);
+	return(0);
+}*/

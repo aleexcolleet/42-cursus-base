@@ -21,10 +21,10 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	{
 		temp = (*lst)->next;
 		del((*lst)->content);
-        free(*lst);
+		free(*lst);
 		(*lst) = temp;
 	}
-} 
+}
 /*
 void	ft_del(void *content)
 {
