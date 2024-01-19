@@ -37,16 +37,16 @@ ADICIONALES
 31-ft_putchar_fd char HECHA
 32-ft_putstr_fd  char HECHA
 33-ft_putendl_fd char HECHA
-34-ft_putnbr_fd  
+34-ft_putnbr_fd char HECHA 
 
 BONUS
 
-35-ft_lstnew  //
-36-ft_lstadd_front  //
-37-ft_lstsize //
-38-ft_lstlast //
-39-ft_lstadd_back //
-40-ft_lstdelone //
-41-ft_lstclear //
-42-ft_lstiter //
-43-ft_lstmap //
+35-ft_lstnew HECHA //
+36-ft_lstadd_front HECHA //
+37-ft_lstsize HECHA //
+38-ft_lstlast HECHA //
+39-ft_lstadd_back HECHA //
+40-ft_lstdelone HECHA //
+41-ft_lstclear HECHA //
+42-ft_lstiter HECHA //
+43-ft_lstmap HECHA //
