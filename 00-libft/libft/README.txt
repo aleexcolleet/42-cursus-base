@@ -8,7 +8,7 @@ Devuelve la cantidad de caracteres que tiene el string base. size_t	ft_strlcpy(c
 3**"ft_strlcat" -----> Une dos strings, con un limite de tamano especifico. Al final del string de destino copiara el string base -1 caracter de lo que le pase, dejando lugar para el '\0'. si quiero unir 'hola' a 'chau' tendria que pasarle 9 de tamano;
 Devuelve la cantidad de caracteres de la cadena resultante si es que no es mayor que el tamano pasado. si es mayor la cadena resultante que el size, devuelve size + cadena base. unsigned int	ft_strlcat(char *dst, char *str, unsigned int size);
 
-4**"ft_strncmp" ---> Compara n caracteres de dos cadenas y devuelve un valor entero dependiendo de si una mayor, menor o igual que la otra. int	ft_strncmp(const char *s1, const char *s2, size_t n);
+4**"ft_strncmp" ---> Compara n caracteres de dos cadenas y devuelve un valor entero dependiendo de si una mayor, menor o igual que la otra. intft_strncmp(const char *s1, const char *s2, size_t n);
 
 5**"ft_strchr" ---> Busca la PRIMERA aparicion de un caracter en un string. Devuelve un puntero a la primera aparicion o NULLO si no se encuentra. char	*ft_strchr(const char *s, int c);
 
@@ -43,7 +43,7 @@ Devuelve un puntero a la zona de memoria destino. void	*ft_memmove(void *dst, co
 Devuelve un puntero a la zona de memoria destino. void	*ft_memcpy(void *dest, const void *src, size_t nbytes);
 
 17**"ft_memcmp" ---> Al igual que strcmp, Compara los primeros x bytes de dos bloques de memoria(s1 y s2) Devuelve un valor mayor, menor o igual dependiendo de si uno es mayor menor o igual que el otro.
-La funcion recibe como parametros, bloque de memoria s1 a comparar, bloque de memoria s2 a comparar y el numero de bytes que se compararan.  int	ft_memcmp(const void *s1, const void *s2, size_t n);
+La funcion recibe como parametros, bloque de memoria s1 a comparar, bloque de memoria s2 a comparar y el numero de bytes que se compararan.  intft_memcmp(const void *s1, const void *s2, size_t n);
 
 18**"ft_memchr" ---> Busca un caracter dentro de un bloque de memoria de tamano X. La funcion recibe ese tamano x, el puntero al bloque de memoria y el caracter a buscar.
 Devuelve un puntero al lugar en la memoria donde lo encontro, sino lo encuentra devuelve NULLO.
