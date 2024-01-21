@@ -33,7 +33,7 @@ SRCS = ft_calloc.c \
 	   ft_putchar_fd.c \
 	   ft_putstr_fd.c \
 	   ft_putendl_fd.c \
-	   ft_putnbr_fd.c
+	   ft_putnbr_fd.c \
 
 SRCS_BONUS = ft_lstnew.c \
 		ft_lstadd_front.c \
@@ -54,7 +54,7 @@ BONUS = .bonus
 all: $(NAME)
 CC = gcc
 
-%.o:%.c Makefile
+%.o:%.c Makefile libft.h
 	$(CC) $(FLAGS) -I ./ -c $< -o $@
 
 $(NAME): $(OBJS)
