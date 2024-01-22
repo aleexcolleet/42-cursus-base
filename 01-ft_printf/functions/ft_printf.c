@@ -23,5 +23,5 @@ int	ft_printf(char const *format, ...)
 			return (-1);
 	}
 	va_end(args);
-	return (i);
+	return (j);
 }

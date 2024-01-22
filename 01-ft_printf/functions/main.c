@@ -5,6 +5,7 @@
 #include <stdio.h>
 int	main(void)
 {
+	int i;
 	char *string = "Hello, World!";
 //	int integer = 5;
 	char character = 'A';
@@ -26,6 +27,8 @@ int	main(void)
 	ft_printf("flag 's'\n\n");
 	ft_printf("fake: %s\n", string);
 	printf("real: %s\n", string);
-		ft_printf("\n------------------------------>\n\n");
+	i = ft_printf("%s", string);
+	printf("lenght---> %d", i);
+	ft_printf("\n------------------------------>\n\n");
 	return (0);
 }

@@ -8,6 +8,6 @@ char *ft_putstr(const char *str, int j, int i)
 	else if (!*str)
 		write(1, "NULL", 4);
 	if (write(1, str, ft_strlen(str)) == -1)
-		j = -1;
-	return (j);
+		return (-1);
+	return (ft_strlen(str));
 }
