@@ -1,4 +1,5 @@
-#include "/Users/aleexcolleet/Desktop/42journey/01-ft_printf/library/ft_printf.h"
+#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_printf(char const *format, ...)
 {

@@ -1,4 +1,4 @@
-#include "/Users/aleexcolleet/Desktop/42journey/01-ft_printf/library/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c, int i) //on succes write returns (-1);
 {

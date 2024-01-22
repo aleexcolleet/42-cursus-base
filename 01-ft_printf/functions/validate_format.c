@@ -1,4 +1,4 @@
-#include "/Users/aleexcolleet/Desktop/42journey/01-ft_printf/library/ft_printf.h"
+#include "ft_printf.h"
 
 int	validate_format(va_list args, char const *format, int i, int j)
 {
