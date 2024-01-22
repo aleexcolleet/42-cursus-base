@@ -19,7 +19,7 @@ int	ft_printf(char const *format, ...)
 				j = validate_format(args, format, i , j);	
 		}else
 			j = ft_putchar(format[i], j);
-		if (i == -1)
+		if (j == -1)
 			return (-1);
 	}
 	va_end(args);

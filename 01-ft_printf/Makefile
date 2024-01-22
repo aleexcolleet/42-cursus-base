@@ -1,0 +1,3 @@
+NAME = libftprintf.a \
+	
+SRCS = \

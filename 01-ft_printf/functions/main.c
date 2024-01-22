@@ -17,9 +17,15 @@ int	main(void)
 	//--char--//
 		ft_printf("\n<----------------------------->\n\n");
 	ft_printf("Flag 'c'\n\n");
-	ft_printf("ft_printf: %c\n", character);
-	printf("printf: %c\n", character);
+	ft_printf("fake: %c\n", character);
+	printf("real: %c\n", character);
 		ft_printf("\n<------------------------------>\n\n");
 	
+	//--string--//
+		ft_printf("\n------------------------------>\n\n");
+	ft_printf("flag 's'\n\n");
+	ft_printf("fake: %s\n", string);
+	printf("real: %s\n", string);
+		ft_printf("\n------------------------------>\n\n");
 	return (0);
 }
