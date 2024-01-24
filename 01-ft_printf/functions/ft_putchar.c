@@ -10,4 +10,4 @@ int	ft_putchar(char c, int j) //on succes write returns (-1);
 	return (j);
 }
 
-//write() = -1 si funciona
+//write() = -1 si no funciona
