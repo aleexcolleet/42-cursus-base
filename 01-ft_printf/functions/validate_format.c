@@ -4,12 +4,13 @@ int	validate_format(va_list args, char const *format, int i, int j)
 {
 	if (format[i] == 'c')
 		j = ft_putchar(va_arg(args, int), j);
-	if (format[i] == 's')
+	else if(format[i] == 's')
 		j = ft_putstr(va_arg(args, char *), j);
-	if (format[i] == 'p')
+	else if (format[i] == 'p')
 		j = print_adress(va_arg(args, void *), j);
-
-	if (j == -1)
+	else if (format[i] == 'd')
+		j = ft_putnbr(va_arg(args, int), j);
+	else if (j == -1)
 		return (-1); //por lo que putchar a funcionado correctamente
 	return (j);
 

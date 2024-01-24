@@ -1,4 +1,4 @@
-#include "/Users/aleexcolleet/Desktop/42journey/01-ft_printf/library/ft_printf.h"
+#include "ft_printf.h"
 //here I use a seemly function from libft
 char	*ft_strchr(const char *str, int c)
 {
