@@ -1,13 +1,20 @@
 #include "ft_printf.h"
-#include "libft.h"
 
-char *ft_putstr(const char *str, int j, int i)
+int	ft_putstr(const char *str, int j)
 {
-	if (j == -1)
-		return (-1);
-	else if (!*str)
-		write(1, "NULL", 4);
-	if (write(1, str, ft_strlen(str)) == -1)
-		return (-1);
-	return (ft_strlen(str));
+	if (str == NULL)
+	{
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
+		j += 6;
+		return (j);
+	}
+	while (*str)
+	{
+		j = ft_putchar(*str, j);
+		if (j == -1)
+			return (-1);
+		str++;
+	}
+	return (j);
 }

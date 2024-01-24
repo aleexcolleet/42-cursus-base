@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include "libft.h"
 
 int	ft_printf(char const *format, ...)
 {
@@ -8,7 +7,7 @@ int	ft_printf(char const *format, ...)
 	va_list args;
 	
 	i = -1; //itera el argumento
-	j = 0; //recibe de que tipo de argumento se trata
+	j = 0; //recibe el lenght que devuelve printf.
 	va_start(args, format);
 	while(format[++i])
 	{
@@ -17,7 +16,8 @@ int	ft_printf(char const *format, ...)
 			i++;
 			if (ft_strchr("cspdiuxX$%", format [i]))
 				j = validate_format(args, format, i , j);	
-		}else
+		}
+		else
 			j = ft_putchar(format[i], j);
 		if (j == -1)
 			return (-1);

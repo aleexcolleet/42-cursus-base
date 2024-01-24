@@ -6,9 +6,9 @@
 int	main(void)
 {
 	char *string = "Hello, World!";
-//	int integer = 5;
+	int integer = 5;
 	char character = 'A';
-//	void *ptr = (void *)&integer;
+	void *ptr = (void *)&integer;
 //	unsigned int hexadecimal = 0x1A3F;
 //	usnigned int HEXADECIMAL = 0x1A3F;
 
@@ -25,9 +25,12 @@ int	main(void)
 	ft_printf("flag 's' ~ string\n\n");
 	ft_printf("fake: %s\n", string);
 	printf("real: %s\n", string);
-	int	i = ft_printf("%s", string);
-	printf("lenght---> %d", i);
+		ft_printf("\n------------------------------>\n\n");
+	//--pointer--//
+	ft_printf("Flag 'p' ~pointerDirection\n\n");
+	ft_printf("Fake: %p\n", ptr);
+	printf("Real: %p\n", ptr);
+		ft_printf("\n------------------------------>\n\n");
 	
-	ft_printf("\n------------------------------>\n\n");
 	return (0);
 }
