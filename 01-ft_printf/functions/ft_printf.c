@@ -14,7 +14,7 @@ int	ft_printf(char const *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if (ft_strchr("cspdiuxX$%", format [i]))
+			if (ft_strchr("cspdiuxX%", format [i]))
 				j = validate_format(args, format, i , j);	
 		}
 		else

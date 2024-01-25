@@ -59,5 +59,8 @@ int	main(void)
 	printf("Real: %x\n", hexadecimal);
 	ft_printf("\n------------------------------>\n\n");
 
+	//--%--/
+	ft_printf("%%\n");
+	printf("% %\n");
 	return (0);
 }
