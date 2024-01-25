@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:32:05 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:40:57 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:13:51 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	ft_putnbr(int n, int j)
 		return (-1);
 	if (n <= -2147483648)
 	{
-		j = write(1, "-2147483648", 11);
-		return (j + 11);
+		j = ft_putchar('-', j);
+		j = ft_putchar('2', j);
+		j = ft_putnbr(147483648, j);
 	}
 	else if (n < 0)
 	{

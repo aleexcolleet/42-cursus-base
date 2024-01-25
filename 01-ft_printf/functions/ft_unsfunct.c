@@ -6,57 +6,22 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:32:30 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:32 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:31:47 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_numlen(unsigned int n)
+int	ft_unsfunct(unsigned int n, int j)
 {
-	int	size;
-
-	size = 0;
-	while (n)
+	if (n > 9)
 	{
-		n /= 10;
-		size++;
+		j = ft_putnbr(n / 10, j);
+		j = ft_putnbr(n % 10, j);
 	}
-	return (size);
-}
-
-char *ft_unsignedfunc(unsigned int n)
-{
-	char	*conv;
-	int		size;
-
-	size = ft_numlen(n);
-	conv = (char *)malloc(sizeof(char *) * (size + 1));
-	if (!conv)
-		return (NULL);
-	conv[size] = '\0';
-	while (n != 0)
+	else
 	{
-		conv[size - 1] = n % 10 + '0';
-		n /= 10;
-		size--;
+		j = ft_putchar(n + '0', j);
 	}
-	return (conv);
-}
-
-int	ft_unsfunct(unsigned int n, int j)//principal
-{
-	char *result;
-	int	size;
-
-	size = 0;
-	if (!n)
-	{
-		write(1, "0", 1);
-		return (j += 1);
-	}
-	result = ft_unsignedfunc(n);
-	size = ft_putstr(result, j);
-	free(result);
-	return (size);
+	return (j);
 }

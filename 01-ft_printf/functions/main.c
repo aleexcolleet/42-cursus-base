@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:32:40 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:41 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:57:50 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(void)
 	int	integer = 18361;
 	char character = 'A';
 	void *ptr = (void *)&integer;
-	unsigned int hexadecimal = 0x1A3F;
 
 	//~~probandoo~~//
 	
@@ -65,8 +64,8 @@ int	main(void)
 
 	//--hexadecimalNumber--//
 	ft_printf("Flag 'u' ~hexaMin(base16)\n\n");
-	ft_printf("Fake: %x\n", hexadecimal);
-	printf("Real: %x\n", hexadecimal);
+	ft_printf("Fake: %x\n", integer);
+	printf("Real: %x\n", integer);
 	ft_printf("\n------------------------------>\n\n");
 
 	//--%--/

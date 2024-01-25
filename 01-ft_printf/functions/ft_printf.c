@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:31:35 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:36:15 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:40:01 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,24 @@ int	ft_printf(char const *format, ...)
 	int		j;
 	va_list	args;
 
-	i = -1;
+	i = 0;
 	j = 0;
 	va_start(args, format);
-	while (format[++i])
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
+			j = validate_format(args, format, i + 1, j);
 			i++;
-			if (ft_strchr("cspdiuxX%", format [i]))
-				j = validate_format(args, format, i, j);
 		}
 		else
 			j = ft_putchar(format[i], j);
-		if (j == -1)
+		i++;
+		if (j == -1 )
+		{
+			va_end(args);
 			return (-1);
+		}
 	}
 	va_end(args);
 	return (j);

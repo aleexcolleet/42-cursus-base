@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:31:40 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:36:48 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:54:54 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int			ft_putstr(const char *str, int j);
 int			print_adress(void *ptr, int j);
 int			ft_putnbr(int n, int j);
 int			ft_unsfunct(unsigned int n, int j);
-int			ft_puthexa(unsigned int n, const char format, int j);
+int			ft_puthexa(unsigned int n, const char *format, int i, int j);
 #endif

@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:32:51 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:53 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:57:31 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	validate_format(va_list args, char const *format, int i, int j)
 	else if (format[i] == 'u')
 		j = ft_unsfunct(va_arg(args, unsigned int), j);
 	else if (format[i] == 'x' || format[i] == 'X')
-		j = ft_puthexa(va_arg(args, unsigned int), format[i], j);
+		j = ft_puthexa(va_arg(args, unsigned int), format, i, j);
 	else if (format[i] == '%')
 		j = ft_putchar('%', j);
 	else if (j == -1)

@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:31:58 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:39:58 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:01:22 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,36 @@
 
 #include "ft_printf.h"
 
-int	ft_hexlen(unsigned int n)
-{
-	int	lenght;
-
-	lenght = 0;
-	while (n != 0)
-	{
-		n = n / 16;
-		lenght++;
-	}
-	return (lenght);
-}
-
-void	ft_printhex(unsigned int n, const char format, int j)
+int	ft_printhex(unsigned int n, const char *format, int i, int j)
 {
 	if (n >= 16)
 	{
-		ft_printhex(n / 16, format, j);
-		ft_printhex(n % 16, format, j);
+		j = ft_printhex(n / 16, format, i, j);
+		j = ft_printhex(n % 16, format, i, j);
 	}
 	else
 	{
 		if (n <= 9)
-			ft_putchar(n + '0', j);
+			j = ft_putchar((n + '0'), j);
 		else
 		{
-			if (format == 'x')
-				ft_putchar((n - 10 + 'a'), j);
-			if (format == 'X')
-				ft_putchar((n - 10 + 'A'), j);
+			if (format[i] == 'x')
+				j = ft_putchar((n - 10 + 'a'), j);
+			if (format[i] == 'X')
+				j = ft_putchar((n - 10 + 'A'), j);
 		}
 	}
+	return (j);
 }
 
-int	ft_puthexa(unsigned int n, const char format, int j)//principal
+int	ft_puthexa(unsigned int n, const char *format, int i, int j)//principal
 {
 	if (n == 0)
-		return (write(1, "0", 1));
-	ft_printhex(n, format, j);
-	return (ft_hexlen(n));
+	{	
+		j = write(1, "0", 1);
+		return (j);
+	}
+	else
+		j = ft_printhex(n, format, i, j);
+	return (j);
 }
