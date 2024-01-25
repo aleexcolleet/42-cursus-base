@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 12:32:15 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:16 by acollet-         ###   ########.fr       */
+/*   Created: 2024/01/17 10:42:45 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/17 13:45:06 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "ft_printf.h"
-
-int	ft_putstr(const char *str, int j)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (str == NULL)
+	if (!new)
+		return ;
+	if (*lst == NULL)
 	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		j += 6;
-		return (j);
+		*lst = new;
 	}
-	while (*str)
-	{
-		j = ft_putchar(*str, j);
-		if (j == -1)
-			return (-1);
-		str++;
-	}
-	return (j);
+	else
+		ft_lstlast(*lst)->next = new;
 }
+/*
+int main(void)
+{
+	t_list *d = ft_lstnew("0");
+	d->next = ft_lstnew("1");
+	t_list *s = ft_lstnew("2");
+	ft_lstadd_back(&d, s);
+	while (d)
+	{
+		printf("%s\t", (char *)d->content);
+		d = d->next;
+	}
+	free(d);
+	free(s);
+	return (0);
+}*/

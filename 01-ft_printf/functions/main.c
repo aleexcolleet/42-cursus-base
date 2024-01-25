@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/25 12:32:40 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/25 12:32:41 by acollet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-#include "libft.h"
 
 //just for test purposes
 #include <stdio.h>
@@ -10,7 +21,6 @@ int	main(void)
 	char character = 'A';
 	void *ptr = (void *)&integer;
 	unsigned int hexadecimal = 0x1A3F;
-	unsigned int HEXADECIMAL = 0x1A3F;
 
 	//~~probandoo~~//
 	

@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 12:32:15 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:16 by acollet-         ###   ########.fr       */
+/*   Created: 2024/01/12 15:33:03 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:33:05 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr(const char *str, int j)
+void	ft_putendl_fd(char const *s, int fd)
 {
-	if (str == NULL)
-	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		j += 6;
-		return (j);
-	}
-	while (*str)
-	{
-		j = ft_putchar(*str, j);
-		if (j == -1)
-			return (-1);
-		str++;
-	}
-	return (j);
+	if (!s)
+		return ;
+	while (*s)
+		write(fd, &(*s++), 1);
+	write(fd, "\n", 1);
 }
+/*
+int main(void)
+{
+    int fd;
+    char s[] = "comoestamos";
+    ft_putendl_fd(s, fd);
+    return (0);
+}*/

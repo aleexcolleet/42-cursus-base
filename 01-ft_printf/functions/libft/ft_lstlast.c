@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 12:32:15 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:16 by acollet-         ###   ########.fr       */
+/*   Created: 2024/01/17 10:44:11 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/17 10:50:28 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "ft_printf.h"
-
-int	ft_putstr(const char *str, int j)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (str == NULL)
+	t_list	*d;
+
+	if (!lst)
+		return (lst);
+	d = lst;
+	while (d->next)
 	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		j += 6;
-		return (j);
+		d = d->next;
 	}
-	while (*str)
-	{
-		j = ft_putchar(*str, j);
-		if (j == -1)
-			return (-1);
-		str++;
-	}
-	return (j);
+	return (d);
 }
+/*
+ int main(void)
+ }	
+ 	t_list *d;
+	d = ft_lstnew("hola");
+	d->next = ft_lstnew("buenas");
+	d->next->next = ft_lstnew("familia");
+	d->next->next->next = ft_lstnew("bien");
+	ft_lstlast(d);
+	printf("%s\t", (char *)d->content);
+	free(d);
+	return (0);
+}*/

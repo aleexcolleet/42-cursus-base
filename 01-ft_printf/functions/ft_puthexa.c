@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/25 12:31:58 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/25 12:39:58 by acollet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+//if (n <= 9)imprime el correspondiente
+
 #include "ft_printf.h"
 
 int	ft_hexlen(unsigned int n)
@@ -12,6 +26,7 @@ int	ft_hexlen(unsigned int n)
 	}
 	return (lenght);
 }
+
 void	ft_printhex(unsigned int n, const char format, int j)
 {
 	if (n >= 16)
@@ -20,7 +35,8 @@ void	ft_printhex(unsigned int n, const char format, int j)
 		ft_printhex(n % 16, format, j);
 	}
 	else
-	{	if (n <= 9)//imprime el correspondiente
+	{
+		if (n <= 9)
 			ft_putchar(n + '0', j);
 		else
 		{
@@ -31,11 +47,11 @@ void	ft_printhex(unsigned int n, const char format, int j)
 		}
 	}
 }
+
 int	ft_puthexa(unsigned int n, const char format, int j)//principal
 {
 	if (n == 0)
-		return (write(1,"0", 1));
+		return (write(1, "0", 1));
 	ft_printhex(n, format, j);
-
 	return (ft_hexlen(n));
 }

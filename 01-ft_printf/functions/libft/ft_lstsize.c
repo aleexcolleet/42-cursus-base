@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 12:32:15 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:16 by acollet-         ###   ########.fr       */
+/*   Created: 2024/01/16 11:14:43 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/16 15:46:08 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "ft_printf.h"
-
-int	ft_putstr(const char *str, int j)
+int	ft_lstsize(t_list *lst)
 {
-	if (str == NULL)
+	int		i;
+	t_list	*d;
+
+	d = lst;
+	i = 0;
+	if (!lst)
+		return (0);
+	while (d)
 	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		j += 6;
-		return (j);
+		d = d->next;
+		i++;
 	}
-	while (*str)
-	{
-		j = ft_putchar(*str, j);
-		if (j == -1)
-			return (-1);
-		str++;
-	}
-	return (j);
+	return (i);
 }

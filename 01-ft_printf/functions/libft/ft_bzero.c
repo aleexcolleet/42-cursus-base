@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 12:32:15 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:16 by acollet-         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:31 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 12:42:36 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_putstr(const char *str, int j)
+#include "libft.h"
+/*						FT_BZERO:
+ *	Establece todos los bytes de un bloque de memoria a cero.
+ *	Es útil para inicializar o "borrar" la memoria de manera eficiente.
+ */
+void	ft_bzero(void *s, size_t n)
 {
-	if (str == NULL)
-	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		j += 6;
-		return (j);
-	}
-	while (*str)
-	{
-		j = ft_putchar(*str, j);
-		if (j == -1)
-			return (-1);
-		str++;
-	}
-	return (j);
+	ft_memset(s, '\0', n);
 }
+/*
+int main()
+{
+    int n = 4;
+    char str[] = "Helloooooo";
+    ft_bzero(str, n);
+
+    return 0;
+}*/
