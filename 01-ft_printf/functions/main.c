@@ -9,8 +9,8 @@ int	main(void)
 	int	integer = 18361;
 	char character = 'A';
 	void *ptr = (void *)&integer;
-//	unsigned int hexadecimal = 0x1A3F;
-//	usnigned int HEXADECIMAL = 0x1A3F;
+	unsigned int hexadecimal = 0x1A3F;
+	unsigned int HEXADECIMAL = 0x1A3F;
 
 	//~~probandoo~~//
 	
@@ -52,6 +52,12 @@ int	main(void)
 	ft_printf("Fake: %u\n", integer);
 	printf("Real: %u\n", integer);
 	ft_printf("\n------------------------------>\n\n");
-	return (0);
 
+	//--hexadecimalNumber--//
+	ft_printf("Flag 'u' ~hexaMin(base16)\n\n");
+	ft_printf("Fake: %x\n", hexadecimal);
+	printf("Real: %x\n", hexadecimal);
+	ft_printf("\n------------------------------>\n\n");
+
+	return (0);
 }

@@ -15,4 +15,5 @@ int			ft_putstr(const char *str, int j);
 int			print_adress(void *ptr, int j);
 int 		ft_putnbr(int n, int j);
 int			ft_unsfunct(unsigned int n, int j);
+int			ft_puthexa(unsigned int n, const char format, int j);
 #endif
