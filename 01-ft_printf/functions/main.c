@@ -6,7 +6,7 @@
 int	main(void)
 {
 	char *string = "Hello, World!";
-	int integer = -12381;
+	int	integer = 18361;
 	char character = 'A';
 	void *ptr = (void *)&integer;
 //	unsigned int hexadecimal = 0x1A3F;
@@ -38,5 +38,20 @@ int	main(void)
 	ft_printf("Fake: %d\n", integer);
 	printf("Real: %d\n", integer);
 		ft_printf("\n------------------------------>\n\n");
+	
+	//--entero(base10)--//
+	
+	ft_printf("Flag 'i' ~entero(base10)\n\n");
+	ft_printf("Fake: %i\n", integer);
+	printf("Real: %i\n", integer);
+		ft_printf("\n------------------------------>\n\n");
+
+	//--unsigned decimal(base10)--//
+	
+	ft_printf("Flag 'u' ~unsigned decimal(base10)\n\n");
+	ft_printf("Fake: %u\n", integer);
+	printf("Real: %u\n", integer);
+	ft_printf("\n------------------------------>\n\n");
 	return (0);
+
 }

@@ -12,7 +12,7 @@ int			ft_putchar(char c, int j);
 int			validate_format(va_list args, char const *format, int i, int j);
 char		*ft_strchr(const char *str, int c);
 int			ft_putstr(const char *str, int j);
-static int 	print_adress_hex(unsigned long long vptr, int j);
 int			print_adress(void *ptr, int j);
-int  ft_putnbr(int n, int j);
+int 		ft_putnbr(int n, int j);
+int			ft_unsfunct(unsigned int n, int j);
 #endif
