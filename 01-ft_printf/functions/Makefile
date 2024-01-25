@@ -47,6 +47,17 @@ CC = gcc
 	@$(CC) $(FLAGS) -I ./ -c $< -o $@
 
 $(NAME): $(OBJS) Makefile libft/Makefile
+	@echo "$(BLUE)$(BOLD)$(NAME) ░░░░░░░░▄▄▄██████▀▀██████▄▄▄░░░░░░░░"
+	@echo "$(BLUE)$(BOLD)$(NAME) ░░░░▄███▀█▄░░░░░▄░░▄░░░░░▄█▀███▄░░░░"
+	@echo "$(BLUE)$(BOLD)$(NAME) ░░██▀█▄████░░░░░████░░░░░████▄█▀██░░"
+	@echo "$(BLUE)$(BOLD)$(NAME) ▄█▀▄███████▄▄░▄▄████▄▄░▄▄███████▄▀█▄"
+	@echo "$(BLUE)$(BOLD)$(NAME) ██░██████████████████████████████░██"
+	@echo "$(BLUE)$(BOLD)$(NAME) ▀██▀████▀░▀▀█▀░▀▀██▀▀░▀█▀▀░▀████▀██▀"
+	@echo "$(BLUE)$(BOLD)$(NAME) ░░██▄█▀█▄░░░░░░░░▀▀░░░░░░░░▄█▀█▄██░░"
+	@echo "$(BLUE)$(BOLD)$(NAME) ░░░░▀███▄▄▄░░░░░░░░░░░░░░▄▄▄███▀░░░░"
+	@echo "$(BLUE)$(BOLD)$(NAME) ░░░░░░░░▀▀▀████COLLETE████▀▀▀░░░░░░░░"
+	@echo "$(BLUE)$(BOLD)$(NAME) "$(RESET)
+	@echo "$(WHITE)$(BOLD)$(NAME)y...$(RESET)"
 	@make -C $(LIBFT_PATH) all $(SILENCE)
 	@ar rcs $(NAME) $(OBJS)
 	@echo "$(YELLOW)$(BOLD)$(NAME) COMPILADO$(RESET)"
@@ -56,13 +67,13 @@ clean:
 	@echo "Remove .o  ..."
 	@rm -f $(OBJS) $(DEPS)
 	@make -C $(LIBFT_PATH) clean $(SILENCE)
-	@echo "HECHO !"
+	@echo "$(GREEN)$(BOLD)HECHO !$(RESET)"
 
 fclean: clean
 	@echo "Remove ..."
 	@rm -f $(NAME)
 	@make -C $(LIBFT_PATH) fclean $(SILENCE)
-	@echo "HECHO !"
+	@echo "$(GREEN)$(BOLD)HECHO !$(RESET)"
 
 re: fclean all
 

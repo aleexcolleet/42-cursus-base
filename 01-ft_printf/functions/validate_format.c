@@ -26,9 +26,9 @@ int	validate_format(va_list args, char const *format, int i, int j)
 		j = ft_unsfunct(va_arg(args, unsigned int), j);
 	else if (format[i] == 'x' || format[i] == 'X')
 		j = ft_puthexa(va_arg(args, unsigned int), format, i, j);
-	else if (format[i] == '%')
-		j = ft_putchar('%', j);
-	else if (j == -1)
+	else
+		j = ft_putchar(format[i], j);
+	if (j == -1)
 		return (-1); //por lo que putchar a funcionado correctamente
 	return (j);
 

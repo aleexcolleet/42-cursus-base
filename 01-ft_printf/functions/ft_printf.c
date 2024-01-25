@@ -12,6 +12,7 @@
 
 //i = itera el argumento
 //j = recibe el lenght que devuelve printf
+//si encuentra un %. deja de checkear si hay otros. Alomejor hay un return de mas.
 
 #include "ft_printf.h"
 
