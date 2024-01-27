@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:32:45 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/25 12:32:47 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:19:57 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	print_adress_hex(unsigned long long vptr, int j)
 	char	*hex;
 	int		result[20];
 	int		y;
-	
+
 	if (j == -1)
 		return (-1);
 	hex = "0123456789abcdef";
@@ -36,7 +36,7 @@ static int	print_adress_hex(unsigned long long vptr, int j)
 	}
 	if (j == -1)
 		return (-1);
-	return(j);
+	return (j);
 }
 
 int	print_adress(void *ptr, int j)

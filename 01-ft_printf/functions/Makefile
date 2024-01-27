@@ -6,7 +6,7 @@
 #    By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 12:31:31 by acollet-          #+#    #+#              #
-#    Updated: 2024/01/27 11:36:48 by acollet-         ###   ########.fr        #
+#    Updated: 2024/01/27 13:18:21 by acollet-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS = ft_putchar.c \
 	   ft_unsfunct.c \
 	   print_adress.c \
 	   validate_format.c \
-       main.c 
 
 FLAGS = -Wall -Wextra -Werror -MMD
 OBJS = $(SRCS:.c=.o)
