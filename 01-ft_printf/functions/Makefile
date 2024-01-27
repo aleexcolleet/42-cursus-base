@@ -6,7 +6,7 @@
 #    By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 12:31:31 by acollet-          #+#    #+#              #
-#    Updated: 2024/01/27 11:30:14 by acollet-         ###   ########.fr        #
+#    Updated: 2024/01/27 11:36:48 by acollet-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ SILENCE = --no-print-directory
 all: $(NAME)
 CC = gcc
 
-%.o:%.c Makefile ft_printf.h libft/libft.h
+%.o:%.c Makefile ft_printf.h  libft libft/libft.h
 	@echo "$(YELLOW)Compilando$(RESET) $(CYAN)$(BOLD) $<$(RESET)"
 	@$(CC) $(FLAGS) -I ./ -c $< -o $@
 

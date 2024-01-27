@@ -6,7 +6,7 @@
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:31:58 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/27 11:22:20 by acollet-         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:36:34 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_printhex(unsigned int n, const char *format, int i, int j)
 int	ft_puthexa(unsigned int n, const char *format, int i, int j)//principal
 {
 	if (n == 0)
-	{	
+	{
 		j += write(1, "0", 1);
 		return (j);
 	}
