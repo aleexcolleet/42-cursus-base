@@ -6,7 +6,7 @@
 #    By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 12:31:31 by acollet-          #+#    #+#              #
-#    Updated: 2024/01/25 12:42:43 by acollet-         ###   ########.fr        #
+#    Updated: 2024/01/27 11:30:14 by acollet-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRCS = ft_putchar.c \
        ft_puthexa.c \
        ft_putnbr.c \
        ft_putstr.c \
-	   ft_strchr.c \
 	   ft_unsfunct.c \
 	   print_adress.c \
 	   validate_format.c \
