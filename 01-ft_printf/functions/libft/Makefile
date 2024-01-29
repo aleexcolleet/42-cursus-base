@@ -53,17 +53,18 @@ DEPS_BONUS = $(SRCS_BONUS:.c=.d)
 BONUS = .bonus
 all: $(NAME)
 CC = gcc
+SILENCE = --no-print-directory
 
 %.o:%.c Makefile libft.h
-	$(CC) $(FLAGS) -I ./ -c $< -o $@
+	@$(CC) $(FLAGS) -I ./ -c $< -o $@
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 
 bonus: $(BONUS)
 	
 $(BONUS): $(OBJS) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+	@ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 	touch $@
 
 clean:
