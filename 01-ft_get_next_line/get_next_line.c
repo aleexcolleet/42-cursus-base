@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: Oceano <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 11:48:03 by Oceano            #+#    #+#             */
-/*   Updated: 2023/02/19 18:50:24 by utente           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 #include <stdlib.h>
 #include <stdio.h>//TODO
@@ -109,9 +97,10 @@ void	create_list(t_list **list, int fd)
 */
 char	*get_next_line(int fd)
 {
-	static t_list	*list = NULL;
+	static t_list	*list;
 	char			*next_line;
-
+	
+	list = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
 	create_list(&list, fd);
