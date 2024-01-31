@@ -50,7 +50,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (s1 && *s1)//el puntero s1 no es nulo y el caracter apuntado por s1 tmpoco
+	while (s1 && *s1)
 	{
 		str[i++] = *s1;
 		s1++;
