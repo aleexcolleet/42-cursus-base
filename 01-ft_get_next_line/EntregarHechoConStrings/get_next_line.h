@@ -10,7 +10,6 @@
 #  define BUFFER_SIZE 42
 # endif
 
-int		main(void);
 char	*get_next_line(int fd);
 void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *str);

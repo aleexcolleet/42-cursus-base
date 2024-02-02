@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 	char			*next_line;
 
 	list = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	create_list(&list, fd);
 	if (list == NULL)
