@@ -10,3 +10,7 @@ Donde quedan comandos sudo---> /var/log/sudo/sudo_config
 Cronotab---> /etc/init.d/cron stop
 						/etc/init.d/cron start
 Password---> /etc/login.defs
+
+
+Dudas:
+- contrase

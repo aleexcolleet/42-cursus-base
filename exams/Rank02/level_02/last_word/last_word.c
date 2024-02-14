@@ -1,21 +1,41 @@
-#include <unistd.h>
-#include <stdio.h>
+#include <unistd.h> // For write
 
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	last_word(char *OG, *CH)
+int	ft_strlen(char *str)
 {
-	
+	int	size;
+
+	size = 0;
+	while (str[size])
+		size++;
+	return (size);
 }
 
-int main(int as, char **av)
+void	last_word(char *str)
 {
-	if (as == 3)
-		last_word(av[1], av[2]);
-	else
-		printf("wrong numb of params");
+	int	idx;
+
+	idx = ft_strlen(str) - 1;
+	while (str[idx] == ' ' || str[idx] == '\t')
+		idx--;
+	while (str[idx] != '\0' && (str[idx] != ' ' && str[idx] != '\t'))
+		idx--;
+	idx++;
+	while (str[idx] != '\0' && (str[idx] != ' ' && str[idx] != '\t'))
+	{
+		ft_putchar(str[idx]);
+		idx++;
+	}
+}
+
+int	main(int as, char **av)
+{
+	if (as == 2)
+		last_word(av[1]);
+	ft_putchar('\n');
 	return (0);
 }
