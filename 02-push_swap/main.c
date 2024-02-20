@@ -3,7 +3,7 @@
 int main(int as, char **av)
 {
 	t_stack_node *a;
-	t_stack_node *b;
+t_stack_node *b;
 
 	a = NULL;
 	b = NULL;
@@ -11,6 +11,11 @@ int main(int as, char **av)
 		return (1);
 	else if (as == 2) //also a control
 		av = ft_split(av[1], ' ');
-	stack_init(&a, argv + 1, 2 == as); //stack creation
+	stack_init(&a, av + 1, 2 == as); //stack creation with av or my edited av
 	if (!stack_sorted(a))//algorithm
-}
+	{
+		
+
+	}
+	free(av);
+} 
