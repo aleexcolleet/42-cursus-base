@@ -17,7 +17,7 @@ static char *get_next_word(char *s, char sep)
 	if (!next_str)
 		return (NULL);
 	while ((s[cursor] != sep) && s[cursor]) // copy funct
-		next_str[i++] = s[cursos++];
+		next_str[i++] = s[cursor++];
 	next_str[i] = '\0';
 	return (next_str);
 }
@@ -43,7 +43,7 @@ static int	count_words(char *s, char sep)
 			++s;
 		}
 	}
-
+	return (count);
 }
 
 char **ft_split(char *s, char sep)
@@ -58,7 +58,7 @@ char **ft_split(char *s, char sep)
 		exit(1);
 	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2)); //to add the program name as an argument too, besides the '\0'
 	if (!vector_strings)
-		return (NULL)
+		return (NULL);
 	while (words_number-- >= 0)
 	{
 		if (i == 0)
@@ -69,7 +69,7 @@ char **ft_split(char *s, char sep)
 			vector_strings[i++][0] = '\0';
 			continue ;
 		}
-		vector_strings[i++] = get_next_word(s, sep)//almacenamos los args en el doble **
+		vector_strings[i++] = get_next_word(s, sep); //almacenamos los args en el doble **
 	}
 	vector_strings[i] = NULL;
 	return (vector_strings);

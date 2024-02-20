@@ -1,16 +1,20 @@
 Rutas:
 
-Interfaz grafica---> /usr/bin/*session
+/usr/bin/*session
 
-Hostname ---> /etc/hostname y /etc/hosts
+/etc/hostname y /etc/hosts
 
-Sudo configs---> /etc/sudoers.d/sudo_config
-Donde quedan comandos sudo---> /var/log/sudo/sudo_config
-
-Cronotab---> /etc/init.d/cron stop
+ /etc/sudoers.d/sudo_config
+ /var/log/sudo/sudo_config
+/etc/ssh/sshd_config
+/etcc/ssh/ssh_config
+ /etc/init.d/cron stop
 						/etc/init.d/cron start
-Password---> /etc/login.defs
+ /etc/login.defs
+etc/pam.d/common-password
 
 
-Dudas:
-- contrase
+
+ssh:	“ssh acollet-@192.168.39.136 -p 4242” en el terminal
+ssh root@localhost -p 4242
+[localhost](http://localhost) = 192.168.39.136

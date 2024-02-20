@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 int main(int as, char **av)
 {
@@ -11,11 +12,10 @@ t_stack_node *b;
 		return (1);
 	else if (as == 2) //also a control
 		av = ft_split(av[1], ' ');
-	stack_init(&a, av + 1, 2 == as); //stack creation with av or my edited av
-	if (!stack_sorted(a))//algorithm
+	stack_init(&a, av + 1, 2 == as); //stack creation. (av + 1)so that I get rid of .out. First arg is now i = 0;
+	while(a)
 	{
-		
-
+		printf("res--> %d\n", (int)a->value);
+		a = a->next;
 	}
-	free(av);
 } 

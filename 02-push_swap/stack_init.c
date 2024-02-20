@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 //atol. str ---> lonlong value
-static long ft_atol(const char *s)
+static long ft_atoi(const char *s)
 {
 	long	num;
 	int		neg;
@@ -49,9 +49,17 @@ void	stack_init(t_stack_node **a, char **av, bool flag_as_2)
 	i = 0;
 	while (av[i])
 	{
-	if (error_syntax(av[i]))
-		error_free(a, av, flag_as_2);
-	n = ft_atol(av[i]);
-
-	}
+		if (error_syntax(av[i]))
+			error_free(a, av, flag_as_2);
+		n = ft_atoi(av[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			error_free(a, av, flag_as_2);
+		if (error_repe(*a, (int)n))
+			error_free(a, av, flag_as_2);
+		append_node(a, (int)n);
+		i++;
+	} 
+	if (flag_as_2)
+		free_matrix(av);
 }
+

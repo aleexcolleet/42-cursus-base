@@ -1,0 +1,17 @@
+list of comands needes:
+
+- swap
+ex: swap the top 2 nodes in the stack
+
+- rotate
+top node to the bottom
+
+- reverse rotate
+bottom node to the 1s position
+
+- push
+top node in stack a goes to top stack b
+
+
+fatla:
+- cuando mando 2 a la 64. 
