@@ -1,12 +1,12 @@
 list of comands needes:
 
-- swap
+- swap   sa
 ex: swap the top 2 nodes in the stack
 
-- rotate
+- rotate   ra
 top node to the bottom
 
-- reverse rotate
+- reverse rotate    rra
 bottom node to the 1s position
 
 - push
