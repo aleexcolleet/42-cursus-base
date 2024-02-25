@@ -12,7 +12,12 @@ int	ft_lenght(int nbr)
 	int i;
 
 	i = 0;
-	while (nbr > 0)
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		i++;
+	}
+	while (nbr)
 	{
 		nbr /= 10;
 		i++;
@@ -23,23 +28,44 @@ int	ft_lenght(int nbr)
 char *ft_itoa(int nbr)
 {
 	int len;
+	char *res;
+	long tmp;
 
-	len = 0;
-	if (nbr == -2147483648)
+	len = ft_lenght(nbr);
+	tmp = nbr;
+
+	if (!(res = malloc(sizeof(char *) * len + 1)))
+		return (NULL);
+	res[len] = '\0';
+	len--;
+	if (tmp == 0)
+		res[0] = '0';
+	else
 	{
-		char MXI = "-2147483648";
-		return (MXI);
+		if (tmp < 0)
+		{
+			res[0] = '-';
+			tmp *= -1;
+		}
+		while (tmp > 0)
+		{
+			res[len] = (tmp % 10) + '0';
+			tmp /= 10;
+			len--;
+		}
 	}
-	len = ft_lenght(nbr)
-	printf("%s\n");
-	
-
+	return (res);
 }
 int main(void)
 {
-	int nbr;
-	printf("num?\n");
-	scanf("%d", nbr);
-	printf("res--> %s", ft_itoa(nbr);
-	ft_putchar('\n');
+	printf("%s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(1));
+	printf("%s\n", ft_itoa(42));
+	printf("%s\n", ft_itoa(1001));
+	printf("%s\n", ft_itoa(-0));
+	printf("%s\n", ft_itoa(-2));
+	printf("%s\n", ft_itoa(-24));
+	printf("%s\n", ft_itoa(-2147483648));
+	printf("%s\n", ft_itoa(2147483647));
+	return (0);
 }
