@@ -1,21 +1,15 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	ft_lenght(int nbr)
+int	ft_len(int nbr)
 {
 	int i;
 
 	i = 0;
 	if (nbr < 0)
 	{
-		nbr *= -1;
 		i++;
+		nbr *= -1;
 	}
 	while (nbr)
 	{
@@ -23,38 +17,33 @@ int	ft_lenght(int nbr)
 		i++;
 	}
 	return (i);
-
 }
+
 char *ft_itoa(int nbr)
 {
 	int len;
-	char *res;
-	long tmp;
-
-	len = ft_lenght(nbr);
-	tmp = nbr;
-
-	if (!(res = malloc(sizeof(char *) * len + 1)))
+	char *new;
+	if (!nbr)
+		return ("0");
+	if (nbr == -2147483648)
+		return ("-2147483648");
+	len = ft_len(nbr);
+	new = (char *)malloc(sizeof(char) * len + 1);
+	if (!new)
 		return (NULL);
-	res[len] = '\0';
-	len--;
-	if (tmp == 0)
-		res[0] = '0';
-	else
+	if (nbr < 0)
 	{
-		if (tmp < 0)
-		{
-			res[0] = '-';
-			tmp *= -1;
-		}
-		while (tmp > 0)
-		{
-			res[len] = (tmp % 10) + '0';
-			tmp /= 10;
-			len--;
-		}
+		new[0] = '-';
+		nbr *= -1;
 	}
-	return (res);
+	new[len--] = 0;
+	while (nbr)
+	{
+		new[len] = (nbr % 10) + '0';
+		nbr /= 10;
+		len--;
+	}
+	return (new);
 }
 int main(void)
 {
