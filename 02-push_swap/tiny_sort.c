@@ -1,4 +1,7 @@
 #include "push_swap.h"
+#include <limits.h>
+#include <stdbool.h>
+#include <stdio.h>
 
 void	tiny_sort(t_stack_node **a) // case for 3 length stack
 {
