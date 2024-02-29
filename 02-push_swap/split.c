@@ -14,7 +14,7 @@ static char *get_next_word(char *s, char sep)
 	while ((s[cursor + len] != sep) && s[cursor + len])
 		++len;
 	next_str = malloc(len * sizeof(char) + 1);
-	if (!next_str)
+	if  (!next_str)
 		return (NULL);
 	while ((s[cursor] != sep) && s[cursor]) // copy funct
 		next_str[i++] = s[cursor++];

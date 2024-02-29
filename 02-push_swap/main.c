@@ -17,5 +17,5 @@ t_stack_node *b;
 	{
 		printf("res--> %d\n", (int)a->value);
 		a = a->next;
-	
+	}
 } 

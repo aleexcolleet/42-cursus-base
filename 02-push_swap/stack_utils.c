@@ -33,3 +33,38 @@ void	append_node(t_stack_node **stack, int n)
 		node->prev = last_node;
 	}
 }
+
+int	stack_len(t_stack_node *stack)
+{
+	int count;
+	
+	count = 0;
+	if (stack == NULL)
+		return (0);
+	while (stack)
+	{
+		count++;
+		stack = stack->next;
+	}
+	return (count);
+}
+
+t_stack_node *find_smallest(t_stack_node *stack)
+{
+	long		smallest;
+	t_stack_node *smallest_node;
+
+	if (stack == NULL)
+		return (NULL);
+	smalles = LONG_MAX;
+	while (stack)
+	{
+		if (stack->value) < smallest)
+		{
+			smallest = stack->value;
+			smallest_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (smallest_node);
+}
