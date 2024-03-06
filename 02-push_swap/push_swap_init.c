@@ -3,6 +3,16 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+static void	move_nodes(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node *cheapest_node;
+
+	cheapest_node = return_cheapest(*b);
+	if (cheapest_node->above_median && cheapest_node->target_node->above_median) //both above median
+		rotate_both(a, b, cheapest_node);
+	else if (!(cheapest_node->above_median))
+}
+
 static void	set_target_node(t_stack_node *a, t_stack_node *b)
 {
 	t_stack_node *current_a;
