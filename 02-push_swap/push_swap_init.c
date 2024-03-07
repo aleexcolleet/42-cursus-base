@@ -67,7 +67,7 @@ void	set_price(t_stack_node *a, t_stack_node *b)
 		if (b->target_node->above_median)
 			b->push_price += b->target_node->current_position;
 		else
-			b->push_price += len_a - b->target_node->current_position;
+			b->push_price += len_a - (b->target_node->current_position);
 		b = b->next;
 	}
 }

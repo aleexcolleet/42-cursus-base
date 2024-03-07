@@ -51,14 +51,14 @@ static void	move_nodes(t_stack_node **a, t_stack_node **b)
 	else if (!(cheapest_node->above_median) && !(cheapest_node->target_node->above_median))
 		reverse_rotate_both(a, b, cheapest_node);
 	finish_rotation(b, cheapest_node, 'b'); //in case they're not correctly rotated
-	finish_rotation(a, cheapest_node, 'a');
+	finish_rotation(a, cheapest_node->target_node, 'a');
 	pa(a, b, false);
 }
 
 void	push_swap(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node *smallest;
-	int	len_a;
+	t_stack_node	*smallest;
+	int						len_a;
 
 	len_a = stack_len(*a);
 	if (len_a == 5)

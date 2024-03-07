@@ -57,7 +57,7 @@ int	stack_len(t_stack_node *stack)
 		return (0);
 	while (stack)
 	{
-		count++;
+		++count;
 		stack = stack->next;
 	}
 	return (count);
