@@ -13,9 +13,14 @@ t_stack_node *b;
 	else if (as == 2) //also a control
 		av = ft_split(av[1], ' ');
 	stack_init(&a, av + 1, 2 == as); //stack creation. (av + 1)so that I get rid of .out. First arg is now i = 0;
-	while(a)
+	if (!stack_sorted(a))
 	{
-		printf("res--> %d\n", (int)a->value);
-		a = a->next;
+		if (stack_len(a) == 2)
+			sa(&a, false);
+		else if (stack_len(a) == 3)
+			tiny_sort(&a);
+		else
+			push_swap(&a, &b);
 	}
+	free_stack(&a);
 } 

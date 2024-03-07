@@ -3,6 +3,20 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+//verifica que el stack esta ordenado correctamente de menor a mayor
+bool	stack_sorted(t_stack_node *stack)
+{
+	if (NULL == stack)
+		return (1);
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
+}
+
 void	tiny_sort(t_stack_node **a) // case for 3 length stack
 {
 	t_stack_node *highest_node;

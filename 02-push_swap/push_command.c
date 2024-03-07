@@ -1,15 +1,14 @@
 #include "push_swap.h"
+//general fucntion to push higher nodes betwen lists
 
-
-//general fucntion to push nodes betwen lists
-static void	push(t_stack node **dest, t_stack_node **src) // node_to_push->next->prev just to ensure its correctly pointed // he de preguntar igual
+static void	push(t_stack_node **dest, t_stack_node **src)
 {
 	t_stack_node *node_to_push;
 
 	if (*src == NULL)
 		return ;
 	node_to_push = *src;
-	*src = *(src)->next;
+	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
 	node_to_push->prev = NULL;

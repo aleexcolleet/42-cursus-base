@@ -3,14 +3,25 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-static void	move_nodes(t_stack_node **a, t_stack_node **b)
+void	set_current_position(t_stack_node *stack)
 {
-	t_stack_node *cheapest_node;
+	int	i;
+	int	centerline;
 
-	cheapest_node = return_cheapest(*b);
-	if (cheapest_node->above_median && cheapest_node->target_node->above_median) //both above median
-		rotate_both(a, b, cheapest_node);
-	else if (!(cheapest_node->above_median))
+	i = 0;
+	if (!stack)
+		return ;
+	centerline = stack_len(stack) / 2;
+	while (stack)
+	{
+		stack->current_position = i;
+		if (i <= centerline)
+			stack->above_median = true;
+		else
+			stack->above_median = false;
+		stack = stack->next;
+		++i;
+	}
 }
 
 static void	set_target_node(t_stack_node *a, t_stack_node *b)
@@ -40,28 +51,8 @@ static void	set_target_node(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	set_current_position(t_stack_node *stack)
-{
-	int	i;
-	int	centerline;
-
-	i = 0;
-	if (!stack)
-		return ;
-	centerline = stack_len(stack) / 2;
-	while (stack)
-	{
-		stack->current_position = i;
-		if (i <= centerline)
-			stack->above_median = true;
-		else
-			stack->above_median = false;
-		stack = stack->next;
-		++i;
-	}
-}
-
-void	set_price(t_stack_node *a, t_stack *b)
+//here we calculate the cost of topping each node. Push cost is excluded
+void	set_price(t_stack_node *a, t_stack_node *b)
 {
 	int len_a;
 	int	len_b;
@@ -71,6 +62,13 @@ void	set_price(t_stack_node *a, t_stack *b)
 	while (b)
 	{
 		b->push_price = b->current_position;
+		if (!(b->above_median))
+			b->push_price = len_b - (b->current_position);
+		if (b->target_node->above_median)
+			b->push_price += b->target_node->current_position;
+		else
+			b->push_price += len_a - b->target_node->current_position;
+		b = b->next;
 	}
 }
 
@@ -94,11 +92,12 @@ void	set_cheapest(t_stack_node *b)
 	best_match_node->cheapest = true;
 }
 
+//to refresh nodes each time
 void	init_nodes(t_stack_node *a, t_stack_node *b)
 {
 	set_current_position(a);
 	set_current_position(b);
 	set_target_node(a, b);
-	set_price(a, b)
+	set_price(a, b);
 	set_cheapest(b);
 }

@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <limits.h>
 
 t_stack_node *find_last_node(t_stack_node *c)
 {
@@ -34,6 +35,19 @@ void	append_node(t_stack_node **stack, int n)
 	}
 }
 
+t_stack_node	*return_cheapest(t_stack_node *stack)
+{
+	if (NULL == stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
+}
+
 int	stack_len(t_stack_node *stack)
 {
 	int count;
@@ -56,10 +70,10 @@ t_stack_node *find_smallest(t_stack_node *stack)
 
 	if (stack == NULL)
 		return (NULL);
-	smalles = LONG_MAX;
+	smallest = LONG_MAX;
 	while (stack)
 	{
-		if (stack->value) < smallest)
+		if (stack->value < smallest)
 		{
 			smallest = stack->value;
 			smallest_node = stack;

@@ -36,7 +36,7 @@ static long ft_atoi(const char *s)
 *	checks are embedded in the creation itself
 *			~Duplicate values
 *			~Over | Underflow (desbordamiento, algo mas grande de lo que recibe)
-*			~Syntax errors
+*			~Syntax errors e
 *
 *		this flah is useful cause if its true. i have av in the HEAP to free
 */
