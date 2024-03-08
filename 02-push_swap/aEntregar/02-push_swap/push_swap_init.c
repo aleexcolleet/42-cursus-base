@@ -41,7 +41,7 @@ static void	set_target_node(t_stack_node *a, t_stack_node *b)
 	t_stack_node	*current_a;
 	t_stack_node	*target_node;
 	long			best_match_index;
-	
+
 	while (b)
 	{
 		best_match_index = LONG_MAX;
@@ -56,6 +56,7 @@ static void	set_target_node(t_stack_node *a, t_stack_node *b)
 			}
 			current_a = current_a->next;
 		}
+	}
 	if (LONG_MAX == best_match_index)
 		b->target_node = find_smallest(a);
 	else

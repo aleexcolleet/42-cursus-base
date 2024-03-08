@@ -102,4 +102,4 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 	else
 		while (*a != smallest)
 			rra(a, false);
-}
+e

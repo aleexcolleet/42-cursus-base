@@ -14,8 +14,8 @@
 
 static void	rotate(t_stack_node **stack)
 {
-	t_stack_node *last_node;
-	int		len;
+	t_stack_node	*last_node;
+	int				len;
 
 	len = stack_len(*stack);
 	if (stack == NULL || *stack == NULL || len == 1)
@@ -42,7 +42,7 @@ void	rb(t_stack_node **b, bool checker)
 		write(1, "rb\n", 3);
 }
 
-void rr(t_stack_node **a, t_stack_node **b, bool checker)
+void	rr(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	rotate (a);
 	rotate (b);

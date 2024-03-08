@@ -16,7 +16,7 @@
 #include <stdio.h>
 
 //atol. str ---> lonlong value
-static long ft_atoi(const char *s)
+static long	ft_atoi(const char *s)
 {
 	long	num;
 	int		neg;
@@ -26,7 +26,7 @@ static long ft_atoi(const char *s)
 	neg = 1;
 	i = 0;
 	while (s[i] && ((s[i] >= 9 && s[i] <= 13)
-								|| s[i] == ' '))
+			|| s[i] == ' '))
 		i++;
 	if (s[i] == '+')
 		i++;
@@ -57,7 +57,7 @@ void	stack_init(t_stack_node **a, char **av, bool flag_as_2)
 {
 	long	n;
 	int		i;
-	
+
 	i = 0;
 	while (av[i])
 	{
@@ -70,8 +70,7 @@ void	stack_init(t_stack_node **a, char **av, bool flag_as_2)
 			error_free(a, av, flag_as_2);
 		append_node(a, (int)n);
 		++i;
-	} 
+	}
 	if (flag_as_2)
 		free_matrix(av);
 }
-
