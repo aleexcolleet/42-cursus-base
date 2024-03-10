@@ -58,10 +58,14 @@ void	stack_init(t_stack_node **a, char **av, bool flag_as_2)
 {
 	long	n;
 	int		i;
+	int		len;
 
 	i = 0;
+	len = ft_strlen(av[i]);
 	while (av[i])
 	{
+		if (len > 12)
+			error_free(a, av, flag_as_2);
 		if (error_syntax(av[i]))
 			error_free(a, av, flag_as_2);
 		n = ft_atoi(av[i]);

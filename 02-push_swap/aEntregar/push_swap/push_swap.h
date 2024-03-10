@@ -33,12 +33,12 @@ typedef struct s_stack_node
 //funciones
 
 	//errores
-
 void			free_matrix(char **av);
 void			free_stack(t_stack_node **stack);
 void			error_free(t_stack_node **a, char **av, bool flag_as_2);
 int				error_syntax(char *str);
 int				error_repe(t_stack_node *a, int n);
+int				ft_strlen(char *s);
 
 	//split
 char			**ft_split(char *s, char sep);

@@ -12,6 +12,16 @@
 
 #include "push_swap.h"
 
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
 static char	*get_next_word(char *s, char sep)
 {
 	static int	cursor = 0;
