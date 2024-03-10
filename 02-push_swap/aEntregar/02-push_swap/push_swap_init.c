@@ -56,18 +56,17 @@ static void	set_target_node(t_stack_node *a, t_stack_node *b)
 			}
 			current_a = current_a->next;
 		}
-	}
-	if (LONG_MAX == best_match_index)
-		b->target_node = find_smallest(a);
-	else
-		b->target_node = target_node;
-	b = b->next;
+		if (LONG_MAX == best_match_index)
+			b->target_node = find_smallest(a);
+		else
+			b->target_node = target_node;
+		b = b->next;
 	}
 }
 
 void	set_price(t_stack_node *a, t_stack_node *b)
 {
-	int len_a;
+	int	len_a;
 	int	len_b;
 
 	len_a = stack_len(a);
@@ -87,7 +86,7 @@ void	set_price(t_stack_node *a, t_stack_node *b)
 
 void	set_cheapest(t_stack_node *b)
 {
-	long	best_match_value;
+	long			best_match_value;
 	t_stack_node	*best_match_node;
 
 	if (b == NULL)

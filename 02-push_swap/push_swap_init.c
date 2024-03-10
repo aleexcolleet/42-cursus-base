@@ -51,7 +51,7 @@ static void	set_target_node(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-//here we calculate the cost of topping each node. Push cost is excluded
+//here we calculate the cost of topping both nodes (a and b) so that I can then push it.
 void	set_price(t_stack_node *a, t_stack_node *b)
 {
 	int len_a;

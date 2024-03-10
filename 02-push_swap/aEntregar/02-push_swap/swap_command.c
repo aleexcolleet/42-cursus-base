@@ -26,7 +26,7 @@ static void	swap(t_stack_node **head)
 		(*head)->next->prev = (*head)->prev;
 	(*head)->next = (*head)->prev;
 	(*head)->prev = NULL;
-} 
+}
 
 void	sa(t_stack_node **a, bool checker)
 {
@@ -46,7 +46,6 @@ void	ss(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	swap(a);
 	swap(b);
-
 	if (!checker)
 		write(1, "ss\n", 3);
 }
