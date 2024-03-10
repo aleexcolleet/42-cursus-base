@@ -10,6 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
+# Definición de colores
+GREEN = \033[0;32m
+RED = \033[0;31m
+NC = \033[0m # No colores
+BLUE = \033[34m
+
 NAME = push_swap
 ARCHIVE = push_swap.a
 CC = gcc
@@ -20,25 +26,29 @@ SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
+	@echo "$(GREEN)Completed_Compilation$(NC)"
 
 $(NAME) : $(ARCHIVE)
-	$(CC) $< -o $@
+	@echo "$(GREEN)Compiling $@...$(NC)"
+	@$(CC) $< -o $@
 
 $(ARCHIVE) : $(OBJS)
-	$(MAKE_LIB) $(ARCHIVE) $^
+	@$(MAKE_LIB) $(ARCHIVE) $^
 
 %.o : %.c Makefile
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 bonus : 
-	cd ../checker && make
+	@cd ../checker && make
 	
 clean :
-	rm -f $(OBJS) $(ARCHIVE)
+	@echo "$(RED) Cleaning...$(NC)"
+	@rm -f $(OBJS) $(ARCHIVE)
 
 fclean : clean
-	rm -f $(NAME)
-	cd ../checker && make fclean
+	@echo "$(RED) More_Cleaning...$(NC)"
+	@rm -f $(NAME)
+	@cd ../checker && rm -f checker
 
 re : fclean all
 
