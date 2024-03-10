@@ -25,8 +25,9 @@ static long	ft_atoi(const char *s)
 	num = 0;
 	neg = 1;
 	i = 0;
-	while (s[i] && ((s[i] >= 9 && s[i] <= 13)
-			|| s[i] == ' '))
+	while (s[i] && (s[i] == ' ' || s[i] == '\t'
+			|| s[i] == '\n' || s[i] == '\r'
+			|| s[i] == '\v' || s[i] == '\f'))
 		i++;
 	if (s[i] == '+')
 		i++;

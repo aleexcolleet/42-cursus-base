@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include <limits.h>
 
-t_stack_node *find_last_node(t_stack_node *c)
+t_stack_node	*find_last_node(t_stack_node *c)
 {
 	if (c == NULL)
 		return (NULL);
@@ -24,10 +24,10 @@ t_stack_node *find_last_node(t_stack_node *c)
 
 void	append_node(t_stack_node **stack, int n)
 {
-	t_stack_node *node;
-	t_stack_node *last_node;
+	t_stack_node	*node;
+	t_stack_node	*last_node;
 
-	if (stack == NULL) //here I check if the pointer itself is null, meaning it doesnt point to any valid adress
+	if (stack == NULL)
 		return ;
 	node = malloc(sizeof(t_stack_node));
 	if (!node)
@@ -36,10 +36,10 @@ void	append_node(t_stack_node **stack, int n)
 	node->value = n;
 	if (*stack == NULL)
 	{
-		*stack = node; //t_stack_node 'a' points to the new "node" now;
+		*stack = node;
 		node->prev = NULL;
 	}
-	else 
+	else
 	{
 		last_node = find_last_node(*stack);
 		last_node->next = node;
@@ -62,8 +62,8 @@ t_stack_node	*return_cheapest(t_stack_node *stack)
 
 int	stack_len(t_stack_node *stack)
 {
-	int count;
-	
+	int	count;
+
 	count = 0;
 	if (stack == NULL)
 		return (0);
@@ -75,10 +75,10 @@ int	stack_len(t_stack_node *stack)
 	return (count);
 }
 
-t_stack_node *find_smallest(t_stack_node *stack)
+t_stack_node	*find_smallest(t_stack_node *stack)
 {
-	long		smallest;
-	t_stack_node *smallest_node;
+	long			smallest;
+	t_stack_node	*smallest_node;
 
 	if (stack == NULL)
 		return (NULL);

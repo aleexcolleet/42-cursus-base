@@ -27,7 +27,7 @@ $(NAME) : $(ARCHIVE)
 $(ARCHIVE) : $(OBJS)
 	$(MAKE_LIB) $(ARCHIVE) $^
 
-%.o : %.c 
+%.o : %.c Makefile
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 bonus : 
