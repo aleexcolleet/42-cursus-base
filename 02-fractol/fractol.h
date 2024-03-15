@@ -16,6 +16,33 @@
 #define WIDTH  800
 #define HEIGHT 800
 
+//COLORS
+// Color Defines
+#define RED "\x1b[31m"
+#define GREEN "\x1b[32m"
+#define YELLOW "\x1b[33m"
+#define BLUE "\x1b[34m"
+#define MAGENTA "\x1b[35m"
+#define CYAN "\x1b[36m"
+#define WHITE "\x1b[37m"
+#define RESET "\x1b[0m"
+
+
+//PSHYCHEDELIC COLORS
+#define PSYCHEDELIC_RED "\x1b[38;2;255;0;0m"     // Vibrant RED
+#define PSYCHEDELIC_GREEN "\x1b[38;2;0;255;0m"   // Electric GREEN
+#define PSYCHEDELIC_BLUE "\x1b[38;2;0;0;255m"    // Intense BLUE
+#define PSYCHEDELIC_YELLOW "\x1b[38;2;255;255;0m"// Bright YELLOW
+#define PSYCHEDELIC_MAGENTA "\x1b[38;2;255;0;255m" // Psychedelic MAGENTA
+#define PSYCHEDELIC_CYAN "\x1b[38;2;0;255;255m"  // CYAN, a staple of psychedelic art
+#define PSYCHEDELIC_ORANGE "\x1b[38;2;255;165;0m" // Vivid ORANGE
+#define PSYCHEDELIC_PURPLE "\x1b[38;2;128;0;128m" // Deep PURPLE
+#define PSYCHEDELIC_LIME "\x1b[38;2;191;255;0m"   // LIME GREEN
+#define PSYCHEDELIC_PINK "\x1b[38;2;255;105;180m" // Bright PINK
+
+
+
+
 //COMPLEX VALUE 
 typedef struct s_complex
 {
@@ -53,8 +80,9 @@ typedef struct s_fractal
 	t_img img;
 
 	//hooks member variables //TODO
+	double	escape_value; //hypotenous
+	int	iterations_definition;
 } t_fractal;
-
 
 /*
  PROTOTYPES

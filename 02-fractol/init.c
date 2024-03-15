@@ -7,6 +7,11 @@ static void	malloc_error(void)
 	exit(EXIT_FAILURE); 
 }
 
+void	data_init(t_fractal *fractal)
+{
+	fractal->escape_value = 4;
+	fractal->iterations_definition = 55;
+}
 
 
 
@@ -42,6 +47,5 @@ void	fractal_init(t_fractal *fractal)
 										 &fractal->img.lineLen,
 										&fractal->img.endian);
 	//events_init(fractal);
-	//data_init(fractal); zoom, ...
 
 }
