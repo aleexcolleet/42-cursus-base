@@ -5,6 +5,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <X11/x.h>
+# include <X11/keysym.h>
 # include "minilibx-mac-osx/mlx.h"
 
 #define ERROR_MES "Please enter \n\t\"./fractol mandelbro\" or \n\t\"./fractol julia <value_1> <value_2>\""
@@ -82,6 +84,12 @@ typedef struct s_fractal
 	//hooks member variables //TODO
 	double	escape_value; //hypotenous
 	int	iterations_definition;
+	double	shift_x;
+	double	shift_y;
+	double	zoom;
+	double	julia_x;
+	double	julia_y;
+
 } t_fractal;
 
 /*
@@ -92,13 +100,17 @@ typedef struct s_fractal
 //string utils
 int			ft_strncmp(char *s1, char *s2, int nbr);
 void		putstr_fd(char *s, int fd);
-
+double		special_atoi(char *s);
 //INIT
 void		fractal_init(t_fractal *fractal);
 
+//fractal rendering
+void		fractal_render(t_fractal *fractal);
 //math part
 double		map(double unscaled_num, double new_min, double new_max, double old_max);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
-
+//clean
+int			close_handler(t_fractal *fractal);
+int			mouse_handler(int button, int x, int y, t_fractal *fractal);
 #endif

@@ -11,10 +11,29 @@ void	data_init(t_fractal *fractal)
 {
 	fractal->escape_value = 4;
 	fractal->iterations_definition = 55;
+	fractal->shift_x = 0.0;
+	fractal->shift_y = 0.0;
+	fractal->zoom = 1.0;
 }
 
-
-
+void	events_init(t_fractal *fractal)
+{
+	mlx_hook(fractal->mlx_window,
+			KeyPress,
+			KeyPressMask,
+			key_handler,
+			fractal);
+	mlx_hook(fractal->mlx_window,
+			ButtonPress,
+			ButtonPressMask,
+			mouse_handler,
+			fractal);
+	mlx_hook(fractal->mlx_window,
+			DestroyNotify,
+			StructureNotifyMask,
+			close_handler,
+			fractal);
+}
 
 /* Init
 *	mlx

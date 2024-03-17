@@ -20,8 +20,10 @@ int main(int as, char **av)
 	t_fractal	fractal;
 	if (2 == as && !ft_strncmp(av[1], "mandelbrot", 10)
 		|| 4 == as && !ft_strncmp(av[1], "julia", 5))
-	{
+	{	
 		fractal.name = av[1];
+		fractal.julia_x = special_atoi(av[2]);
+		fractal.julia_y = special_atoi(av[3]);
 		fractal_init(&fractal);
 		fractal_render(&fractal);
 		mlx_loop(fractal.mlx_connection);

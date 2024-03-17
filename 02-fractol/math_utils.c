@@ -2,7 +2,7 @@
 
 double map(double unscaled_num, double new_min, double new_max, double old_max)
 {
-	return ((new_max - new_min) * unscaled_num / (old_max + new_min);
+	return ((new_max - new_min) * unscaled_num / (old_max + new_min));
 }
 
 //SUM COMPLEX
@@ -24,6 +24,7 @@ t_complex	square_complex(t_complex z)
 
 	res.x = (z.x * z.x) - (z.y * z.y);
 	res.y = 2 * z.x * z.y;
-	return (result);
-
+	return (res);
 }
+
+
