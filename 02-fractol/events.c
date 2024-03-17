@@ -7,7 +7,7 @@ int	close_handler(t_fractal *fractal)
 	mlx_destroy_image(fractal->mlx_connection,
 					fractal->img.imgPtr);
 	mlx_destroy_window(fractal->mlx_connection,
-					fracal->mlx_window);
+					fractal->mlx_window);
 	mlx_destroy_display(fractal->mlx_connection);
 	free(fractal->mlx_connection);
 	exit(EXIT_SUCCESS);
