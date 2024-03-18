@@ -1,25 +1,45 @@
-CFLAGS = -Wall -Werror -Wextra
-
 NAME = fractol
+OS = $(shell uname)
 
+# directories
+SRCDIR = ./src
+INCDIR = ./includes
+OBJDIR = ./obj
+
+# src / obj files
+SRC = main.c \
+      init.c \
+      events.c \
+      math_utils.c \
+      render.c \
+      string_utils.c \
+
+OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
+
+# compiler
 CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
 
-SRC = main.c string_utils.c events.c init.c math_utils.c render.c fractol.h
+# mlx library
+MLX = ./miniLibX/
+MLX_LNK = -L $(MLX) -l mlx -framework OpenGL -framework AppKit
+MLX_INC = -I $(MLX)
 
-OBJS = $(SRC:.c=.o)
+all: obj $(NAME)
 
-MLX = -lmlx OpenGL AppKit
+obj:
+	mkdir -p $(OBJDIR)
 
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) $(CFLAGS) $(MLX_INC) -I $(INCDIR) -o $@ -c $<
 
-all : $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) $(MLX_LNK) -lm -o $(NAME)
 
-$(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
+clean:
+	rm -rf $(OBJDIR)
 
-clean :
-	@rm -rf $(OBJS)
+fclean: clean
+	rm -rf $(NAME)
 
-fclean : clean
-	@rm -rf $(NAME)
-
-re : fclean all
+re: fclean all
