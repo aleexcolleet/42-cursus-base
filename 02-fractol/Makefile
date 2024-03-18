@@ -8,7 +8,7 @@ SRC = main.c string_utils.c events.c init.c math_utils.c render.c fractol.h
 
 OBJS = $(SRC:.c=.o)
 
-MLX = -lmlx -framework OpenGL -framework AppKit
+MLX = -lmlx OpenGL AppKit
 
 
 all : $(NAME)

@@ -4,7 +4,7 @@
 static void	malloc_error(void)
 {
 	perror("There's a problem with malloc");
-	exit(EXIT_FAILURE); 
+	exit(EXIT_FAILURE);
 }
 
 void	data_init(t_fractal *fractal)
@@ -39,7 +39,6 @@ void	events_init(t_fractal *fractal)
 *	mlx
 *	listening events and hooks data
 */
-
 void	fractal_init(t_fractal *fractal)
 {
 	fractal->mlx_connection = mlx_init();
@@ -65,6 +64,7 @@ void	fractal_init(t_fractal *fractal)
 										 &fractal->img.bpp,
 										 &fractal->img.lineLen,
 										&fractal->img.endian);
-	//events_init(fractal);
+	events_init(fractal);
+	data_init(fractal);
 
 }
