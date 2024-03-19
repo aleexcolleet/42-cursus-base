@@ -5,7 +5,6 @@
 # include <stdlib.h> //malloc free
 # include <unistd.h> // write
 # include <math.h>
-# include "miniLibX/mlx.h"
 
 #define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 
@@ -32,6 +31,15 @@
 
 //STRUCT VALUES
 //
+//s_complex
+typedef struct	s_complex
+{
+	//		real
+	double	x;
+	//		i
+	double	y;
+}				t_complex;
+
 //IMAGE
 
 typedef struct s_img
