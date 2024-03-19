@@ -5,9 +5,7 @@
 # include <stdlib.h> //malloc free
 # include <unistd.h> // write
 # include <math.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include "minilibx-linux/mlx.h"
+# include "miniLibX/mlx.h"
 
 #define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 
