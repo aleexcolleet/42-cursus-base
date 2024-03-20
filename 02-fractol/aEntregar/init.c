@@ -60,6 +60,8 @@ void	mlx_setup(t_data *fractol)
 												&fractol->img_data->bpp, \
 												&fractol->img_data->lineLen,
 												&fractol->img_data->endian);
+	return ;
+}
 
 //Cerates mlx window and names it(fractol name)
 
@@ -85,6 +87,23 @@ void	win_gen(t_data *fractol)
 			exit(-1);
 		}
 	}
+	return ;
+}
+
+//comands to move across the window
+void	commands_list(t_data *fractal)
+{
+	ft_printf("\n\n---------------------------------------------------------------------\n\n")
+	ft_printf("\n!!AVAILABLE COMMANDS!!\n");
+	ft_printf("\n\nW  A  S  D -------> move across screen\n");
+	ft_printf("Mouse Wheel ----------> Zoom in <--> zoom out\n");
+	ft_printf("ESC ------------------> quits program\n");
+	ft_printf("Left Shift -----------> colors shift\n");
+	ft_printf("Left Alt -------------> cycle throught resolutions(iterations++)\n");
+	ft_printf("Welcome to the trip!");
+	ft_printf("\n\n --------------------------------------------------------------------\n\n");
+	if (fractol->set == JULIA)
+		ft_printf("\nFor Julia sets right click to the current mouse");
 	return ;
 }
 

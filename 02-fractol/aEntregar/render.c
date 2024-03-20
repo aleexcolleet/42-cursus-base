@@ -8,3 +8,13 @@ void	check_which_fractal(t_data *fractol, char *arg)
 		fracotl->set = JULIA;
 	return ;
 }
+
+int	generate_fractal(t_data *fractol)
+{
+	handle_evens(fractol)
+	if (fractol->set == MANDELBROT)
+		gen_mandelbrot(fractol);
+	if (fractol->set == JULIA)
+		gen_julia(fractol);
+	return (0);
+}

@@ -13,6 +13,8 @@ int	main(int as, char **av)
 		f.args = av;
 		check_which_fractal(&f, av[1]);
 		mlx_setup(&f);
+		command_list(&fractol);
+		mlx_loop_hook(fractol.mlx, &generate_fractal, &fractol);
 	}
 	else
 	{
