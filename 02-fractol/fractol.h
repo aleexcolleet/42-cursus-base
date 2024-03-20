@@ -5,6 +5,9 @@
 # include <stdlib.h> //malloc free
 # include <unistd.h> // write
 # include <math.h>
+# include <stdint.h>
+# include <pthread.h>
+# include "mlx.h"
 
 #define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 
@@ -55,7 +58,6 @@ typedef struct s_img
 
 typedef struct s_fractal
 {
-	char	*name;
 	void	*mlx_connection;
 	void	*mlx_window;
 	t_img	img;

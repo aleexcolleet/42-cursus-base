@@ -9,7 +9,7 @@ double map(double unscaled_num, double new_min, double new_max, double old_max)
 
 t_complex sum_complex(t_complex z1, t_complex z2)
 {
-	t_complex res;
+	t_complex res; e
 
 	res.x = z1.x + z2.x;
 	res.y = z1.y + z2.y;
