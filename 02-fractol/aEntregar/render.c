@@ -11,7 +11,7 @@ void	check_which_fractal(t_data *fractol, char *arg)
 
 int	generate_fractal(t_data *fractol)
 {
-	handle_evens(fractol)
+	handle_evens(fractol);
 	if (fractol->set == MANDELBROT)
 		gen_mandelbrot(fractol);
 	if (fractol->set == JULIA)
