@@ -4,8 +4,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include <unsitd.h>
+# include <unistd.h>
 
+#define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 //main DEFINES
 # define MAX_ITERATION 25
 # define MANDELBROT 1
@@ -58,11 +59,11 @@ enum {
 //COLORS
 typedef struct s_color
 {
-	int	r;
-	int	g;
-	int	b;
+	int	red;
+	int	green;
+	int	blue;
 	int	t;
-}
+}				t_color;
 
 //COMPLEX NUMBER
 typedef struct	s_complex
@@ -101,5 +102,44 @@ typedef struct s_data
 	double			julia_shift_y;
 	char			**args;
 }	t_data;	
+
+//PROTOTYPES
+//
+// INIT
+void	set_min_max(t_data *fractol);
+void	commands_list(t_data *fractol);
+void	win_gen(t_data *fractol);
+void	mlx_setup(t_data *fractol);
+t_data	init_structure(void);
+
+//COLORS
+//
+int	get_blue(int color_value);
+int	get_green(int color_value);
+int	get_red(int	color_value);
+void	apply_shift(t_data *fractol);
+
+//EVENTS
+//
+void	handle_events(t_data *fractol);
+int	handle_mouse(int mousecode, int x, int y, t_data *fractol);
+
+//FRACT_UTILS
+//
+void	my_px_put(t_img *img, int x, int y, int color);
+void	mouse_zoom(t_data *f, double zoom, int x, int y);
+void	clean_exit(t_data *fractol);
+
+//MANDELBROT
+//
+void	generate_mandelbrot(t_data *fractol);
+int	is_actually_mandel(double yf, double yi, t_data *fractol);
+
+//RENDER
+//
+int	make_color(t_data *fractol);
+int	create_trgb(int t, int r, int g, int b);
+int	generate_fractal(t_data *fractol);
+void	check_which_fractal(t_data *fractol, char *arg);
 
 #endif

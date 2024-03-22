@@ -2,10 +2,10 @@
 
 t_data	init_structure(void)
 {
-	t_data	fractol;
+	t_data	f;
 
-	fractol.mlx_connexion = NULL;
-	fractol.win_connexion = NULL;
+	f.mlx_connexion = NULL;
+	f.win_connexion = NULL;
 	f.min_r = 0;
 	f.max_r = 0;
 	f.min_i = 0;
@@ -44,11 +44,12 @@ void	mlx_setup(t_data *fractol)
 	fractol->mlx_connexion = mlx_init();
 	if (!fractol->mlx_connexion)
 	{
-		perror("Initialize error\n")
+		perror("Initialize error\n");
 		clean_exit(fractol);
 		return ;
 	}
-	win_gen(f);
+	win_gen(fractol);
+
 	fractol->img_data->imgPtr = mlx_new_image(fractol->mlx_connexion, WIDTH, HEIGHT);
 	if (!fractol->img_data->imgPtr)
 	{
@@ -108,7 +109,7 @@ void	commands_list(t_data *fractal)
 	ft_printf("Welcome to the trip!");
 	ft_printf("\n\n --------------------------------------------------------------------\n\n");
 
-	if (fractol->set == JULIA)
+	if (fractal->set == JULIA)
 		ft_printf("\nFor Julia sets right click to the current mouse");
 	return ;
 }
@@ -119,8 +120,8 @@ void	commands_list(t_data *fractal)
 void	set_min_max(t_data *fractol)
 {
 	fractol->min_r = -2;
-	fractol->max_r = f->min_r * -1 * WIDTH / HEIGHT;
+	fractol->max_r = fractol->min_r * -1 * WIDTH / HEIGHT;
 	fractol->min_i = -2;
-	fractol->max_i = f->min_1 * -1 * WIDTH / HEIGHT;
+	fractol->max_i = fractol->min_i * -1 * WIDTH / HEIGHT;
 	return ;
 }
