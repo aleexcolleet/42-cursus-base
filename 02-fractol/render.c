@@ -4,8 +4,13 @@ void	check_which_fractal(t_data *fractol, char *arg)
 {
 	if (ft_strncmp(arg, "mandelbrot", 10) == 0)
 		fractol->set = MANDELBROT;
-	else
+	else if (ft_strncmp(arg, "julia", 5) == 0)
 		fractol->set = JULIA;
+	else
+	{
+		ft_printf(ERROR_MESSAGE);
+		clean_exit(fractol);
+	}
 	return ;
 }
 
@@ -14,8 +19,8 @@ int	generate_fractal(t_data *fractol)
 	handle_events(fractol);
 	if (fractol->set == MANDELBROT)
 		generate_mandelbrot(fractol);
-	//if (fractol->set == JULIA)
-	//	gen_julia(fractol);
+	else if (fractol->set == JULIA)
+		gen_julia(fractol);
 	return (0);
 }
 
@@ -23,19 +28,18 @@ int	generate_fractal(t_data *fractol)
 //coding.
 int	create_trgb(int t, int r, int g, int b)
 {
-	return(t << 24 | r << 16 || g << 8 | b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	make_color(t_data *fractol)
+int	make_color(t_data *f)
 {
 	int	color_value;
 
-	color_value = fractol->count * 15;
-	fractol->color->red = get_red(color_value);
-	fractol->color->green = get_green(color_value);
-	fractol->color->blue = get_blue(color_value);
-	apply_shift(fractol);
-	return (create_trgb(0, fractol->color->red,
-			fractol->color->green,
-			fractol->color->blue));
+	color_value = f->count * 15;
+	f->color->r = get_red(color_value);
+	f->color->g = get_green(color_value);
+	f->color->b = get_blue(color_value);
+	apply_shift(f);
+	return (create_trgb(0, f->color->r, f->color->g, \
+			f->color->b));
 }

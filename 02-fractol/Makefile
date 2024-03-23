@@ -1,56 +1,64 @@
-NAME	= fractol
-OS		= $(shell uname)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/16 13:10:06 by gmiyakaw          #+#    #+#              #
+#    Updated: 2023/03/27 12:53:13 by gmiyakaw         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-# directories
-SRCDIR	= ./src
-INCDIR	= ./includes
-OBJDIR	= ./obj
+#
+#To  use  MiniLibX  func-
+ #      tions,  you'll  need  to
+ #      link your software  with
+ #      the   MiniLibX  library,
+ #      and    several    system
+#     frameworks:
+#
+ #      -lmlx  -framework OpenGL
+  #     -framework AppKit
+#
+ #      You  may  also  need  to
+  #     specify  the path to the
+   #    MiniLibX library,  using
+    #   the -L flag.
+#
 
-# src / obj files
-SRC		= main.c \
-		  events.c \
-		  init.c \
-		  math_utils.c \
-		  render.c \
-		  string_utils.c \
+NAME 	=	fractol
 
-OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
+OBJ	=	$(SRC:.c=.o)
 
-# compiler
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+NAMELIB	=	libftfractol.a
 
+LIB 	=	libft/libft.a
 
-# mlx library
-ifeq ($(OS), Linux)
-	MLX		= ./miniLibX_X11/
-	MLX_LNK	= -L $(MLX) -l mlx -lXext -lX11
-else
-	MLX		= ./miniLibX/
-	MLX_LNK	= -L $(MLX) -l mlx -framework OpenGL -framework AppKit
-endif
+LINK 	=	-lmlx  -framework OpenGL -framework AppKit -L ./minilibx_opengl_20191021
 
-MLX_INC	= -I $(MLX)
+SRC		=	fractol.c fractol_utils.c mandelbrot.c inits.c color.c \
+			render.c julia.c events.c 
+CC	=	gcc
 
-all: obj $(MLX_LIB) $(NAME)
+CFLAGS	=	-Wall -Werror -Wextra
 
-obj:
-	mkdir -p $(OBJDIR)
+COMP	=	$(CC) $(CFLAGS) $(LIB) $(LINK)
 
-$(OBJDIR)/%.o:$(SRCDIR)/%.c
-	$(CC) $(CFLAGS) $(MLX_INC) -I $(INCDIR) -o $@ -c $<
+RM		=	rm -f
 
-$(MLX_LIB):
-	@make -C $(MLX)
+all:	$(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX_LNK) -lm -o $(NAME)
-
+$(NAME):	$(OBJ)
+				$(MAKE) bonus -C ./libft
+				$(COMP) $(OBJ) -o $(NAME)
 clean:
-	rm -rf $(OBJDIR)
-	make -C $(MLX) clean
+	$(RM) $(OBJ)
+	$(MAKE) fclean -C ./libft
 
-fclean: clean
-	rm -rf $(NAME) fclean
+fclean:	clean
+	$(RM) $(NAME)
+	$(MAKE) fclean -C ./libft
 
-re: fclean all
+re:			fclean all
+

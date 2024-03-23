@@ -13,7 +13,8 @@ int	main(int as, char **av)
 		check_which_fractal(&fractol, av[1]);
 		mlx_setup(&fractol);
 		commands_list(&fractol);
-		mlx_loop_hook(fractol.mlx_connexion, &generate_fractal, &fractol);
+		mlx_loop_hook(fractol.mlx_con, &generate_fractal, &fractol);
+		mlx_loop(fractol.mlx_con);
 	}
 	else
 	{
@@ -22,3 +23,6 @@ int	main(int as, char **av)
 	}
 	return (0);
 }
+
+//el problema es seguramente como llamo a addr i img. Tipo que los debo mezclar
+//

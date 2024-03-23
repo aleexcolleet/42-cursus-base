@@ -1,99 +1,133 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <stdio.h> //TODO debugging
-# include <stdlib.h> //malloc free
-# include <unistd.h> // write
-# include <math.h>
-# include <stdint.h>
-# include <pthread.h>
-# include "mlx.h"
-
 #define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
+//main DEFINES
+# define MAX_ITERATION 25
+# define MANDELBROT 1
+# define JULIA 2
+//MLBX
+# include "./libft/libft.h"
+# include  "./minilibx_opengl_20191021/mlx.h"
 
-//window settings
-#define WIDTH	800
-#define	HEIGHT	800
+//DEFAULTS
+# define WIDTH 1250
+# define HEIGHT 1250
 
-//Normal colors
-#define BLACK       0x000000  // RGB(0, 0, 0)
-#define WHITE       0xFFFFFF  // RGB(255, 255, 255)
-#define RED         0xFF0000  // RGB(255, 0, 0)
-#define GREEN       0x00FF00  // RGB(0, 255, 0)
-#define BLUE        0x0000FF  // RGB(0, 0, 255)
+# include <stdlib.h>
+# include <math.h>
+# include <stdio.h>
+# include <math.h>
 
-// Psychedelic colors
-#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
-#define LIME_SHOCK      0xCCFF00  // A blinding lime
-#define NEON_ORANGE     0xFF6600  // A blazing neon orange
-#define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
-#define AQUA_DREAM      0x33CCCC  // A bright turquoise
-#define HOT_PINK        0xFF66B2  // As the name suggests!
-#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
-#define LAVA_RED        0xFF3300  // A bright, molten RED
+//EVENTS
+enum {
+	W = 13,
+	A = 0,
+	S = 1,
+	D = 2,
+	UP_ARROW = 126,
+	DOWN_ARROW = 125,
+	LEFT_ARROW = 123,
+	RIGHT_ARROW = 124,
+	LEFT_CTRL = 256,
+	LEFT_ALT = 261,
+	LEFT_SHIFT = 257,
+	ESC			= 53,
+	ON_DESTROY	= 17,
+	ON_MOUSE_DW	= 4,
+};
 
-//STRUCT VALUES
+//STRUCTURES
 //
-//s_complex
-typedef struct	s_complex
+//COLORS
+typedef struct s_color
 {
-	//		real
-	double	x;
-	//		i
-	double	y;
-}				t_complex;
+	int	r;
+	int	g;
+	int	b;
+	int	t;
+}	t_color;
 
 //IMAGE
-
 typedef struct s_img
 {
-	void	*imgPtr;
-	char	*pixPtr;
+	void	*img;
+	char	*addr;
 	int		bpp;
 	int		endian;
 	int		lineLen;
-}				t_img;
+}	t_img;
 
-//FRACTAL
-
-typedef struct s_fractal
+typedef struct s_data
 {
-	void	*mlx_connection;
-	void	*mlx_window;
-	t_img	img;
-
-	double	escape_value;
-	int		iterations_definition;
-	double	shift_x;
-	double	shift_y;
-	double	zoom;
-	double	julia_x;
-	double	julia_y;
-}				t_fractal;
+	void			*mlx_con;
+	void			*win_con;
+	t_img			*img_data;
+	t_color			*color;
+	double			min_r;
+	double			max_r;
+	double			min_i;
+	double			max_i;
+	unsigned int	count;
+	int				color_shift;
+	int				resolution_shift;
+	int				set;
+	double			center_i;
+	double			center_r;
+	double			julia_shiftx;
+	double			julia_shifty;
+	char			**args;
+}	t_data;	
 
 //PROTOTYPES
+//
+// INIT
+void	set_min_max(t_data *fractol);
+void	commands_list(t_data *fractol);
+void	win_gen(t_data *fractol);
+void	mlx_setup(t_data *fractol);
+t_data	init_structure(void);
 
-//INIT 
-void	data_init(t_fractal *fractal);
-void	events_init(t_fractal *fractal);
-void	fractal_init(t_fractal *fractal);
+//COLORS
+//
+int	get_blue(int color_value);
+int	get_green(int color_value);
+int	get_red(int	color_value);
+void	apply_shift(t_data *fractol);
+void	shift_color(t_data *fractol);
 
-//math utils
-double map(double unscaled_num, double new_min, double new_max, double old_max);
-t_complex sum_complex(t_complex z1, t_complex z2);
-t_complex	square_complex(t_complex z);
+//EVENTS
+//
+void	handle_events(t_data *fractol);
+int	handle_keys(int keycode, t_data *fractol);
+int	handle_mouse(int mousecode, int x, int y, t_data *fractol);
 
-//Render
-void	fractal_render(t_fractal *fractal);
+//FRACT_UTILS
+//
+void	my_px_put(t_img *img, int x, int y, int color);
+void	move(t_data	*f, char direction);
+void	mouse_zoom(t_data *f, double zoom, int x, int y);
+void	clean_exit(t_data *fractol);
 
-//string utils
-double	special_atoi(char *s);
-int	ft_strncmp(char *s1, char *s2, int nbr);
-void	putstr_fd(char *s, int fd);
+//MISC functions
+//
+int	ft_is_little_endian(void);
 
-//hooks events
-int	close_handler(t_fractal *fractal);
-int	key_handles(int keysym, t_fractal *fractal);
-int	mouse_handler(int button, int x, int y, t_fractal *fractal);
+//MANDELBROT
+//
+void	generate_mandelbrot(t_data *fractol);
+int	is_actually_mandel(double yf, double yi, t_data *fractol);
+
+//JULIA
+//
+void	gen_julia(t_data *f);
+int	is_actually_julia(double zr, double zi, t_data *fractol);
+void	julia_shift(int x, int y, t_data *f);
+//RENDER
+//
+int	make_color(t_data *fractol);
+int	create_trgb(int t, int r, int g, int b);
+int	generate_fractal(t_data *fractol);
+void	check_which_fractal(t_data *fractol, char *arg);
 
 #endif

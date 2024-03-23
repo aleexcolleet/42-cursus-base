@@ -1,26 +1,38 @@
 #include "fractol.h"
 
+//increments the value of color_shifts
+//loops back if max is reached
+//
+
+void	shift_color(t_data *fractol)
+{
+	fractol->color_shift += 1;
+	if (fractol->color_shift > 5)
+		fractol->color_shift = 1;
+	return ;
+}
+
 //change values of rgb arbritary to get new combinations.
 void	apply_shift(t_data *f)
 {
 	if (f->color_shift == 1)
 	{
-		f->color->red += 150;
-		f->color->blue += 10;
+		f->color->r += 150;
+		f->color->b += 10;
 	}
 	else if (f->color_shift == 2)
 	{
-		f->color->red += 70;
-		f->color->blue += 70;
+		f->color->r += 70;
+		f->color->b += 70;
 	}
 	else if (f->color_shift == 3)
-		f->color->green += 75;
+		f->color->g += 75;
 	else if (f->color_shift == 4)
-		f->color->blue += 140;
+		f->color->b += 140;
 	else
 	{
-		f->color->blue = 75;
-		f->color->green += 75;
+		f->color->b = 75;
+		f->color->g += 75;
 	}
 	return ;
 }

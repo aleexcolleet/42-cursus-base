@@ -66,13 +66,13 @@ void	generate_mandelbrot(t_data *fractol)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			real_part = fractol->min_r + ((double)x * (fractol->max_r = fractol->min_r) / WIDTH);
+			real_part = fractol->min_r + ((double)x * (fractol->max_r - fractol->min_r) / WIDTH);
 			if (is_actually_mandel(real_part, img_part, fractol) == 0)
 				my_px_put(fractol->img_data, x, y, make_color(fractol));
 			else
 				my_px_put(fractol->img_data, x, y, create_trgb(0, 0, 0, 0));
 		}
 	}
-	mlx_put_image_to_window(fractol->mlx_connexion, fractol->win_connexion, fractol->img_data->imgPtr, 0, 0);
+	mlx_put_image_to_window(fractol->mlx_con, fractol->win_con, fractol->img_data->img, 0, 0);
 	return ;
 }

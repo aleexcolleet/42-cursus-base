@@ -2,10 +2,10 @@
 
 t_data	init_structure(void)
 {
-	t_data	f;
+	t_data f;
 
-	f.mlx_connexion = NULL;
-	f.win_connexion = NULL;
+	f.mlx_con = NULL;
+	f.win_con = NULL;
 	f.min_r = 0;
 	f.max_r = 0;
 	f.min_i = 0;
@@ -16,8 +16,8 @@ t_data	init_structure(void)
 	f.set = 0;
 	f.center_i = 0;
 	f.center_r = 0;
-	f.julia_shift_x = 0;
-	f.julia_shift_y = 0;
+	f.julia_shiftx = 0;
+	f.julia_shifty = 0;
 	f.args = NULL;
 	f.img_data = x_calloc(sizeof(t_img));
 	f.color = x_calloc(sizeof(t_color));
@@ -39,28 +39,25 @@ t_data	init_structure(void)
 //Add sise_len to the adress to get the begining of the second line. 
 //can reach any pixel of the image that way
 
-void	mlx_setup(t_data *fractol)
+void	mlx_setup(t_data *f)
 {
-	fractol->mlx_connexion = mlx_init();
-	if (!fractol->mlx_connexion)
+	f->mlx_con = mlx_init();
+	if (!f->mlx_con)
 	{
 		perror("Initialize error\n");
-		clean_exit(fractol);
+		clean_exit(f);
 		return ;
 	}
-	win_gen(fractol);
-
-	fractol->img_data->imgPtr = mlx_new_image(fractol->mlx_connexion, WIDTH, HEIGHT);
-	if (!fractol->img_data->imgPtr)
+	win_gen(f);
+	f->img_data->img = mlx_new_image(f->mlx_con, WIDTH, HEIGHT);
+	if (!f->img_data->img)
 	{
-		clean_exit(fractol);
+		clean_exit(f);
 		ft_printf("MLX image error being created\n");
 		return ;
 	}
-	fractol->img_data->pixPtr = mlx_get_data_addr(fractol->img_data->imgPtr,
-												&fractol->img_data->bpp, \
-												&fractol->img_data->lineLen,
-												&fractol->img_data->endian);
+	f->img_data->addr = mlx_get_data_addr(f->img_data->img, &f->img_data->bpp, \
+							&f->img_data->lineLen, &f->img_data->endian);
 	return ;
 }
 
@@ -70,8 +67,8 @@ void	win_gen(t_data *fractol)
 {
 	if (fractol->set == MANDELBROT)
 	{
-		fractol->win_connexion = mlx_new_window(fractol->mlx_connexion, WIDTH, HEIGHT, "MANDELBROT SET");
-		if (!fractol->win_connexion)
+		fractol->win_con = mlx_new_window(fractol->mlx_con, WIDTH, HEIGHT, "MANDELBROT SET");
+		if (!fractol->win_con)
 		{
 			clean_exit(fractol);
 			ft_printf("MLX window error being created\n");
@@ -80,8 +77,8 @@ void	win_gen(t_data *fractol)
 	}
 	else if (fractol->set == JULIA)
 	{
-		fractol->win_connexion = mlx_new_window(fractol->mlx_connexion, WIDTH, HEIGHT, "JULIA SET");
-		if (!fractol->win_connexion)
+		fractol->win_con = mlx_new_window(fractol->mlx_con, WIDTH, HEIGHT, "JULIA SET");
+		if (!fractol->win_con)
 		{
 			clean_exit(fractol);
 			ft_printf("MLX window error being created\n");
@@ -110,7 +107,7 @@ void	commands_list(t_data *fractal)
 	ft_printf("\n\n --------------------------------------------------------------------\n\n");
 
 	if (fractal->set == JULIA)
-		ft_printf("\nFor Julia sets right click to the current mouse");
+		ft_printf("\nFor Julia sets, right click on the current mouse while moving it\n");
 	return ;
 }
 
@@ -122,6 +119,6 @@ void	set_min_max(t_data *fractol)
 	fractol->min_r = -2;
 	fractol->max_r = fractol->min_r * -1 * WIDTH / HEIGHT;
 	fractol->min_i = -2;
-	fractol->max_i = fractol->min_i * -1 * WIDTH / HEIGHT;
+	fractol->max_i = fractol->min_i * -1 * HEIGHT / WIDTH;
 	return ;
 }
