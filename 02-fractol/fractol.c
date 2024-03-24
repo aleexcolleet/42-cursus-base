@@ -1,8 +1,8 @@
-# include "fractol.h"
+#include "fractol.h"
 
 int	main(int as, char **av)
 {
-	t_data fractol;
+	t_data	fractol;
 
 	if ((2 == as && (!ft_strncmp(av[1], "mandelbrot", 10)))
 		|| (4 == as && (!ft_strncmp(av[1], "julia", 5))))

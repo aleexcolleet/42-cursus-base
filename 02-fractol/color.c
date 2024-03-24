@@ -50,11 +50,11 @@ void	apply_shift(t_data *f)
 //This is useful to find where in the spectrum "color value" lies
 //and return the int related.
 //
-int	get_red(int	color_value)
+int	get_red(int color_value)
 {
 	if (color_value >= 0 && color_value <= 255)
 		return (255);
-	else if(color_value > 255 && color_value <= 510)
+	else if (color_value > 255 && color_value <= 510)
 		return (255 - (color_value - 255));
 	else if (color_value > 510 && color_value <= 1020)
 		return (0);

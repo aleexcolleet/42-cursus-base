@@ -98,11 +98,11 @@ void	commands_list(t_data *fractal)
 	ft_printf("/ /___  / /_/ /_  /  / / _  /  / / _  ___ |  /|  / _  /_/ /____/ / \n");
 	ft_printf("\\____/  \\____/ /_/  /_/  /_/  /_/  /_/  |_/_/ |_/  /_____/ /____/  \n");
 	ft_printf("\033[0m");
-	ft_printf("\n\nW  A  S  D -------> move across screen\n");
+	ft_printf("\n\nARROWS -----------> move across screen\n");
 	ft_printf("Mouse Wheel ----------> Zoom in <--> zoom out\n");
 	ft_printf("ESC ------------------> quits program\n");
-	ft_printf("Left Shift -----------> colors shift\n");
-	ft_printf("Left Alt -------------> cycle throught resolutions(iterations++)\n");
+	ft_printf("A -----------> colors shift\n");
+	ft_printf("D -----------> cycle throught resolutions(iterations++)\n");
 	ft_printf("Welcome to the trip!");
 	ft_printf("\n\n --------------------------------------------------------------------\n\n");
 

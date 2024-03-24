@@ -25,22 +25,23 @@ int	handle_keys(int keycode, t_data *fractol)
 {
 	if (keycode == ESC)
 		clean_exit(fractol);
-	if (keycode == LEFT_SHIFT)
+	if (keycode == A)
 		shift_color(fractol);
-	if (keycode == W || keycode == UP_ARROW)
+	if (keycode == UP_ARROW)
 		move(fractol, 'U');
-	if (keycode == S || keycode == DOWN_ARROW)
+	if (keycode == DOWN_ARROW)
 		move(fractol, 'D');
-	if (keycode == A || keycode == LEFT_ARROW)
+	if (keycode == LEFT_ARROW)
 		move(fractol, 'L');
-	if (keycode == D || keycode == RIGHT_ARROW)
+	if (keycode == RIGHT_ARROW)
 		move(fractol, 'R');
-	if (keycode == LEFT_ALT)
+	if (keycode == D)
 	{
 		fractol->resolution_shift += 50;
 		if (fractol->resolution_shift > 200)
 			fractol->resolution_shift = 0;
-		ft_printf("Max iterations %d\n", (fractol->resolution_shift + MAX_ITERATION));
+		ft_printf("Max iterations %d\n",
+			(fractol->resolution_shift + MAX_ITERATION));
 	}
 	return (0);
 }
