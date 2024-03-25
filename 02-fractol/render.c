@@ -8,7 +8,8 @@ void	check_which_fractal(t_data *fractol, char *arg)
 		fractol->set = JULIA;
 	else
 	{
-		ft_printf(ERROR_MESSAGE);
+		write(1, "usage: ./fractol <name>\n", 24);
+		write(1, "mandelbrot or julia < param 1> < param 2>\n", 42);
 		clean_exit(fractol);
 	}
 	return ;

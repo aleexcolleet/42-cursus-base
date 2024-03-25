@@ -18,7 +18,8 @@ int	main(int as, char **av)
 	}
 	else
 	{
-		ft_printf(ERROR_MESSAGE);
+		write(1, "usage: ./fractol <name>\n", 24);
+		write(1, "mandelbrot or julia < param 1> < param 2>\n", 42);
 		exit(EXIT_FAILURE);
 	}
 	return (0);

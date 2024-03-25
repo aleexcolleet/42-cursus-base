@@ -1,7 +1,6 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrotmandelbrot\"or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 //main DEFINES
 # define MAX_ITERATION 25
 # define MANDELBROT 1
