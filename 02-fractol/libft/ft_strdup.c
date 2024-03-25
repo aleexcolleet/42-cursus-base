@@ -3,30 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 13:43:23 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/11/25 14:16:18 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:33:23 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:33:27 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-
-char	*ft_strdup(char *s1)
+/**************************************************************
+*						FT_STRDUP:							  *
+*	La función ft_strdup duplica una cadena de caracteres     *
+*	(str) en una nueva cadena de caracteres.                  *
+*	Devuelve un puntero a la nueva cadena duplicada o NULL    *
+*	en caso de error de asignación de memoria.                *
+*															  *
+*	Argumentos:												  *
+*	str: La cadena de caracteres que se duplicará.            *
+*															  *
+\*************************************************************/
+char	*ft_strdup(const char *str)
 {
-	char	*str;
-	int		i;
+	char	*cpy;
 
-	str = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	cpy = (char *)malloc(ft_strlen(str) + 1);
+	if (!cpy)
+		return (0);
+	ft_memcpy(cpy, str, ft_strlen(str) + 1);
+	return (cpy);
 }
+/*
+int main(void)
+{
+    const char str[] = "hola";
+    char *result = ft_strdup(str);
+    printf("elmio---> %s", result);
+    free(result);
+
+    return (0);
+}*/

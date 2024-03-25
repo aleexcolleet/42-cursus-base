@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 17:52:51 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/07 18:03:21 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/16 11:14:43 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/16 15:46:08 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 int	ft_lstsize(t_list *lst)
 {
-	int	size;
+	int		i;
+	t_list	*d;
 
+	d = lst;
+	i = 0;
 	if (!lst)
 		return (0);
-	size = 0;
-	while (lst->next != NULL)
+	while (d)
 	{
-		size++;
-		lst = lst->next;
+		d = d->next;
+		i++;
 	}
-	return (size + 1);
+	return (i);
 }

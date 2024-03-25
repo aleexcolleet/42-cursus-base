@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 t_data	init_structure(void)
 {
-	t_data f;
+	t_data	f;
 
 	f.mlx_con = NULL;
 	f.win_con = NULL;
@@ -57,7 +69,7 @@ void	mlx_setup(t_data *f)
 		return ;
 	}
 	f->img_data->addr = mlx_get_data_addr(f->img_data->img, &f->img_data->bpp, \
-							&f->img_data->lineLen, &f->img_data->endian);
+							&f->img_data->line_len, &f->img_data->endian);
 	return ;
 }
 
@@ -67,7 +79,8 @@ void	win_gen(t_data *fractol)
 {
 	if (fractol->set == MANDELBROT)
 	{
-		fractol->win_con = mlx_new_window(fractol->mlx_con, WIDTH, HEIGHT, "MANDELBROT SET");
+		fractol->win_con = mlx_new_window(fractol->mlx_con,
+				WIDTH, HEIGHT, "MANDELBROT SET");
 		if (!fractol->win_con)
 		{
 			clean_exit(fractol);
@@ -77,7 +90,8 @@ void	win_gen(t_data *fractol)
 	}
 	else if (fractol->set == JULIA)
 	{
-		fractol->win_con = mlx_new_window(fractol->mlx_con, WIDTH, HEIGHT, "JULIA SET");
+		fractol->win_con = mlx_new_window(fractol->mlx_con,
+				WIDTH, HEIGHT, "JULIA SET");
 		if (!fractol->win_con)
 		{
 			clean_exit(fractol);
@@ -90,24 +104,29 @@ void	win_gen(t_data *fractol)
 
 void	commands_list(t_data *fractal)
 {
-	ft_printf("\n\n---------------------------------------------------------------------\n\n");
+	ft_printf("\n\n--------------------------------------\n\n");
 	ft_printf("\033[1;36m");
-	ft_printf("_____________________  ________  ______________   _________________\n");
-	ft_printf("__  ____/_  __ \\__   |/  /__   |/  /__    |__  | / /__  __ \\_  ___/\n");
-	ft_printf("_  /    _  / / /_  /|_/ /__  /|_/ /__  /| |_   |/ /__  / / /____ \\ \n");
-	ft_printf("/ /___  / /_/ /_  /  / / _  /  / / _  ___ |  /|  / _  /_/ /____/ / \n");
-	ft_printf("\\____/  \\____/ /_/  /_/  /_/  /_/  /_/  |_/_/ |_/  /_____/ /____/  \n");
+	ft_printf("_____________________  ________");
+	ft_printf("______________   _________________\n");
+	ft_printf("__  ____/_  __ \\__   |/  /__  ");
+	ft_printf(")|/  /__    |__  | / /__  __ \\_  ___/\n");
+	ft_printf("_  /    _  / / /_  /|_/ /__  /|");
+	ft_printf("_/ /__  /| |_   |/ /__  / / /____ \\ \n");
+	ft_printf("/ /___  / /_/ /_  /  / / _  /  ");
+	ft_printf("/ / _  ___ |  /|  / _  /_/ /____/ / \n");
+	ft_printf("\\____/  \\____/ /_/  /_/  /_/ ");
+	ft_printf("/_/  /_/  |_/_/ |_/  /_____/ /____/  \n");
 	ft_printf("\033[0m");
 	ft_printf("\n\nARROWS -----------> move across screen\n");
 	ft_printf("Mouse Wheel ----------> Zoom in <--> zoom out\n");
 	ft_printf("ESC ------------------> quits program\n");
 	ft_printf("A -----------> colors shift\n");
-	ft_printf("D -----------> cycle throught resolutions(iterations++)\n");
+	ft_printf("D -----------> resolutions(iterations++)\n");
 	ft_printf("Welcome to the trip!");
-	ft_printf("\n\n --------------------------------------------------------------------\n\n");
+	ft_printf("\n\n--------------------------------------\n\n");
 
 	if (fractal->set == JULIA)
-		ft_printf("\nFor Julia sets, right click on the current mouse while moving it\n");
+		ft_printf("\nFor Julia sets, right click for diff params\n");
 	return ;
 }
 

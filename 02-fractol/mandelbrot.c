@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 //fucntion---> f(z) = z^2 + c
@@ -51,28 +63,29 @@ int	is_actually_mandel(double yf, double yi, t_data *fractol)
  * so we look for iterations while mapping the points
  * into the actual pixels. If a point doesn't escape 
  * the range, it's mandelbrot. Otherwise it't outside.
- */
-void	generate_mandelbrot(t_data *fractol)
+*/
+
+void	generate_mandelbrot(t_data *f)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	double	real_part;
 	double	img_part;
 
 	y = -1;
 	while (++y < HEIGHT)
 	{
-		img_part = fractol->max_i + ((double)y * (fractol->min_i - fractol->max_i) / HEIGHT);
+		img_part = f->max_i + ((double)y * (f->min_i - f->max_i) / HEIGHT);
 		x = -1;
 		while (++x < WIDTH)
 		{
-			real_part = fractol->min_r + ((double)x * (fractol->max_r - fractol->min_r) / WIDTH);
-			if (is_actually_mandel(real_part, img_part, fractol) == 0)
-				my_px_put(fractol->img_data, x, y, make_color(fractol));
+			real_part = f->min_r + ((double)x * (f->max_r - f->min_r) / WIDTH);
+			if (is_actually_mandel(real_part, img_part, f) == 0)
+				my_px_put(f->img_data, x, y, make_color(f));
 			else
-				my_px_put(fractol->img_data, x, y, create_trgb(0, 0, 0, 0));
+				my_px_put(f->img_data, x, y, create_trgb(0, 0, 0, 0));
 		}
 	}
-	mlx_put_image_to_window(fractol->mlx_con, fractol->win_con, fractol->img_data->img, 0, 0);
+	mlx_put_image_to_window(f->mlx_con, f->win_con, f->img_data->img, 0, 0);
 	return ;
 }

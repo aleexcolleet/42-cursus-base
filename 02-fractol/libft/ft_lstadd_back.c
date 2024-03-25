@@ -3,45 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 14:36:43 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/13 15:56:10 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/17 10:42:45 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/17 13:45:06 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-Function name ft_lstadd_back
-
-Prototype void ft_lstadd_back(t_list **lst, t_list *new);
-Turn in files -
-
-Parameters #1. The address of a pointer to the first link of
-a list.
-
-#2. The address of a pointer to the element to be
-added to the list.
-
-Return value None
-External functs. None
-Description Adds the element ’new’ at the end of the list
-
-TENTAR OUTR TESTER!
-*/
-
 #include "libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*tmp;
-
-	if (new == NULL)
+	if (!new)
 		return ;
 	if (*lst == NULL)
 	{
 		*lst = new;
-		return ;
 	}
-	tmp = ft_lstlast(*lst);
-	tmp->next = new;
+	else
+		ft_lstlast(*lst)->next = new;
 }
+/*
+int main(void)
+{
+	t_list *d = ft_lstnew("0");
+	d->next = ft_lstnew("1");
+	t_list *s = ft_lstnew("2");
+	ft_lstadd_back(&d, s);
+	while (d)
+	{
+		printf("%s\t", (char *)d->content);
+		d = d->next;
+	}
+	free(d);
+	free(s);
+	return (0);
+}*/

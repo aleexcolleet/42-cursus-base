@@ -3,21 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 12:15:23 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/13 17:18:24 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:33:29 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:33:30 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+/**************************************************************	
+*						FT_STRITERI:						  *
+*	La función ft_striteri aplica una función (f) a cada      *
+*	carácter de una cadena de caracteres (s), pasando la      *
+*	posición del carácter como primer argumento.              *
+*															  *	
+*	Argumentos:												  *
+*	s: La cadena de caracteres en la que se aplicará la       *
+*	función.												  *
+*	f: La función que se aplicará a cada carácter, tomando    *
+*	la posición del carácter como primer argumento y el       *
+*	puntero al carácter como segundo argumento.               *
+*															  *
+\*************************************************************/
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
+	int	i;
 
-	if (!s)
-		return ;
 	i = 0;
 	while (s[i])
 	{
@@ -25,3 +36,17 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 		i++;
 	}
 }
+/*
+static void	 f(unsigned int i, char *c)
+{
+	printf("resultado---> %s", c);
+	printf("lenght---> %d", i);
+}
+	
+int main (void)
+{
+	char *s = "comoestatuhermana";
+	ft_striteri(s, f);
+
+	return (0);
+}*/

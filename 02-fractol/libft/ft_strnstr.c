@@ -3,36 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 17:02:42 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2023/01/27 19:03:50 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:34:13 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:34:14 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+/***************************************************************
+*						FT_STRNSTR:							   *
+*	La función ft_strnstr busca una subcadena (little) dentro  *
+*	de una cadena más grande (big) con un límite de longitud   *
+*	especificado (len). Devuelve un puntero al comienzo de     *
+*	la primera ocurrencia de little en big dentro del límite   *
+*	de longitud, o NULL si no se encuentra.                    *
+*															   *
+*	Argumentos:												   *
+*	big: La cadena más grande en la que se buscará little.     *
+*	little: La subcadena que se buscará en big.                *
+*	len: El límite de longitud hasta el cual buscar.           *
+*															   *
+\**************************************************************/
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
-	size_t	j;
+	size_t	x;
 
-	j = 0;
 	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)&haystack[0]);
-	while (haystack[i] && needle[j] && i < len && len > 0)
+	if (*little == '\0' || !little)
+		return ((char *)big);
+	while (big[i] && i < len)
 	{
-		while (haystack[i] == needle [j] && haystack && i < len)
+		x = 0;
+		while (big[i + x] == little[x] && (i + x < len))
 		{
-			if (needle[j + 1] == '\0')
-				return ((char *)&haystack[i - j]);
-			i++;
-			j++;
+			if (!little[x + 1])
+				return ((char *)big + i);
+			x++;
 		}
-		i -= j;
-		j = 0;
 		i++;
 	}
 	return (NULL);
 }
+/*
+#include <stdio.h>
+int	main(int argc, char **argv)
+{
+    if (argc == 4)
+        printf("%s", ft_strnstr(argv[1], argv[2], ft_atoi(argv[3])));
+    return (0);
+}*/

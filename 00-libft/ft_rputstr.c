@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 11:21:09 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/11/17 14:52:17 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_revstr(char *str)
+size_t	ft_rputstr(char *s)
 {
 	size_t	i;
-	size_t	j;
-	char	*rev;
 
-	rev = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
-	if (!rev)
-		return (NULL);
-	rev[ft_strlen(str)] = '\0';
+	if (s == NULL)
+	{
+		write (1, "(null)", 6);
+		return (6);
+	}
 	i = 0;
-	j = 0;
-	while (str[i])
+	while (s[i])
+	{
+		write(1, &s[i], 1);
 		i++;
-	while (i-- > 0)
-		rev[j++] = str[i];
-	return (rev);
+	}
+	return (i);
 }

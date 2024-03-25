@@ -1,17 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   x_calloc.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 11:46:18 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/20 15:07:29 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// mallocs and bzeros "size" bytes of memory, displays error
-// message and exits in case of failure.
 
 #include "libft.h"
 

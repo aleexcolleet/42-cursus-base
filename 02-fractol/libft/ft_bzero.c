@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 14:40:10 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/14 16:47:02 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:31 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 12:42:36 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- The bzero() function writes n zeroed bytes to the string s.  If n is zero, 
- bzero() does nothing.
-*/
 #include "libft.h"
-
+/*						FT_BZERO:
+ *	Establece todos los bytes de un bloque de memoria a cero.
+ *	Es útil para inicializar o "borrar" la memoria de manera eficiente.
+ */
 void	ft_bzero(void *s, size_t n)
 {
-	char	*tmp;
-	size_t	i;
-
-	i = 0;
-	tmp = s;
-	while (i < n)
-		tmp[i++] = 0;
+	ft_memset(s, '\0', n);
 }
+/*
+int main()
+{
+    int n = 4;
+    char str[] = "Helloooooo";
+    ft_bzero(str, n);
+
+    return 0;
+}*/

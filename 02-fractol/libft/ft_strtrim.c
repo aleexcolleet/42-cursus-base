@@ -3,64 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 15:38:36 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/13 14:34:00 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:34:19 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:34:22 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-
-static size_t	ft_scanbeg(char *s, char *set)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (set[j])
-	{
-		while (s[i] == set[j] && s[i])
-		{
-			i++;
-			j = 0;
-		}
-		j++;
-	}
-	return (i);
-}
-
-static size_t	ft_scanend(char *s, char *set)
-{
-	size_t	i;
-	size_t	j;
-
-	i = ft_strlen(s) - 1;
-	j = 0;
-	while (set[j])
-	{
-		while (s[i] == set[j] && i > 0)
-		{
-			i--;
-			j = 0;
-		}
-		j++;
-	}
-	return (i);
-}
-
+/*******************************************************************
+*						FT_STRTRIM:								   *
+*	La función ft_strtrim elimina los caracteres especificados	   *
+*	por el conjunto `set` al principio y al final de una cadena	   *
+*	de caracteres `s1`. Devuelve una nueva cadena de caracteres	   *
+*	con los caracteres eliminados.                                 *
+*																   *
+*	Argumentos:													   *
+*	s1: La cadena de caracteres de la que se eliminarán los		   *
+*	caracteres del conjunto `set`.                                 *
+*	set: El conjunto de caracteres que se eliminarán de `s1`.      *
+*															       *
+*	Devuelve: Un puntero a la nueva cadena de caracteres           *
+*	resultante, o NULL si hay un error de asignación de memoria.   *
+*															       *
+\******************************************************************/
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	starti;
-	size_t	endi;
+	char	*str;
+	size_t	j;
 
-	if (s1 == NULL || set == NULL)
+	if (!s1)
 		return (NULL);
-	starti = ft_scanbeg((char *)s1, (char *)set);
-	if (starti == ft_strlen(s1))
-		return (ft_substr((char *)s1, 0, 0));
-	endi = ft_scanend((char *)s1, (char *)set);
-	return (ft_substr((char *)s1, starti, endi - starti + 1));
+	if (!set)
+		return ((char *)s1);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	j = ft_strlen(s1);
+	while (j && ft_strchr(set, s1[j]))
+		j--;
+	str = ft_substr(s1, 0, j + 1);
+	if (!str)
+		return (NULL);
+	return (str);
 }
+/*
+#include <stdio.h>
+
+int main()
+{
+    char *cadena = "  Hola ";
+    char *conjunto = " ";
+    char *resultado_ft_strtrim = ft_strtrim(cadena, conjunto);
+
+    printf("Cadena sin limpiar: <%s>\n", cadena);
+    printf("Resultado ft_strtrim: <%s>\n", resultado_ft_strtrim);
+    free(resultado_ft_strtrim);
+    return 0;
+}*/

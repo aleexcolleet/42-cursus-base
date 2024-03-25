@@ -3,35 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 14:10:04 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/13 16:38:53 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:32:51 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:32:52 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	*ft_memmove(void *dst, void *src, size_t n)
+/**************************************************************
+*						FT_MEMMOVE:							  *
+*	La función ft_memmove copia len bytes de una zona de      *
+*	memoria origen (src) a una zona de memoria destino (dst), *
+*	posiblemente solapándose. Devuelve un puntero a la zona   *
+*	de memoria destino.                                       *
+*															  *
+*	Argumentos:												  *
+*	dst: Un puntero a la zona de memoria destino donde se     *
+*	realizará la copia.										  *
+*	src: Un puntero a la zona de memoria origen desde donde   *
+*	se copiarán los datos.									  *
+*	len: El número de bytes que se copiarán desde src a dst.  *
+*															  *
+\*************************************************************/
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
+	char	*srce;
+	char	*dest;
 	size_t	i;
-	char	*d;
-	char	*s;
 
-	if (!dst && !src)
-		return (NULL);
-	i = 0;
-	d = (char *)dst;
-	s = (char *)src;
-	while (n-- > 0)
+	i = len;
+	srce = (char *)src;
+	dest = (char *)dst;
+	if (srce == dest)
+		return (dest);
+	if (srce < dest)
 	{
-		if (s < d)
-		{
-			d[n] = s[n];
-		}
-		else
-		d[i] = s[i];
-		i++;
+		while (i-- > 0)
+			dest[i] = srce[i];
 	}
-	return (dst);
+	else
+	{
+		i = -1;
+		while (++i < len)
+			dest[i] = srce[i];
+	}
+	return (dest);
 }
+/*
+int main(void)
+{
+    char str[] = "lamadredelbravo.";
+    char dest[1];
+    printf((ft_memmove(dest, str, 10)));
+}*/

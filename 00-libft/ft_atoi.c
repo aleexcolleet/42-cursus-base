@@ -15,7 +15,6 @@
  Convierte una cadena de caracteres en un número entero,
  teniendo en cuenta los signos (+/-) y los dígitos numéricos en la cadena.
 */
-
 int	ft_atoi(const char *str)
 {
 	int	i;

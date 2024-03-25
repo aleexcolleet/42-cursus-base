@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_tolower.c                                   :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 16:34:59 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/13 17:08:46 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// changes each alphabetical character in a string to lower
-// case. Does nothing if the character is not a letter
-
 #include "libft.h"
 
-char	*ft_str_tolower(char *str)
+size_t	ft_rputchar(char c)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-	{
-		str[i] = ft_tolower(str[i]);
-		i++;
-	}
-	return (str);
+	write(1, &c, 1);
+	return (1);
 }

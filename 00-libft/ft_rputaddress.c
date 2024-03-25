@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 13:52:20 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2023/03/15 12:16:47 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-	// frees every string in the array, and the pointer
-	// itself at the end
 #include "libft.h"
 
-void	ft_free_array(char **array)
+size_t	ft_rputaddress(unsigned long long int n, char *base_str)
 {
-	size_t	i;
+	size_t	count;
 
-	i = 0;
-	while (array[i])
+	count = 0;
+	if (n >= 16)
 	{
-		free(array[i]);
-		i++;
+		count += ft_rputaddress(n / 16, base_str);
+		count += ft_rputaddress(n % 16, base_str);
 	}
-	free(array);
-	return ;
+	else
+		count += ft_rputchar(base_str[n]);
+	return (count);
 }

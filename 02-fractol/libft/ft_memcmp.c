@@ -3,27 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 16:43:49 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/13 16:57:35 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:32:44 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:32:46 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/**************************************************************
+*						FT_MEMCMP:							  *
+*	La función ft_memcmp compara los primeros n bytes de dos  *
+*	bloques de memoria (s1 y s2). Devuelve un valor menor,    *
+*	mayor o igual a cero según si s1 es menor, mayor o igual  *
+*	que s2.													  *
+*															  *
+*	Argumentos:												  *
+*	s1: Un puntero al primer bloque de memoria a comparar.    *
+*	s2: Un puntero al segundo bloque de memoria a comparar.   *
+*	n: El número de bytes que se compararán entre los dos     *
+*	bloques de memoria.									      *
+*															  *
+\*************************************************************/
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t			i;
-	unsigned char	*a;
-	unsigned char	*b;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	unsigned int	i;
 
-	if (n == 0)
-		return (0);
 	i = 0;
-	a = (unsigned char *)s1;
-	b = (unsigned char *)s2;
-	while (a[i] == b[i] && i < n - 1)
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (i < n)
+	{
+		if ((str1[i] != str2[i]))
+			return (str1[i] - str2[i]);
 		i++;
-	return (a[i] - b[i]);
+	}
+	return (0);
 }

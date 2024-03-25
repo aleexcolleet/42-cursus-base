@@ -1,3 +1,2 @@
 - revisar makefile para que no haga relink
 arreglar norminette
-poner mis librerias

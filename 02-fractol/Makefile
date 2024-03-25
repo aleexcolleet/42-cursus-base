@@ -1,17 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/16 13:10:06 by gmiyakaw          #+#    #+#              #
-#    Updated: 2023/03/27 12:53:13 by gmiyakaw         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-#
-#To  use  MiniLibX  func-
  #      tions,  you'll  need  to
  #      link your software  with
  #      the   MiniLibX  library,
@@ -24,8 +10,10 @@
  #      You  may  also  need  to
   #     specify  the path to the
    #    MiniLibX library,  using
-    #   the -L flag.
+ #   the -L flag.
 #
+
+GREEN = \033[0;32m
 
 NAME 	=	fractol
 
@@ -49,16 +37,18 @@ RM		=	rm -f
 
 all:	$(NAME)
 
-$(NAME):	$(OBJ)
-				$(MAKE) bonus -C ./libft
-				$(COMP) $(OBJ) -o $(NAME)
+$(NAME):	$(OBJ) Makefile fractol.h libft/libft.h
+				@$(MAKE) bonus -C ./libft
+				@$(COMP) $(OBJ) -o $(NAME)
+				@echo "$(GREEN)Fractol Compiled Succesfuly$(RESET)"
 clean:
-	$(RM) $(OBJ)
-	$(MAKE) fclean -C ./libft
+	@$(RM) $(OBJ)
+	@$(MAKE) fclean -C ./libft
+	@echo "Cleaned fractol"
 
 fclean:	clean
-	$(RM) $(NAME)
-	$(MAKE) fclean -C ./libft
+	@$(RM) $(NAME)
+	@$(MAKE) fclean -C ./libft
+	@echo "Fractol was removed"
 
 re:			fclean all
-

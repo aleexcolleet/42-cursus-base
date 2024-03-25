@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstrlen.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 14:07:09 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2023/03/15 14:10:12 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// returns the number of elements in a string array
-
-int	ft_arrlen(char **str)
+void	*x_calloc(size_t size)
 {
-	int	i;
+	void	*str;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	str = (void *)malloc (size);
+	if (str == NULL)
+	{
+		ft_printf("x_calloc error.\n");
+		exit (-1);
+	}
+	ft_bzero(str, (size));
+	return (str);
 }

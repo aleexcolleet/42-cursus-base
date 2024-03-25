@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	clean_exit(t_data *fractol)
@@ -61,7 +73,6 @@ void	move(t_data	*f, char direction)
 	return ;
 }
 
-
 //this function uses imag adress(pixPtr) 
 //finds the relative pixel to the x and y.
 //
@@ -73,6 +84,6 @@ void	my_px_put(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
 
-	pixel = img->addr + (y * img->lineLen + x * (img->bpp / 8));
+	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(int *)pixel = color;
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
@@ -7,19 +19,20 @@
 # define JULIA 2
 //MLBX
 # include "./libft/libft.h"
-# include  "./minilibx_opengl_20191021/mlx.h"
+# include "./minilibx_opengl_20191021/mlx.h"
 
 //DEFAULTS
-# define WIDTH 1250
-# define HEIGHT 1250
+# define WIDTH 600
+# define HEIGHT 600
 
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
-# include <math.h>
-
 //EVENTS
-enum {
+//
+
+enum
+{
 	W = 13,
 	A = 0,
 	S = 1,
@@ -54,7 +67,7 @@ typedef struct s_img
 	char	*addr;
 	int		bpp;
 	int		endian;
-	int		lineLen;
+	int		line_len;
 }	t_img;
 
 typedef struct s_data
@@ -89,17 +102,17 @@ t_data	init_structure(void);
 
 //COLORS
 //
-int	get_blue(int color_value);
-int	get_green(int color_value);
-int	get_red(int	color_value);
+int		get_blue(int color_value);
+int		get_green(int color_value);
+int		get_red(int color_value);
 void	apply_shift(t_data *fractol);
 void	shift_color(t_data *fractol);
 
 //EVENTS
 //
 void	handle_events(t_data *fractol);
-int	handle_keys(int keycode, t_data *fractol);
-int	handle_mouse(int mousecode, int x, int y, t_data *fractol);
+int		handle_keys(int keycode, t_data *fractol);
+int		handle_mouse(int mousecode, int x, int y, t_data *fractol);
 
 //FRACT_UTILS
 //
@@ -110,23 +123,23 @@ void	clean_exit(t_data *fractol);
 
 //MISC functions
 //
-int	ft_is_little_endian(void);
+int		ft_is_little_endian(void);
 
 //MANDELBROT
 //
 void	generate_mandelbrot(t_data *fractol);
-int	is_actually_mandel(double yf, double yi, t_data *fractol);
+int		is_actually_mandel(double yf, double yi, t_data *fractol);
 
 //JULIA
 //
 void	gen_julia(t_data *f);
-int	is_actually_julia(double zr, double zi, t_data *fractol);
+int		is_actually_julia(double zr, double zi, t_data *fractol);
 void	julia_shift(int x, int y, t_data *f);
 //RENDER
 //
-int	make_color(t_data *fractol);
-int	create_trgb(int t, int r, int g, int b);
-int	generate_fractal(t_data *fractol);
+int		make_color(t_data *fractol);
+int		create_trgb(int t, int r, int g, int b);
+int		generate_fractal(t_data *fractol);
 void	check_which_fractal(t_data *fractol, char *arg);
 
 #endif

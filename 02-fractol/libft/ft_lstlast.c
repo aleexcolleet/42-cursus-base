@@ -3,20 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 18:04:42 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/07 18:08:50 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/17 10:44:11 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/17 10:50:28 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	t_list	*d;
+
+	if (!lst)
+		return (lst);
+	d = lst;
+	while (d->next)
+	{
+		d = d->next;
+	}
+	return (d);
 }
+/*
+ int main(void)
+ }	
+ 	t_list *d;
+	d = ft_lstnew("hola");
+	d->next = ft_lstnew("buenas");
+	d->next->next = ft_lstnew("familia");
+	d->next->next->next = ft_lstnew("bien");
+	ft_lstlast(d);
+	printf("%s\t", (char *)d->content);
+	free(d);
+	return (0);
+}*/

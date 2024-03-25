@@ -1,46 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:03:52 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/08 16:44:10 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (lst && lst->content)
-	{
-		del(lst->content);
-		lst->content = NULL;
-	}
-	free (lst);
-	lst = NULL;
+	if (!lst || !del)
+		return ;
+	(*del)(lst->content);
+	free(lst);
+}
+/*
+void	del(void *content)
+{
+	free(content);
 }
 
-/*
-There is an assumption that function del will behave as 
-	free (argument);
-
-	
-	
-Function name ft_lstdelone
-Prototype void ft_lstdelone(t_list *lst, void (*del)(void
-*));
-Turn in files -
-Parameters #1. The element to free.
-#2. The address of the function used to delete the
-content.
-Return value None
-External functs. free
-Description Takes as a parameter an element and frees the
-memory of the element’s content using the function
-’del’ given as a parameter and free the element.
-The memory of ’next’ must not be freed.
-*/
+int main(void)
+{
+	t_list *d;
+	d = ft_lstnew("hola");
+	d->next = ft_lstnew("bones");
+	t_list *s = d;
+	while (s)
+	{
+		printf("%s\t", (char *)s->content);
+		s = s->next;
+	}
+	printf("\n");
+	ft_lstdelone(d, del);
+	while(d)
+	{
+		printf("%s\t", (char *)d->content);
+		d = d->next;
+	}	
+	free (d);
+	return (0);
+}*/

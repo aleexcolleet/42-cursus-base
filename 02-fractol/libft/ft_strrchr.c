@@ -3,38 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 10:50:23 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/11/25 11:13:16 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:34:16 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:34:17 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char	*ft_strrchr(char *s, int c)
+/**************************************************************
+*						FT_STRRCHR:							  *
+*	La función ft_strrchr busca la última aparición de un     *
+*	carácter (c) en una cadena de caracteres (s). Devuelve    *
+*	un puntero al carácter encontrado o NULL si no se         *
+*	encuentra.                                                *
+*															  *
+*	Argumentos:												  *
+*	s: La cadena de caracteres en la que se buscará el        *
+*	carácter.												  *
+*	c: El carácter que se buscará en la cadena.               *
+*															  *
+\*************************************************************/
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
-	char	nc;
-	char	*lc;
-	int		detect;
+	char	*str;
+	char	l;
 
-	nc = (char)c;
-	i = 0;
-	detect = 0;
-	while (s[i])
+	str = NULL;
+	l = (char)c;
+	while (*s)
 	{
-		if (s[i] == nc)
-		{
-			detect++;
-			lc = &s[i];
-		}
-		i++;
+		if (*s == l)
+			str = (char *)s;
+		s++;
 	}
-	if (detect != 0)
-		return (lc);
-	else if (s[i] == '\0' && nc == '\0')
-		return (&s[i]);
-	else
-		return (NULL);
+	if (*s == l)
+		str = (char *)s;
+	return (str);
 }
+/*
+#include <string.h>
+#include <stdio.h>
+int main()
+{
+  char *str = "hola como estas";
+  int c = 'h';
+  printf("%s\n", strrchr(str,c));
+  printf("%s", ft_strrchr(str,c));
+  return 0;
+}*/

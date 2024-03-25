@@ -3,28 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 13:22:24 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/13 17:37:23 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:50 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 12:42:56 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-The calloc() function contiguously allocates enough space for count objects that 
-are size bytes of memory each and returns a pointer to the allocated memory.  
-The allocated memory is filled with bytes of value zero.
-*/
 #include "libft.h"
-#include <stdlib.h>
-
-void	*ft_calloc(size_t count, size_t size)
+/*					FT_CALLOC:
+    Asigna memoria para un número especificado de elementos
+    de un tamaño dado, y la inicializa a cero.
+    Es útil para asignar y preparar memoria para estructuras
+    de datos, como arreglos.
+*/
+void	*ft_calloc(size_t num_elements, size_t size)
 {
-	void	*str;
+	void	*result;
 
-	str = (void *)malloc (count * size);
-	if (str == NULL)
+	result = malloc(num_elements * size);
+	if (!result)
 		return (NULL);
-	ft_bzero(str, (count * size));
-	return (str);
+	else
+	{
+		ft_bzero(result, num_elements * size);
+		return (result);
+	}
 }
+/*
+int main(void)
+{
+    int *result = ft_calloc(5, 4);
+    free(result);
+
+    return (0);
+}*/

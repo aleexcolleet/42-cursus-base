@@ -3,28 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 12:17:38 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/21 13:13:47 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:33:56 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:33:57 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// runs a string until the finalizing \0. Returns the length of s.
-// if an empty string is passed, displays an error message and returns -1.
 #include "libft.h"
-
-size_t	ft_strlen(const char *s)
+/**************************************************************
+*						FT_STRLEN:							  *
+*	La función ft_strlen calcula la longitud de una cadena de *
+*	caracteres (str), es decir, el número de caracteres hasta *
+*	el carácter nulo de terminación ('\0').                   *
+*															  *
+*	Argumentos:												  *
+*	str: La cadena de caracteres cuya longitud se calculará.  *
+*															  *
+\*************************************************************/
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
-	if (!s)
-	{
-		ft_printf("ft_strlen error: invalid/empty argument\n");
-		return (-1);
-	}
 	i = 0;
-	while (s[i])
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char *cadena = "Hola, mundo!";
+
+    size_t resultado_ft_strlen = ft_strlen(cadena);
+    size_t resultado_strlen = strlen(cadena);
+    printf("Cadena: %s\n", cadena);
+    printf("Resultado ft_strlen: %zu\n", resultado_ft_strlen);
+    printf("Resultado strlen: %zu\n", resultado_strlen);
+
+    return 0;
+}*/

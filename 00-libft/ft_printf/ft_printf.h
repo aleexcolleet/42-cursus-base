@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 10:32:17 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/20 15:06:12 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	i;
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include "../libft.h"
 
-	i = 0;
-	if (!s1 || !s2)
-		return (-1);
-	while (s1[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
+size_t	ft_print_case(char *a, va_list args, size_t i);
+int		ft_count_alg(size_t i);
+
+#endif

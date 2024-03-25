@@ -3,30 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 14:36:53 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2023/03/15 13:55:27 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:33:19 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:33:20 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**************************************************************
+*						FT_STRCHR:							  *
+*	La función ft_strchr busca la primera aparición de un     *
+*	carácter (c) en una cadena de caracteres (s).             *
+*	Devuelve un puntero al carácter encontrado o NULL si el   *
+*	carácter no se encuentra en la cadena.                    *
+*															  *
+*	Argumentos:												  *
+*	s: La cadena de caracteres en la que se realizará la      *
+*	búsqueda.												  *
+*	c: El carácter que se buscará en la cadena.               *
+*															  *
+\*************************************************************/
 #include "libft.h"
 
-//  locate character in string. return a pointer to the located character,
-//  or NULL if the character does not appear in the string.
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (str[i])
 	{
-		if (s[i] == (char)c)
-			return (&s[i]);
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
 		i++;
 	}
-	if ((char)c == '\0')
-		return (&s[i]);
-	else
-		return (NULL);
+	if (str[i] == (char)c)
+		return ((char *)&str[i]);
+	return (0);
 }
+/*
+int main(void)
+{
+
+    char str[] = "como estan los maquinas";
+    printf("original---> %s\n", strchr(str, 'a'));
+    printf("elmio------> %s\n", ft_strchr(str, 'a'));
+
+    return (0);
+}*/

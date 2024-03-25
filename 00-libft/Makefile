@@ -30,10 +30,16 @@ SRCS = ft_calloc.c \
 	   ft_itoa.c \
 	   ft_strmapi.c \
 	   ft_striteri.c \
+	   ft_putchar.c \
+	   ft_rputchar.c \
 	   ft_putchar_fd.c \
 	   ft_putstr_fd.c \
 	   ft_putendl_fd.c \
-	   ft_putnbr_fd.c
+	   ft_putnbr_fd.c \
+	   ft_rputaddress.c \
+	   ft_rputnbr.c \
+	   ft_rputnbr_base.c \
+	   ft_rputstr.c \
 
 SRCS_BONUS = ft_lstnew.c \
 		ft_lstadd_front.c \
@@ -45,32 +51,35 @@ SRCS_BONUS = ft_lstnew.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
 
+PRINTF = ./ft_printf/ft_printf.c ./ft_printf/ft_printf_utils.c
+
 FLAGS = -Wall -Wextra -Werror -MMD 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o) $(PRINTF:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 DEPS = $(SRCS:.c=.d)
 DEPS_BONUS = $(SRCS_BONUS:.c=.d)
 BONUS = .bonus
 all: $(NAME)
 CC = gcc
+SILENCE = --no-print-directory
 
 %.o:%.c Makefile libft.h
-	$(CC) $(FLAGS) -I ./ -c $< -o $@
+	@$(CC) $(FLAGS) -I ./ -c $< -o $@
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-
+	@ar rcs $(NAME) $(OBJS)
 bonus: $(BONUS)
 	
 $(BONUS): $(OBJS) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+	@ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 	touch $@
+	@echo "Compiled Libft Bonus!"
 
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS) $(DEPS) $(DEPS_BONUS)
+	@rm -f $(OBJS) $(OBJS_BONUS) $(DEPS) $(DEPS_BONUS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

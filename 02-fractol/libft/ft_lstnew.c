@@ -3,24 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 11:43:14 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/12/07 17:33:05 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/16 11:14:43 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/16 15:46:08 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*a1;
+	t_list	*new;
 
-	a1 = (t_list *)malloc(sizeof(t_list));
-	if (!a1)
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
 		return (NULL);
-	a1->next = NULL;
-	a1->content = content;
-	return (a1);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
+/*
+void	print_list(t_list *node)
+{
+	while (node)
+	{
+		printf("node----> %s\n", (char *)node->content);
+		node = node->next;
+	}
+}
+
+int main(void)
+{
+	t_list *d;
+	d = ft_lstnew("hola");
+	d->next = ft_lstnew("7227");
+	d->next->next = ft_lstnew("hoalhoasdjasdl");
+	print_list(d);
+}*/

@@ -3,27 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 13:31:07 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2021/11/18 14:01:16 by gmiyakaw         ###   ########.fr       */
+/*   Created: 2024/01/12 15:31:33 by acollet-          #+#    #+#             */
+/*   Updated: 2024/01/12 15:31:37 by acollet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	*ft_memset(void	*b, int c, size_t n)
+/**************************************************************
+*						FT_MEMSET:							  *
+*	La función ft_memset establece los primeros len bytes     *
+*	de una zona de memoria (b) con un valor específico (c).   *
+*	Devuelve un puntero a la zona de memoria modificada.      *
+*															  *
+*	Argumentos:												  *
+*	b: Un puntero a la zona de memoria donde se realizará     *
+*	la operación de establecimiento de valores.               *
+*	c: El valor que se establecerá en los bytes de memoria.   *
+*	len: El número de bytes que se establecerán con el valor  *
+*	específico.												  *
+*															  *
+\*************************************************************/
+void	*ft_memset(void *dest, int c, size_t len)
 {
-	size_t	i;
-	char	*tmp;
+	unsigned char	*ptr;
 
-	c = (unsigned char) c;
-	i = 0;
-	tmp = b;
-	while (i < n)
+	ptr = (unsigned char *)dest;
+	while (len > 0)
 	{
-		tmp[i] = c;
-		i++;
+		ptr [len - 1] = c;
+		len--;
 	}
-	return (b);
+	return (dest);
 }
+/*
+int main(void)
+{
+    char str[20];
+
+    ft_memset(str, '6', 12);
+    printf("%s", str);
+
+    return (0);
+}*/
