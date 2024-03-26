@@ -1,18 +1,3 @@
- #      tions,  you'll  need  to
- #      link your software  with
- #      the   MiniLibX  library,
- #      and    several    system
-#     frameworks:
-#
- #      -lmlx  -framework OpenGL
-  #     -framework AppKit
-#
- #      You  may  also  need  to
-  #     specify  the path to the
-   #    MiniLibX library,  using
- #   the -L flag.
-#
-
 GREEN = \033[0;32m
 
 NAME 	=	fractol
@@ -37,10 +22,11 @@ RM		=	rm -f
 
 all:	$(NAME)
 
-$(NAME):	$(OBJ) Makefile fractol.h libft/libft.h
-				@$(MAKE) bonus -C ./libft
-				@$(COMP) $(OBJ) -o $(NAME)
-				@echo "$(GREEN)Fractol Compiled Succesfuly$(RESET)"
+$(NAME):	$(OBJ) Makefile fractol.h $(LIB) libft/libft.h
+	@$(MAKE) -C ./libft
+	@$(COMP) $(OBJ) -o $(NAME)
+	@echo "$(GREEN)Fractol Compiled Successfully$(RESET)"
+
 clean:
 	@$(RM) $(OBJ)
 	@$(MAKE) fclean -C ./libft
