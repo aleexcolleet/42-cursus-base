@@ -16,6 +16,8 @@ t_data	init_structure(void)
 {
 	t_data	f;
 
+	f.julia_shiftx = 0;
+	f.julia_shifty = 0;
 	f.mlx_con = NULL;
 	f.win_con = NULL;
 	f.min_r = 0;
@@ -28,8 +30,6 @@ t_data	init_structure(void)
 	f.set = 0;
 	f.center_i = 0;
 	f.center_r = 0;
-	f.julia_shiftx = 0;
-	f.julia_shifty = 0;
 	f.args = NULL;
 	f.img_data = x_calloc(sizeof(t_img));
 	f.color = x_calloc(sizeof(t_color));

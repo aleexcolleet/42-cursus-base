@@ -1,0 +1,5 @@
+arreglar julia params
+
+makefile que compile todo junto
+
+arreglar lo de ./"mandelbrot" que funciona igual que mandelbrotasjdnasdab

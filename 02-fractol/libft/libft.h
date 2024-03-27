@@ -77,4 +77,5 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 int				ft_printf(const char *input, ...);
 void			*x_calloc(size_t size);
+double		ft_strtod(const char *str, char **endptr);
 #endif
