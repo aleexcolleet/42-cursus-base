@@ -1,40 +1,55 @@
-GREEN = \033[0;32m
+GREEN = \033[32m
+WHITE = \033[37m
 
-NAME 	=	fractol
+NAME = fractol
+ARCHIVE = fractol.a
+SRCS = fractol.c \
+       color.c \
+       events.c \
+       fractol_utils.c \
+       inits.c \
+       mandelbrot.c \
+       julia.c \
+       render.c \
+ 
+OBJS = $(SRCS:.c=.o)
+INCLUD = ./minilibx_opengl_20191021/mlx.h \ ./libft/libft.h
+CC = gcc
+MAKE_LIB = ar -rcs
+FLAGS = -Wall -Wextra -Werror -MMD -g
+LIB = -L. -lmlx -framework OpenGL -framework AppKit
+DEPS = $(SRCS:.c=.d)
+SILENCE = --no-print-directory
 
-OBJ	=	$(SRC:.c=.o)
+all: $(NAME)
 
-NAMELIB	=	libftfractol.a
+$(NAME) : $(ARCHIVE) fractol.h Makefile ./libft/libft.h
+	@echo "$(WHITE) $(NAME) $(RESET) $(GREEN) ok $(RESET)"
+	@echo "\n${GREEN} Minilibx compilando: $(DEF_COLOR)\n"
+	@make -C ./minilibx_opengl_20191021 all
+	@cp ./minilibx_opengl_20191021/libmlx.a .
+	@make -C ./libft all $(SILENCE)
+	@cp ./libft/libft.a .
+	@$(CC) -o $(NAME) $(ARCHIVE) libft.a $(LIB)
 
-LIB 	=	libft/libft.a
+$(ARCHIVE) : $(OBJS)
+	@$(MAKE_LIB) $(ARCHIVE) $^
 
-LINK 	=	-lmlx  -framework OpenGL -framework AppKit -L ./minilibx_opengl_20191021
-
-SRC		=	fractol.c fractol_utils.c mandelbrot.c inits.c color.c \
-			render.c julia.c events.c 
-CC	=	gcc
-
-CFLAGS	=	-Wall -Werror -Wextra
-
-COMP	=	$(CC) $(CFLAGS) $(LIB) $(LINK)
-
-RM		=	rm -f
-
-all:	$(NAME)
-
-$(NAME):	$(OBJ) Makefile fractol.h $(LIB) libft/libft.h
-	@$(MAKE) -C ./libft
-	@$(COMP) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)Fractol Compiled Successfully$(RESET)"
+%.o	:	%.c
+	@$(CC) $(FLAGS) -c $< -o $@
+	@echo "$(GREEN) ok $(RESET) $(CYAN)$(BOLD) $<$(RESET)"
 
 clean:
-	@$(RM) $(OBJ)
-	@$(MAKE) fclean -C ./libft
-	@echo "Cleaned fractol"
+	@echo "$(MAGENTA) Eliminando .o  ... $(RESET)"
+	@make -C ./minilibx_opengl_20191021 clean
+	@make -C ./libft clean
+	@rm -f $(OBJS) $(DEPS) libmlx.a libft.a
+	@echo "$(GREEN) cleaning DONE  $(RESET)"
 
-fclean:	clean
-	@$(RM) $(NAME)
-	@$(MAKE) fclean -C ./libft
-	@echo "Fractol was removed"
+fclean: clean
+	@rm -f fractol.a $(NAME)
+	@echo "$(GREEN) fclean OK  $(RESET)"
 
-re:			fclean all
+re: fclean all
+
+.PHONY: all clean fclean re 

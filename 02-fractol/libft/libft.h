@@ -25,6 +25,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+int				ft_strcmp(char *s1, char *s2);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t num_elements, size_t size);
@@ -77,5 +78,4 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 int				ft_printf(const char *input, ...);
 void			*x_calloc(size_t size);
-double		ft_strtod(const char *str, char **endptr);
 #endif

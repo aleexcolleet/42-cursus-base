@@ -16,20 +16,19 @@ int	main(int as, char **av)
 {
 	t_data	fractol;
 
-	if ((2 == as && (!ft_strncmp(av[1], "mandelbrot", 11)))
-		|| (4 == as && (!ft_strcnmp(av[1], "julia", 6))))
+	if ((2 == as && (!ft_strcmp(av[1], "mandelbrot")))
+		|| (4 == as && (!ft_strcmp(av[1], "julia"))))
 	{
 		fractol = init_structure();
 		set_min_max(&fractol);
-		fractol.args = av;
 		check_which_fractal(&fractol, av[1]);
-		if (fractol->set == JULIA)
-		{
-			fractol->julia_shiftx = strtod_custom(av[2]);
-			fractol->julia_shifty = strtod_custom(av[3]);
-		}
 		mlx_setup(&fractol);
 		commands_list(&fractol);
+		if (fractol.set == JULIA)
+		{
+			julia_shift((double)ft_atoi(av[2]),
+				(double)ft_atoi(av[3]), &fractol);
+		}
 		mlx_loop_hook(fractol.mlx_con, &generate_fractal, &fractol);
 		mlx_loop(fractol.mlx_con);
 	}

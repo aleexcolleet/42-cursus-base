@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_render.c                                          :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,9 +14,9 @@
 
 void	check_which_fractal(t_data *fractol, char *arg)
 {
-	if (ft_strncmp(arg, "mandelbrot", 10) == 0)
+	if (ft_strcmp(arg, "mandelbrot") == 0)
 		fractol->set = MANDELBROT;
-	else if (ft_strncmp(arg, "julia", 5) == 0)
+	else if (ft_strcmp(arg, "julia") == 0)
 		fractol->set = JULIA;
 	else
 	{
@@ -29,11 +29,11 @@ void	check_which_fractal(t_data *fractol, char *arg)
 
 int	generate_fractal(t_data *fractol)
 {
-	handle_events(fractol);
 	if (fractol->set == MANDELBROT)
 		generate_mandelbrot(fractol);
 	else if (fractol->set == JULIA)
 		gen_julia(fractol);
+	handle_events(fractol);
 	return (0);
 }
 

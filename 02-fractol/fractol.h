@@ -98,7 +98,7 @@ void	set_min_max(t_data *fractol);
 void	commands_list(t_data *fractol);
 void	win_gen(t_data *fractol);
 void	mlx_setup(t_data *fractol);
-t_data	init_structure(char *av1,	int av2, int *av3);
+t_data	init_structure(void);
 
 //COLORS
 //

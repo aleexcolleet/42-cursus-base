@@ -124,7 +124,6 @@ void	commands_list(t_data *fractal)
 	ft_printf("D -----------> resolutions(iterations++)\n");
 	ft_printf("Welcome to the trip!");
 	ft_printf("\n\n--------------------------------------\n\n");
-
 	if (fractal->set == JULIA)
 		ft_printf("\nFor Julia sets, right click for diff params\n");
 	return ;
