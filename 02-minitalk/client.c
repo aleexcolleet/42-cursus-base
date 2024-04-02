@@ -44,15 +44,18 @@ static void	mt_kill(int pid, char *str)
 
 int	main(int as, char **av)
 {
-	if (as != 3 || !ft_strlen(av[2]))
+	if ((ft_strlen(av[1]) > 11 && !ft_str_is_numeric(av[1])) || as != 3)
+		return (1);
+	else if (!ft_strlen(av[2]))
 		return (1);
 	ft_putstr_fd("Sent            :", 1);
 	ft_putnbr_fd(ft_strlen(av[2]), 1);
-	ft_putstr_fd("Received: ", 1);
+	ft_putstr_fd("\tReceived: ", 1);
 	signal(SIGUSR1, action);
 	signal(SIGUSR2, action);
 	mt_kill(ft_atoi(av[1]), av[2]);
-	while (24)
+	while ("infinite loop")
 		pause();
 	return (0);
+
 }

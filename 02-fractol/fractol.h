@@ -1,35 +1,17 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FRACTOL_H
 # define FRACTOL_H
+//FRACTAL SETS
 
-//main DEFINES
-# define MAX_ITERATION 25
 # define MANDELBROT 1
 # define JULIA 2
-//MLBX
-# include "./libft/libft.h"
-# include "./minilibx_opengl_20191021/mlx.h"
-
-//DEFAULTS
-# define WIDTH 600
-# define HEIGHT 600
-
-# include <stdlib.h>
-# include <math.h>
+# include "libft/libft.h"
+# include "minilibx_opengl_20191021/mlx.h"
 # include <stdio.h>
-//EVENTS
-//
+# include <math.h>
+
+# define WIDTH 900
+# define HEIGHT 900
+# define MAX_ITERATIONS 60
 
 enum
 {
@@ -46,100 +28,65 @@ enum
 	LEFT_SHIFT = 257,
 	ESC			= 53,
 	ON_DESTROY	= 17,
-	ON_MOUSE_DW	= 4,
+	MOUSE_WHEEL_UP = 4,
+	MOUSE_WHEEL_DOWN = 5,
+	MOUSE_BTN = 1
 };
-
-//STRUCTURES
-//
-//COLORS
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-	int	t;
-}	t_color;
-
-//IMAGE
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		endian;
-	int		line_len;
-}	t_img;
 
 typedef struct s_data
 {
-	void			*mlx_con;
-	void			*win_con;
-	t_img			*img_data;
-	t_color			*color;
-	double			min_r;
-	double			max_r;
-	double			min_i;
-	double			max_i;
-	unsigned int	count;
-	int				color_shift;
-	int				resolution_shift;
-	int				set;
-	double			center_i;
-	double			center_r;
-	double			julia_shiftx;
-	double			julia_shifty;
-	char			**args;
-}	t_data;	
+	void	*mlx_con;
+	void	*win_con;
+	void	*img;
+	char	*buf;
+	int		set;
+	double	min_r;
+	double	max_r;
+	double	min_i;
+	double	max_i;
+	double	kr;
+	double	ki;
+	double	sx;
+	double	rx;
+	double	fx;
+	int		*palette;
+	int		color_pattern;
+	int		color;
+}	t_data;
 
-//PROTOTYPES
-//
-// INIT
-void	set_min_max(t_data *fractol);
-void	commands_list(t_data *fractol);
-void	win_gen(t_data *fractol);
-void	mlx_setup(t_data *fractol);
-t_data	init_structure(void);
+//SETS
+int	mandelbrot(double cr, double ci);
+int	julia(t_data *f, double zr, double zi);
+
+//DRAW FRACTALS
+void	render(t_data *f);
+int	julia_shift(int x, int y, t_data *f);
 
 //COLORS
-//
-int		get_blue(int color_value);
-int		get_green(int color_value);
-int		get_red(int color_value);
-void	apply_shift(t_data *fractol);
-void	shift_color(t_data *fractol);
+void	color_shift(t_data *f);
+void	set_color_mono(t_data *f, int color);
+void	set_color_multiple(t_data *f, int colors[4], int n);
+void	set_color_zebra(t_data *f, int color);
+void	set_color_triad(t_data *f, int color);
+void	set_color_tetra(t_data *f, int color);
 
 //EVENTS
-//
-void	handle_events(t_data *fractol);
-int		handle_keys(int keycode, t_data *fractol);
-int		handle_mouse(int mousecode, int x, int y, t_data *fractol);
+int	handle_keys(int keycode, t_data *fractol);
+int	mouse_event(int keycode, int x, int y, t_data *mlx);
 
-//FRACT_UTILS
-//
-void	my_px_put(t_img *img, int x, int y, int color);
-void	move(t_data	*f, char direction);
-void	mouse_zoom(t_data *f, double zoom, int x, int y);
-void	clean_exit(t_data *fractol);
+//INITS
+void	init_structure(t_data *f);
+void	reinit_img(t_data *f);
+void	mlx_setup(t_data *f);
+void	get_complex_layout(t_data *f);
+void	get_color(t_data *f, int ac);
+////atof
 
-//MISC functions
-//
-int		ft_is_little_endian(void);
-
-//MANDELBROT
-//
-void	generate_mandelbrot(t_data *fractol);
-int		is_actually_mandel(double yf, double yi, t_data *fractol);
-
-//JULIA
-//
-void	gen_julia(t_data *f);
-int		is_actually_julia(double zr, double zi, t_data *fractol);
-void	julia_shift(int x, int y, t_data *f);
-//RENDER
-//
-int		make_color(t_data *fractol);
-int		create_trgb(int t, int r, int g, int b);
-int		generate_fractal(t_data *fractol);
-void	check_which_fractal(t_data *fractol, char *arg);
+//UTILS
+int	end_fractol(t_data *f);
+void	clean_exit(int exit_code, t_data *f);
+void	help_msg(t_data *f);
+void	commands_list(t_data *fractal);
+int	get_percent_color(int color, double percent);
 
 #endif

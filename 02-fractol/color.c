@@ -1,101 +1,46 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# include "fractol.h"
 
-#include "fractol.h"
-
-//increments the value of color_shifts
-//loops back if max is reached
-//
-
-void	shift_color(t_data *fractol)
+/*	Extension of the color_shift function. Changes the color pattern.
+*	The fractal can then be rendered again with different color
+*	effects.
+*/
+static void	color_shift_striped(t_data *f)
 {
-	fractol->color_shift += 1;
-	if (fractol->color_shift > 5)
-		fractol->color_shift = 1;
-	return ;
+	if (f->color_pattern == 2)
+		set_color_zebra(f, f->color);
+	else if (f->color_pattern == 3)
+		set_color_triad(f, f->color);
+	else 
+		set_color_tetra(f, f->color);
 }
 
-//change values of rgb arbritary to get new combinations.
-void	apply_shift(t_data *f)
+/*
+* 	Reinitializes the MLX image and changes the color pattern.
+*	The fractal can then be rendered again with different color
+*	effects.
+*/
+
+void	color_shift(t_data *f)
 {
-	if (f->color_shift == 1)
-	{
-		f->color->r += 150;
-		f->color->b += 10;
-	}
-	else if (f->color_shift == 2)
-	{
-		f->color->r += 70;
-		f->color->b += 70;
-	}
-	else if (f->color_shift == 3)
-		f->color->g += 75;
-	else if (f->color_shift == 4)
-		f->color->b += 140;
+	int	alt_color;
+
+	f->color_pattern = (f->color_pattern + 1) % 9;
+	reinit_img(f);
+	if (f->color == 0x000000)
+		alt_color = 0x333333;
 	else
-	{
-		f->color->b = 75;
-		f->color->g += 75;
-	}
-	return ;
+		alt_color = f->color;
+	if (f->color_pattern == 0)
+		set_color_mono(f, alt_color);
+	else if (f->color_pattern == 1)
+		set_color_multiple(f, (int [4]){0x000000, alt_color,
+			get_percent_color(f->color, 50), 0xFFFFFF}, 4);
+	else
+		color_shift_striped(f);
 }
 
-//get colors works the next way :)
-//
-//Line proggression is sequencial. From red(0) to violet(1275).
-//
-//POSIT		  COLOR     RGB 
-//------      ------    ------
-//position 0 = red = (255, 0, 0);
-//position 255 = yellow = (255, 255, 0);
-//position 510 = green = (0, 255, 0);
-//
-//This is useful to find where in the spectrum "color value" lies
-//and return the int related.
-//
-int	get_red(int color_value)
+void	get_color(t_data *f, int ac)
 {
-	if (color_value >= 0 && color_value <= 255)
-		return (255);
-	else if (color_value > 255 && color_value <= 510)
-		return (255 - (color_value - 255));
-	else if (color_value > 510 && color_value <= 1020)
-		return (0);
-	else if (color_value > 1020 && color_value <= 1275)
-		return (color_value - 1020);
-	else
-		return (255);
-}
-
-int	get_green(int color_value)
-{
-	if (color_value >= 0 && color_value <= 255)
-		return (color_value);
-	else if (color_value > 255 && color_value <= 765)
-		return (255);
-	else if (color_value > 765 && color_value <= 1020)
-		return (255 - (color_value - 765));
-	else if (color_value > 1020 && color_value <= 1275)
-		return (0);
-	else
-		return (255);
-}
-
-int	get_blue(int color_value)
-{
-	if (color_value >= 0 && color_value <= 510)
-		return (0);
-	if (color_value > 510 && color_value <= 765)
-		return (color_value - 510);
-	else
-		return (255);
+	if (ac == 2 ||  (f->set == JULIA && ac == 4))
+		f->color = 0x9966FF;
 }

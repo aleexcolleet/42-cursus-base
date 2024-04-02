@@ -41,6 +41,7 @@ SRCS = ft_calloc.c \
 	   ft_rputnbr.c \
 	   ft_rputnbr_base.c \
 	   ft_rputstr.c \
+	   ft_str_is_numeric.c \
 
 SRCS_BONUS = ft_lstnew.c \
 		ft_lstadd_front.c \

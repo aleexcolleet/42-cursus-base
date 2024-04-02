@@ -7,10 +7,12 @@ SRCS = fractol.c \
        color.c \
        events.c \
        fractol_utils.c \
-       inits.c \
+       init.c \
        mandelbrot.c \
        julia.c \
        render.c \
+	   color_interpolated.c \
+	   color_striped.c \
  
 OBJS = $(SRCS:.c=.o)
 INCLUD = ./minilibx_opengl_20191021/mlx.h \ ./libft/libft.h

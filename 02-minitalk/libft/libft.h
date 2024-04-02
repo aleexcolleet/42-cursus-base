@@ -76,4 +76,5 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 void			*x_calloc(size_t size);
+int				ft_str_is_numeric(char *str);
 #endif

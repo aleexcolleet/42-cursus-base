@@ -1,89 +1,65 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 12:42:04 by acollet-          #+#    #+#             */
-/*   Updated: 2024/01/12 15:36:26 by acollet-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fractol.h"
+#include "../fractolPorArreglar/minilibx_opengl_20191021/mlx.h"
 
-void	clean_exit(t_data *fractol)
+void	clean_exit(int exit_code, t_data *f)
 {
-	if (fractol->img_data->img)
+	if (!f)
+		exit(exit_code);
+	if (f->palette)
+		free(f->palette);
+	if (f->img)
+		mlx_destroy_image(f->mlx_con, f->img);
+	if (f->win_con && f->mlx_con)
+		mlx_destroy_window(f->mlx_con, f->win_con);
+	if (f->mlx_con)
 	{
-		mlx_destroy_image(fractol->mlx_con, fractol->img_data->img);
-		free(fractol->img_data);
+		free(f->mlx_con);
 	}
-	if (fractol->win_con)
-		mlx_destroy_window(fractol->mlx_con, fractol->win_con);
-	if (fractol->color)
-		free(fractol->color);
-	write(1, "until the next pshycodelic trip!", 32);
-	exit(0);
+	ft_printf("\nUntil the next pshycodelic trip!\n");
+	exit(exit_code);
 }
 
-//these functions alters the center based on zoom value
-//right border position will be moved to a side, and let one has to
-//compensate it moving to the opposite side
-
-void	mouse_zoom(t_data *f, double zoom, int x, int y)
+void	commands_list(t_data *fractal)
 {
-	(void)x;
-	(void)y;
-	f->center_r = f->min_r - f->max_r;
-	f->center_i = f->max_i - f->min_i;
-	f->max_r = f->max_r + (f->center_r - zoom * f->center_r) / 2;
-	f->min_r = f->max_r + zoom * f->center_r;
-	f->min_i = f->min_i + (f->center_i - zoom * f->center_i) / 2;
-	f->max_i = f->min_i + zoom * f->center_i;
+	ft_printf("\n\n--------------------------------------\n\n");
+	ft_printf("\033[1;36m");
+	ft_printf("_____________________  ________");
+	ft_printf("______________   _________________\n");
+	ft_printf("__  ____/_  __ \\__   |/  /__  ");
+	ft_printf(")|/  /__    |__  | / /__  __ \\_  ___/\n");
+	ft_printf("_  /    _  / / /_  /|_/ /__  /|");
+	ft_printf("_/ /__  /| |_   |/ /__  / / /____ \\ \n");
+	ft_printf("/ /___  / /_/ /_  /  / / _  /  ");
+	ft_printf("/ / _  ___ |  /|  / _  /_/ /____/ / \n");
+	ft_printf("\\____/  \\____/ /_/  /_/  /_/ ");
+	ft_printf("/_/  /_/  |_/_/ |_/  /_____/ /____/  \n");
+	ft_printf("\033[0m");
+	ft_printf("\n\nARROWS -----------> move across screen\n");
+	ft_printf("Mouse Wheel ----------> Zoom in <--> zoom out\n");
+	ft_printf("ESC ------------------> quits program\n");
+	ft_printf("A -----------> colors shift\n");
+	ft_printf("D -----------> resolutions(iterations++)\n");
+	ft_printf("Welcome to the trip!");
+	ft_printf("\n\n--------------------------------------\n\n");
+	if (fractal->set == JULIA)
+		ft_printf("\nFor Julia sets, right click for diff params\n");
 	return ;
 }
 
-//MOVE function according to key pushed
-//
-void	move(t_data	*f, char direction)
+void	help_msg(t_data *f)
 {
-	f->center_r = f->min_r - f->max_r;
-	f->center_i = f->min_i - f->max_i;
-	if (direction == 'U')
-	{
-		f->min_i -= f->center_i * 0.1;
-		f->max_i -= f->center_i * 0.1;
-	}
-	if (direction == 'D')
-	{
-		f->min_i += f->center_i * 0.1;
-		f->max_i += f->center_i * 0.1;
-	}
-	if (direction == 'R')
-	{
-		f->min_r -= f->center_r * 0.1;
-		f->max_r -= f->center_r * 0.1;
-	}
-	if (direction == 'L')
-	{
-		f->min_r += f->center_r * 0.1;
-		f->max_r += f->center_r * 0.1;
-	}
-	return ;
+	(void )f;
+	ft_printf("\n+===============  Available Fractals  ===============+\n");
+	ft_printf("\tMANDELBROT\t\tJULIA\n");
+	ft_printf("Usage for MANDELBROT --> ./fractol Mandelbrot\n");
+	ft_printf("Usage for JULIA -------> ./fractol Julia <param1> <param2>\n");
+	ft_printf("Initial values must be betwen -2.0 and 2.0\n");
+	ft_printf("+======================================================+\n");
+	clean_exit(EXIT_FAILURE, f);
 }
 
-//this function uses imag adress(pixPtr) 
-//finds the relative pixel to the x and y.
-//
-//y * lenght = actual line.
-//x * bits per pixel / 8 = number of bytes. (1 pixel = 32 bytes)
-//then changed the pixel to the required color
-//
-void	my_px_put(t_img *img, int x, int y, int color)
+int	end_fractol(t_data *f)
 {
-	char	*pixel;
-
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(int *)pixel = color;
+	clean_exit(0, f);
+	return (0);
 }
