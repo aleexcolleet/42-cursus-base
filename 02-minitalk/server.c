@@ -40,7 +40,7 @@ int	main(void)
 	s_sigaction.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &s_sigaction, 0);
 	sigaction(SIGUSR2, &s_sigaction, 0);
-	while (24)
+	while ("infinite looooop")
 		pause();
 	return (0);
 }

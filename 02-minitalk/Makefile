@@ -22,7 +22,7 @@ clean:
 	rm -f $(OBJECTS)
 	make -C libft clean
 
-fclean:
+fclean:	clean
 	rm -f server client libft/libft.a
 
 re: fclean all
