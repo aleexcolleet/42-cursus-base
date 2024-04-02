@@ -1,6 +1,18 @@
-# include "libft/libft.h"
-# include <unistd.h>
-# include <signal.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollet- <acollet-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 13:36:38 by acollet-          #+#    #+#             */
+/*   Updated: 2024/04/02 13:36:39 by acollet-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft/libft.h"
+#include <unistd.h>
+#include <signal.h>
 
 static void	action(int sig, siginfo_t *info, void *context)
 {
@@ -31,7 +43,7 @@ static void	action(int sig, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	struct sigaction s_sigaction;
+	struct sigaction	s_sigaction;
 
 	ft_putstr_fd("Server PID:   ", 1);
 	ft_putnbr_fd(getpid(), 1);
