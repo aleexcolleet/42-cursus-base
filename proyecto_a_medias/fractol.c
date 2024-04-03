@@ -82,7 +82,7 @@ int	main(int ac, char **av)
 	init(&f);
 	render(&f);
 	print_controls();
-	mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);
+	mlx_hook(f.win, ON_EVENT_CLOSE_BUTTON, 0, end_fractol, &f);
 	mlx_key_hook(f.win, key_event, &f);
 	mlx_mouse_hook(f.win, mouse_event, &f);
 	mlx_loop(f.mlx);
