@@ -9,7 +9,7 @@
 static void	zoom(t_data *f, double zoom)
 {
 	double	center_i;
-	double	center_x;
+	double	center_r;
 
 	center_r = f->min_r - f->max_r;
 	center_i = f->max_i - f->min_i;
@@ -51,7 +51,7 @@ static void	move(t_data *f, double distance, char direction)
 	}
 }
 
-static int	key_event_extend(int keycode, t_fractol *mlx)
+static int	key_event_extended(int keycode, t_data *mlx)
 {
 	if (keycode == ON_KEY_ONE && mlx->set != MANDELBROT)
 		mlx->set = MANDELBROT;
@@ -81,13 +81,13 @@ int	key_event(int keycode, t_data *mlx)
 		zoom(mlx, 0.5);
 	else if (keycode == KEY_MINUS)
 		zoom(mlx, 2);
-	else if (keycode == ARROW_UP || ON_KEY_W)
+	else if (keycode == ARROW_UP || keycode == ON_KEY_W)
 		move(mlx, 0.2, 'U');
-	else if (keycode == ARROW_DOWN || ON_KEY_S)
+	else if (keycode == ARROW_DOWN || keycode == ON_KEY_S)
 		move(mlx, 0.2, 'D');
-	else if (keycode == ARROW_LEFT || ON_KEY_A)
+	else if (keycode == ARROW_LEFT || keycode == ON_KEY_A)
 		move(mlx, 0.2, 'L');
-	else if (keycode == ARROW_RIGHT || ON_KEY_D)
+	else if (keycode == ARROW_RIGHT || keycode == ON_KEY_D)
 		move(mlx, 0.2, 'R');
 	else if (keycode == ON_SPACE)
 		color_shift(mlx);

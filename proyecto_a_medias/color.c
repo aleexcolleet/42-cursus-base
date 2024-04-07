@@ -1,57 +1,35 @@
 # include "fractol.h"
 
-//skips '+' and 0x or 0X
-static int	skip_space_sign_0x(char *color)
+static void	color_shift_special(t_data *f)
 {
-	int	i;
+	int	alt_color;
 
-	i = 0;
-	while (ft_isspace(color[i]))
-		i++;
-	if (color[i] == '+')
-		i++;
-	if (color[i] == '0' && (color[i + 1]
-			&& (color[i + 1] == 'x' || color[i] == 'X')))
-		i = i + 2;
-	return (i);
-}
-
-//converts hexadecimal color into a valid integer.
-static int	ft_atox_color(t_data *f, char *color)
-{
-	int	i;
-	int	x;
-	int	n;
-
-	n = 0;
-	i = 0;
-	i = skip_space_sign_0x(color);
-	x = 0;
-	while (color[i] && ft_ishexdigit(color[i]))
-	{
-		if (ft_isdigit(color[i]))
-			n = (n * 16) + (color[i] - '0');
-		else
-			n = (n * 16) + (ft_toupper(color[i]) - 'A' + 10);
-		i++;
-		x++;
-	}
-	if (x == 6 && !color[i])
-		return (n);
+	if (f->color == 0xFFFFFF)
+		alt_color = 0xCCCCCC;
 	else
-		help_msg(f);
-	return (-1);
+		alt_color = f->color;
+	if (f->color_pattern == 5)
+		set_color_contrasted(f, alt_color);
+	else if (f->color_pattern == 6)
+		set_color_opposites(f, f->color);
+	else if (f->color_pattern == 7)
+		set_color_graphic(f, f->color);
+	else if (f->color_pattern == 8)
+		set_color_multiple(f, (int [8]){0xFF0000, 0xFF7F00, 0xFFFF00,
+			0x00FF00, 0x0000FF, 0x4B0082, 0x9400D3, 0xFFFFFF}, 8);
 }
 
-//gets the color provided. If not, default one
-void	get_color(t_data *f, int ac, char **av)
+//simply the extension of color shift function
+static void	color_shift_stripped(t_data *f)
 {
-	if (f->set == JULIA && ac == 5)
-		f->color = ft_atox_color(f, av[4]);
-	else if (f->set != JULIA && ac == 3)
-		f->color = ft_atox_color(f, av[2]);
-	if (ac == 2 || (f->set == JULIA && ac == 4))
-		f->color = 0x9966FF;
+	if (f->color_pattern == 2)
+		set_color_zebra(f, f->color);
+	else if (f->color_pattern == 3)
+		set_color_triad(f, f->color);
+	else if (f->color_pattern == 4)
+		set_color_tetra(f, f->color);
+	else
+		color_shift_special(f);
 }
 
 //Reinitializes the color pattern

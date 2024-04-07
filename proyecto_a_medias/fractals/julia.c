@@ -2,7 +2,7 @@
 
 //changes the kr and ki values to get a different
 //julia set.
-int	julia_shift(int x, int y, t_fractol *f)
+int	julia_shift(int x, int y, t_data *f)
 {
 	f->kr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
 	f->ki = f->max_i + (double)y * (f->min_i - f->max_i) / HEIGHT;
@@ -13,7 +13,7 @@ int	julia_shift(int x, int y, t_fractol *f)
 //checks if the points, when iterated, are from 
 //the actual fractol or they aren't(they scape to infinit).
 //In each case, they colors are associated diferrently.
-int	julia(t_fractol *f, double zr, double zi)
+int	julia(t_data *f, double zr, double zi)
 {
 	int		n;
 	double	tmp;

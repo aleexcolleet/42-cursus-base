@@ -2,7 +2,7 @@
 
 //Initializes fractol data with starting values
 //They're replaced later.
-void	clean_init(t_data *f)
+void	init_structure(t_data *f)
 {
 	f->mlx = NULL;
 	f->win = NULL;
@@ -62,10 +62,10 @@ static void	init_img(t_data *f)
 
 	f->palette = ft_calloc((MAX_ITERATIONS + 1), sizeof(int));
 	if (!(f->palette))
-		clean_exit(msg("error initializing color scheme.", "", 1), f);
+		clean_exit(message("error initializing color scheme.", "", 1), f);
 	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
 	if (!(f->img))
-		clean_exit(msg("image creation error.", "", 1), f);
+		clean_exit(message("image creation error.", "", 1), f);
 	buf = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
 	f->buf = buf;
 }

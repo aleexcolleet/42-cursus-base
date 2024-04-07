@@ -11,7 +11,7 @@ static int	type_cmp(char *av, char *str, char c, char n)
 		av[i] = ft_tolower(av[i]);
 		i++;
 	}
-	if (!ft_strcmp(av, str)
+	if (!ft_strcmp(av, str))
 		return (1);
 	else if (av[1] == '\0' && (av[0] == c || av[0] == n))
 		return (1);
@@ -81,7 +81,7 @@ int	main(int ac, char **av)
 	handle_args(&f, ac, av);
 	init(&f);
 	render(&f);
-	print_controls();
+	commands_list();
 	mlx_hook(f.win, ON_EVENT_CLOSE_BUTTON, 0, end_fractol, &f);
 	mlx_key_hook(f.win, key_event, &f);
 	mlx_mouse_hook(f.win, mouse_event, &f);

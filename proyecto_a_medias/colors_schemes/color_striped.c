@@ -5,7 +5,7 @@
 //skips a palette iteration. With 3 skips 2 
 //palete iterations.
 //
-static void	fill_color_stripe(t_fractol *f, int color, int stripe)
+static void	fill_color_stripe(t_data *f, int color, int stripe)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ int	get_percent_color(int color, double percent)
 	return (0xFF << 24 | trgb[0] << 16 | trgb[1] << 8 | trgb[2]);
 }
 
-void	set_color_zebra(t_fractol *f, int color)
+void	set_color_zebra(t_data *f, int color)
 {
 	int	color2;
 
@@ -46,7 +46,7 @@ void	set_color_zebra(t_fractol *f, int color)
 	f->palette[MAX_ITERATIONS - 1] = 0;
 }
 
-void	set_color_triad(t_fractol *f, int color)
+void	set_color_triad(t_data *f, int color)
 {
 	int		triad[2];
 
@@ -57,7 +57,7 @@ void	set_color_triad(t_fractol *f, int color)
 	fill_color_stripe(f, triad[1], 3);
 	f->palette[MAX_ITERATIONS - 1] = 0;
 }
-void	set_color_tetra(t_fractol *f, int color)
+void	set_color_tetra(t_data *f, int color)
 {
 	int	tetra[3];
 

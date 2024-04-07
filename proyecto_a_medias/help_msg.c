@@ -35,7 +35,7 @@ void	print_color_options(void)
 	ft_printf("./fractol J 0.285 0.01 CC6600\e[0m");
 }
 
-void	commands_list(t_data *f)
+void	commands_list()
 {
 	ft_printf("\n\n--------------------------------------\n\n");
 	ft_printf("\033[1;36m");

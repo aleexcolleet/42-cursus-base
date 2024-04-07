@@ -5,7 +5,6 @@
 #import <AppKit/NSOpenGLView.h>
 
 #include <stdio.h>
-#include <math.h>
 
 #include "mlx_int.h"
 #include "mlx_new_window.h"
@@ -31,17 +30,17 @@ static const GLfloat pixel_vertexes[8] =
 int get_mouse_button(NSEventType eventtype)
 {
   switch (eventtype) {
-  case NSEventTypeLeftMouseDown:
-  case NSEventTypeLeftMouseUp:
-  case NSEventTypeLeftMouseDragged:
+  case NSLeftMouseDown:
+  case NSLeftMouseUp:
+  case NSLeftMouseDragged:
     return 1;
-  case NSEventTypeRightMouseDown:
-  case NSEventTypeRightMouseUp:
-  case NSEventTypeRightMouseDragged:
+  case NSRightMouseDown:
+  case NSRightMouseUp:
+  case NSRightMouseDragged:
     return 2;
-  case NSEventTypeOtherMouseDown:
-  case NSEventTypeOtherMouseUp:
-  case NSEventTypeOtherMouseDragged:
+  case NSOtherMouseDown:
+  case NSOtherMouseUp:
+  case NSOtherMouseDragged:
     return 3;
   default:
     return 0;
@@ -84,7 +83,7 @@ int get_mouse_button(NSEventType eventtype)
 {
   event_funct[event] = func;
   event_param[event] = param;
-  if (event == 6 || event == 32) // motion notify && high precision motion notify
+  if (event == 6) // motion notify
     {
       if (func == NULL)
 	[self setAcceptsMouseMovedEvents:NO];
@@ -344,7 +343,7 @@ int get_mouse_button(NSEventType eventtype)
 
   if ((self = [super initWithFrame:rect pixelFormat:pixFmt]) != nil)
     {
-      NSUInteger windowStyle = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable;
+      NSUInteger windowStyle = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask;
 
       win = [[NSWindowEvent alloc] initWithContentRect:rect
 				   styleMask:windowStyle
@@ -484,11 +483,6 @@ int get_mouse_button(NSEventType eventtype)
 - (NSOpenGLContext *) ctx
 {
   return (ctx);
-}
-
-- (NSWindowEvent *) win
-{
-  return (win);
 }
 
 

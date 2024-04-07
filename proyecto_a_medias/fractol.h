@@ -45,6 +45,7 @@ typedef struct s_data
 //INITS
 //
 void	init(t_data *f);
+void	init_structure(t_data *f);
 void	reinit_img(t_data *f);
 void	get_complex_layout(t_data *f);
 void	clean_init(t_data *f);
@@ -62,7 +63,7 @@ int	key_event(int keycode, t_data *mlx);
 //HELP MESS
 //
 void	help_msg(t_data *f);
-void	commands_list(t_data *f);
+void	commands_list();
 void	print_color_options(void);
 void	print_fractal_options(void);
 
@@ -73,5 +74,24 @@ void	get_color(t_data *f, int ac, char **av);
 int	end_fractol(t_data *mlx);
 void	clean_exit(int exit_code, t_data *f);
 int	message(char *str1, char *str2, int errnum);
+
+//Fractols
+//
+int	julia_shift(int x, int y, t_data *f);
+int	burning_ship(double cr, double ci);
+int	julia(t_data *f, double zr, double zi);
+int	mandelbrot(double cr, double ci);
+
+//COLORS SCHEMES
+//
+void	set_color_multiple(t_data *f, int colors[4], int n);
+void	set_color_mono(t_data *f, int color);
+void	set_color_graphic(t_data *f, int color);
+void	set_color_contrasted(t_data *f, int color);
+void	set_color_opposites(t_data *f, int color);
+void	set_color_tetra(t_data *f, int color);
+void	set_color_triad(t_data *f, int color);
+void	set_color_zebra(t_data *f, int color);
+int	get_percent_color(int color, double percent);
 
 #endif
