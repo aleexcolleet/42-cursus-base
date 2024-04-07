@@ -22,5 +22,6 @@
 //MOUSE
 # define ON_MOUSE_SCROLL_DOWN 5
 # define ON_MOUSE_SCROLL_UP 4
+# define ON_MOUSE_RIGHT_CLICK 2
 
 #endif

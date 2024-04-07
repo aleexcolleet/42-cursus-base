@@ -51,6 +51,21 @@ static void	move(t_data *f, double distance, char direction)
 	}
 }
 
+static int	key_event_extend(int keycode, t_fractol *mlx)
+{
+	if (keycode == ON_KEY_ONE && mlx->set != MANDELBROT)
+		mlx->set = MANDELBROT;
+	else if (keycode == ON_KEY_TWO && mlx->set != JULIA)
+		mlx->set = JULIA;
+	else if (keycode == ON_KEY_THREE && mlx->set != BURNING_SHIP)
+		mlx->set = BURNING_SHIP;
+	else
+		return (1);
+	get_complex_layout(mlx);
+	render(mlx);
+	return (0);
+}
+
 //this will be automatically called when a 
 //key is pressed. If a valid event is detected,
 //settings are adjusted and the fractal is
@@ -83,4 +98,36 @@ int	key_event(int keycode, t_data *mlx)
 	render(mlx);
 	return (0);
 
+}
+
+//This function for:
+//- mouse MOUSE_WHEEL
+//- Left click Julia shift
+int	mouse_event(int keycode, int x, int y, t_data *mlx)
+{
+	if (keycode == ON_MOUSE_SCROLL_UP)
+	{
+		zoom(mlx, 0.5);
+		x -= WIDTH / 2;
+		y -= HEIGHT / 2;
+		if (x < 0)
+			move(mlx, (double)x * -1 / WIDTH, 'L');
+		else if (x > 0)
+			move(mlx, (double)x / WIDTH, 'R');
+		if (y < 0)
+			move(mlx, (double)y * -1 / HEIGHT, 'U');
+		else if (y > 0)
+			move (mlx, (double)y / HEIGHT, 'D');
+	}
+	else if (keycode == ON_MOUSE_SCROLL_DOWN)
+		zoom(mlx, 2);
+	else if (keycode == ON_MOUSE_RIGHT_CLICK)
+	{
+		if (mlx->set == JULIA)
+			julia_shift(x, y, mlx);
+	}
+	else
+		return (0);
+	render(mlx);
+	return (0);
 }

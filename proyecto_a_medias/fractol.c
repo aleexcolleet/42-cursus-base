@@ -33,7 +33,7 @@ static void	get_set(t_data *f, char **av)
 
 //Checks for staring values. If not sets default ones
 //If values are not valid. Returns error message
-static void	get_julia_starting_values(t_fractol *f, int ac, char **av)
+static void	get_julia_starting_values(t_data *f, int ac, char **av)
 {
 	if (f->set != JULIA || ac == 2)
 	{

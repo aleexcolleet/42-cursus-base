@@ -2,6 +2,7 @@
 
 //frees everything if it has been initializes. Also gives
 //exit code.
+
 void	clean_exit(int exit_code, t_data *f)
 {
 	if (!f)
@@ -30,6 +31,7 @@ int	message(char *str1, char *str2, int errnum)
 	ft_putendl_fd(str2, 2);
 	return (errnum);
 }
+
 //FUNCTION TO QUIT CORRECTLY WHEN ESC IS PRESSED
 //
 int	end_fractol(t_data *mlx)
