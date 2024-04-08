@@ -54,7 +54,7 @@ SILENCE = --no-print-directory
 
 all: $(NAME)
 
-$(NAME) : $(OBJS) $(DEPS) $(ARCHIVE) fractol.h keys.h Makefile ./libft/libft.h ./libft/libft.a
+$(NAME) : $(OBJS) $(DEPS) $(ARCHIVE) fractol.h keys.h Makefile ./libft/libft.h 
 	@echo "$(YELLOW) Compiling $(NAME) $(RESET)"
 	@make -C ./minilibx_opengl_20191021/ all
 	@cp ./minilibx_opengl_20191021/libmlx.a .
