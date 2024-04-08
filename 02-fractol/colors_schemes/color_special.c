@@ -1,4 +1,4 @@
-# include "../fractol.h"
+#include "../fractol.h"
 
 //Color scheme functions mihgt now
 //always work well. Some args can have 

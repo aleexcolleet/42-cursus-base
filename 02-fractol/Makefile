@@ -54,14 +54,14 @@ SILENCE = --no-print-directory
 
 all: $(NAME)
 
-$(NAME) : $(OBJS) $(DEPS) $(ARCHIVE) fractol.h keys.h Makefile ./libft/libft.h
-	@echo "$(WHITE) Compiling ---> $(NAME) $(RESET)"
+$(NAME) : $(OBJS) $(DEPS) $(ARCHIVE) fractol.h keys.h Makefile ./libft/libft.h ./libft/libft.a
+	@echo "$(YELLOW) Compiling $(NAME) $(RESET)"
 	@make -C ./minilibx_opengl_20191021/ all
 	@cp ./minilibx_opengl_20191021/libmlx.a .
-	@echo "$(WHITE) Minilibx DONE $(RESET)"
 	@make -C ./libft all $(SILENCE)
 	@cp ./libft/libft.a .
 	@$(CC) -o $(NAME) $(ARCHIVE) libft.a $(LIB)
+	@echo "$(YELLOW) Fractol created succesfully$(RESET)"
 
 $(ARCHIVE) : $(OBJS)
 	@$(MAKE_LIB) $(ARCHIVE) $^

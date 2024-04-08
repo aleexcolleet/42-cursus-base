@@ -57,13 +57,13 @@ void	color_shift(t_data *f);
 
 //EVENTS
 //
-int	mouse_event(int keycode, int x, int y, t_data *mlx);
-int	key_event(int keycode, t_data *mlx);
+int		mouse_event(int keycode, int x, int y, t_data *mlx);
+int		key_event(int keycode, t_data *mlx);
 
 //HELP MESS
 //
 void	help_msg(t_data *f);
-void	commands_list();
+void	commands_list(void);
 void	print_color_options(void);
 void	print_fractal_options(void);
 
@@ -71,16 +71,16 @@ void	print_fractal_options(void);
 //
 double	ft_atof(char *str);
 void	get_color(t_data *f, int ac, char **av);
-int	end_fractol(t_data *mlx);
+int		end_fractol(t_data *mlx);
 void	clean_exit(int exit_code, t_data *f);
-int	message(char *str1, char *str2, int errnum);
+int		message(char *str1, char *str2, int errnum);
 
 //Fractols
 //
-int	julia_shift(int x, int y, t_data *f);
-int	burning_ship(double cr, double ci);
-int	julia(t_data *f, double zr, double zi);
-int	mandelbrot(double cr, double ci);
+int		julia_shift(int x, int y, t_data *f);
+int		burning_ship(double cr, double ci);
+int		julia(t_data *f, double zr, double zi);
+int		mandelbrot(double cr, double ci);
 
 //COLORS SCHEMES
 //
@@ -92,6 +92,6 @@ void	set_color_opposites(t_data *f, int color);
 void	set_color_tetra(t_data *f, int color);
 void	set_color_triad(t_data *f, int color);
 void	set_color_zebra(t_data *f, int color);
-int	get_percent_color(int color, double percent);
+int		get_percent_color(int color, double percent);
 
 #endif

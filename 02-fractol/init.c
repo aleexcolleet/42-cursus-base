@@ -1,4 +1,4 @@
-# include "fractol.h"
+#include "fractol.h"
 
 //Initializes fractol data with starting values
 //They're replaced later.

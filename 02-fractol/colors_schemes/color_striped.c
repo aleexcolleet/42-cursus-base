@@ -1,4 +1,4 @@
-# include "../fractol.h"
+#include "../fractol.h"
 
 //This palette colors are "random"
 //Thanks to, that if it stripes == 2, coloring
@@ -57,6 +57,7 @@ void	set_color_triad(t_data *f, int color)
 	fill_color_stripe(f, triad[1], 3);
 	f->palette[MAX_ITERATIONS - 1] = 0;
 }
+
 void	set_color_tetra(t_data *f, int color)
 {
 	int	tetra[3];

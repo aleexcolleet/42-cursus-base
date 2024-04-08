@@ -1,4 +1,4 @@
-# include "fractol.h"
+#include "fractol.h"
 
 //Zoom by adding the complex number edge values a zoom
 //multiplier.
@@ -24,8 +24,8 @@ static void	zoom(t_data *f, double zoom)
 //direction.
 static void	move(t_data *f, double distance, char direction)
 {
-	double center_r;
-	double center_i;
+	double	center_r;
+	double	center_i;
 
 	center_r = f->max_r - f->min_r;
 	center_i = f->max_i - f->min_i;
@@ -93,11 +93,8 @@ int	key_event(int keycode, t_data *mlx)
 		color_shift(mlx);
 	else if (!key_event_extended(keycode, mlx))
 		return (1);
-	else
-		return (1);
 	render(mlx);
 	return (0);
-
 }
 
 //This function for:

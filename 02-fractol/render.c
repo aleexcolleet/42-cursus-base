@@ -12,10 +12,10 @@
 */
 static void	set_pixel_color(t_data *f, int x, int y, int color)
 {
-		f->buf[x * 4 + y * WIDTH * 4] = color;
-		f->buf[x * 4 + y * WIDTH * 4 + 1] = color >> 8;
-		f->buf[x * 4 + y * WIDTH * 4 + 2] = color >> 16;
-		f->buf[x * 4 + y * WIDTH * 4 + 3] = color >> 24;
+	f->buf[x * 4 + y * WIDTH * 4] = color;
+	f->buf[x * 4 + y * WIDTH * 4 + 1] = color >> 8;
+	f->buf[x * 4 + y * WIDTH * 4 + 2] = color >> 16;
+	f->buf[x * 4 + y * WIDTH * 4 + 3] = color >> 24;
 }
 
 static int	calculate_fractal(t_data *f, double pr, double pi)

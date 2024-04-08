@@ -70,9 +70,9 @@ static void	handle_args(t_data *f, int ac, char **av)
 //opens new window and registers hooks to react to key presses.
 //Loops infinetely until esc is pressed
 //
+
 int	main(int ac, char **av)
 {
-
 	t_data	f;
 
 	if (ac < 2)
