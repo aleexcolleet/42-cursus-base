@@ -40,12 +40,12 @@ SRCS			=	fractol.c \
 				color.c \
 				passing_args.c\
 				help_msg.c \
-				fractal_sets/mandelbrot.c \
-				fractal_sets/julia.c \
-				fractal_sets/burning_ship.c \
-				color_schemes/color_interpolated.c \
-				color_schemes/color_special.c \
-				color_schemes/color_striped.c
+				fractals/mandelbrot.c \
+				fractals/julia.c \
+				fractals/burning_ship.c \
+				colors_schemes/color_interpolated.c \
+				colors_schemes/color_special.c \
+				colors_schemes/color_striped.c
 
 #Objects
 OBJS		= $(SRCS:.c=.o)

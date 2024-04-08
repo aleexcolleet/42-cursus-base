@@ -1,4 +1,4 @@
-#include "fractol.h"
+#include "../fractol.h"
 /*
 The Burning Ship fractal is a distortion of the Mandelbrot
 fractal. It uses the same equation to calculate the set, but

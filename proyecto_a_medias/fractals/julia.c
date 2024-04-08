@@ -1,4 +1,4 @@
-#include "fractol.h"
+#include "../fractol.h"
 
 //changes the kr and ki values to get a different
 //julia set.

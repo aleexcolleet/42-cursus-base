@@ -1,4 +1,4 @@
-#include "fractol.h"
+#include "../fractol.h"
 
 //interpolates(introduce somth betwen other elemts) two colors, based
 //on a fraction. These colors are calculated separately with the 

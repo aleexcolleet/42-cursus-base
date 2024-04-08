@@ -6,7 +6,7 @@ void	print_fractal_options(void)
 {
 	ft_printf("+-------------  Available Fractals  ------------+");
 	ft_printf("\tM - Mandelbrot");
-	ft_prinf("\tJ - Julia");
+	ft_printf("\tJ - Julia");
 	ft_printf("\tB - Burning Ship");
 	ft_printf("\e[36mUsage example:\t./fractol <type>\n\t\t./fractol M\e[0m");
 	ft_printf("\nFor Julia, you may specify starting values for the\n");

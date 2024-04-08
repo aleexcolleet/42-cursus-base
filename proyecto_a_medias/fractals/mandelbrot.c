@@ -1,4 +1,4 @@
-#include "fractol.h"
+#include "../fractol.h"
 
 int	mandelbrot(double cr, double ci)
 {

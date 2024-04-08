@@ -1,4 +1,4 @@
-# include "fractol.h"
+# include "../fractol.h"
 
 //This palette colors are "random"
 //Thanks to, that if it stripes == 2, coloring
