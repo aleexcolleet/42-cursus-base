@@ -12,7 +12,7 @@ void	clean_exit(int exit_code, t_data *f)
 		mlx_destroy_image(f->mlx, f->img);
 	if (f->win)
 		mlx_destroy_window(f->mlx, f->win);
-	ft_printf("\nPsychodelic trip ended. See you next time!\nx)\n");
+	ft_printf("\nPsychodelic trip ended. See you next time!\n\n");
 	exit(exit_code);
 }
 

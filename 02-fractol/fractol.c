@@ -78,6 +78,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 	{
 		ft_printf("Error: Missing Params\n");
+		print_fractal_options();
 		return (2);
 	}
 	init_structure(&f);
