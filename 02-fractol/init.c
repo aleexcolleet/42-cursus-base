@@ -1,9 +1,11 @@
 # include "fractol.h"
 
+//Initializes fractol data with starting values
+//They're replaced later.
 void	init_structure(t_data *f)
 {
-	f->mlx_con = NULL;
-	f->win_con = NULL;
+	f->mlx = NULL;
+	f->win = NULL;
 	f->img = NULL;
 	f->buf = NULL;
 	f->set = -1;
@@ -21,27 +23,36 @@ void	init_structure(t_data *f)
 	f->color = 0;
 }
 
-//Specific ranges for sets. Julia needs a bit more space
-//to the right than mandel.
+//sets different params for each set. Because julia needs
+//more room to the right than mandelbrot. Others, burningship 
+//has it's own also
 void	get_complex_layout(t_data *f)
 {
-	if (f->set == MANDELBROT)
+	if (f->set == MANDELBOX)
 	{
 		f->min_r = -4.0;
 		f->max_r = 4.0;
 		f->min_i = -4.0;
 		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
-	else
+	else if (f->set == JULIA)
 	{
 		f->min_r = -2.0;
 		f->max_r = 2.0;
 		f->min_i = -2.0;
 		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
+	else
+	{
+		f->min_r = -2.0;
+		f->max_r = 1.0;
+		f->max_i = -1.5;
+		f->min_i = f->max_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+	}
 }
 
-//initializes the mlx image and a color palette.
+//Initializes MLX and Palette
+//
 static void	init_img(t_data *f)
 {
 	int		pixel_bits;
@@ -51,19 +62,20 @@ static void	init_img(t_data *f)
 
 	f->palette = ft_calloc((MAX_ITERATIONS + 1), sizeof(int));
 	if (!(f->palette))
-		clean_exit(0, f);
-	f->img = mlx_new_image(f->mlx_con, WIDTH, HEIGHT);
+		clean_exit(message("error initializing color scheme.", "", 1), f);
+	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
 	if (!(f->img))
-		clean_exit(0, f);
+		clean_exit(message("image creation error.", "", 1), f);
 	buf = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
 	f->buf = buf;
 }
 
-
+//simply reinitializes everything when colors change or 
+//fractal is modified
 void	reinit_img(t_data *f)
 {
-	if (f->mlx_con && f->img)
-		mlx_destroy_image(f->mlx_con, f->img);
+	if (f->mlx && f->img)
+		mlx_destroy_image(f->mlx, f->img);
 	if (f->palette)
 		free(f->palette);
 	if (f->buf)
@@ -71,35 +83,18 @@ void	reinit_img(t_data *f)
 	init_img(f);
 }
 
-void	mlx_setup(t_data *f)
+//initializes mlx connexion and window
+void	init(t_data *f)
 {
-	f->mlx_con = mlx_init();
-	if (!f->mlx_con)
-	{
-		perror("Initialize error\n");
+	f->mlx = mlx_init();
+	if (!f->mlx)
 		clean_exit(0, f);
-		return ;
-	}
-	if (f->set == MANDELBROT)
-	{
-		f->win_con = mlx_new_window(f->mlx_con,
-				WIDTH, HEIGHT, "MANDELBROT SET");
-	}
-	else if (f->set == JULIA)
-	{
-		f->win_con = mlx_new_window(f->mlx_con,
-				WIDTH, HEIGHT, "JULIA SET");
-	}
-	if (!f->win_con)
-	{
+	f->win = mlx_new_window(f->mlx, WIDTH, HEIGHT, "FRACTOL");
+	if (!f->win)
 		clean_exit(0, f);
-		ft_printf("MLX window error being created\n");
-		exit(-1);
-	}
 	f->sx = 2.0;
 	f->rx = 0.5;
 	f->fx = 1.0;
 	get_complex_layout(f);
 	color_shift(f);
-	return ;
 }

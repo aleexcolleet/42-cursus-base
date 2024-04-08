@@ -1,11 +1,9 @@
-# include "fractol.h"
+#include "fractol.h"
 
-/*	
-	Add a color to one pixel of the MLX image map.
+/* 	Add a color to one pixel of the MLX image map.
 	The MLX image is composed of 32 bits per pixel.
-	Color ints are stored from right to left, here, and are in
-	the form of 0xAARRGGBB. 8 bits encode each color component,
-	Alpha (Transparency), Red, Green and Blue.
+	 8 bits encode each color component,
+	Alpha (Transparency), RED, GREEN and BLUE.
 	Bit shifting:
 		- BB >> 0   (0x000000BB)
 		- GG >> 8   (0x0000GG00)
@@ -20,22 +18,26 @@ static void	set_pixel_color(t_data *f, int x, int y, int color)
 		f->buf[x * 4 + y * WIDTH * 4 + 3] = color >> 24;
 }
 
-//Picks the correct one deppending on actual fractal.
 static int	calculate_fractal(t_data *f, double pr, double pi)
 {
 	int	nb_iter;
 
 	if (f->set == MANDELBROT)
 		nb_iter = mandelbrot(pr, pi);
-	else
+	else if (f->set == JULIA)
 		nb_iter = julia(f, pr, pi);
+	else
+		nb_iter = burning_ship(pr, pi);
 	return (nb_iter);
 }
 
-/*
-*	Iterates through each pixel of the window, translates the pixel's
-*	coordinates into a complex number to be able to calculate if that number
-*	is part of the fractal set or not.
+/* This function iterates across the whole window,
+* while it translates the pixel's coordinates into the complex
+* number so that I can paint the whole complex plane. Depending
+* on whether each point scapes to the infinite or not
+* (it's not from the actual set or it actually is).
+	* One that's done, the last function displays the created
+	* image. For optimization reasons
 */
 void	render(t_data *f)
 {
@@ -45,7 +47,7 @@ void	render(t_data *f)
 	double	pi;
 	int		nb_iter;
 
-	mlx_clear_window(f->mlx_con, f->win_con);
+	mlx_clear_window(f->mlx, f->win);
 	y = -1;
 	while (++y < HEIGHT)
 	{
@@ -58,5 +60,5 @@ void	render(t_data *f)
 			set_pixel_color(f, x, y, f->palette[nb_iter]);
 		}
 	}
-	mlx_put_image_to_window(f->mlx_con, f->win_con, f->img, 0, 0);
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }

@@ -42,6 +42,8 @@ SRCS = ft_calloc.c \
 	   ft_rputstr.c \
 	   x_calloc.c \
 	   ft_strcmp.c \
+	   ft_ishexdigit.c \
+	   ft_isspace.c
 
 SRCS_BONUS = ft_lstnew.c \
 		ft_lstadd_front.c \

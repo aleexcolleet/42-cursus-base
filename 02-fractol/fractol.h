@@ -1,42 +1,28 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
-//FRACTAL SETS
 
-# define MANDELBROT 1
-# define JULIA 2
-# include "libft/libft.h"
-# include "minilibx_opengl_20191021/mlx.h"
+# include "./minilibx_opengl_20191021/mlx.h"
+# include "./libft/libft.h"
+# include "keys.h"
 # include <stdio.h>
 # include <math.h>
 
+/*  Dimensions	*/
 # define WIDTH 900
 # define HEIGHT 900
 # define MAX_ITERATIONS 60
 
-enum
-{
-	W = 13,
-	A = 0,
-	S = 1,
-	D = 2,
-	UP_ARROW = 126,
-	DOWN_ARROW = 125,
-	LEFT_ARROW = 123,
-	RIGHT_ARROW = 124,
-	LEFT_CTRL = 256,
-	LEFT_ALT = 261,
-	LEFT_SHIFT = 257,
-	ESC			= 53,
-	ON_DESTROY	= 17,
-	MOUSE_WHEEL_UP = 4,
-	MOUSE_WHEEL_DOWN = 5,
-	MOUSE_BTN = 1
-};
+/*  Fractal sets	*/
+# define MANDELBROT 1
+# define JULIA 2
+# define BURNING_SHIP 3
+# define TRICORN 4
+# define MANDELBOX 5
 
 typedef struct s_data
 {
-	void	*mlx_con;
-	void	*win_con;
+	void	*mlx;
+	void	*win;
 	void	*img;
 	char	*buf;
 	int		set;
@@ -54,39 +40,58 @@ typedef struct s_data
 	int		color;
 }	t_data;
 
-//SETS
-int	mandelbrot(double cr, double ci);
-int	julia(t_data *f, double zr, double zi);
-
-//DRAW FRACTALS
-void	render(t_data *f);
-int	julia_shift(int x, int y, t_data *f);
-
-//COLORS
-void	color_shift(t_data *f);
-void	set_color_mono(t_data *f, int color);
-void	set_color_multiple(t_data *f, int colors[4], int n);
-void	set_color_zebra(t_data *f, int color);
-void	set_color_triad(t_data *f, int color);
-void	set_color_tetra(t_data *f, int color);
-
-//EVENTS
-int	handle_keys(int keycode, t_data *fractol);
-int	mouse_event(int keycode, int x, int y, t_data *mlx);
-
+//FRACTOL
+//
 //INITS
+//
+void	init(t_data *f);
 void	init_structure(t_data *f);
 void	reinit_img(t_data *f);
-void	mlx_setup(t_data *f);
 void	get_complex_layout(t_data *f);
-void	get_color(t_data *f, int ac);
-////atof
+void	clean_init(t_data *f);
 
-//UTILS
-int	end_fractol(t_data *f);
-void	clean_exit(int exit_code, t_data *f);
+void	render(t_data *f);
+//COLORS
+//
+void	color_shift(t_data *f);
+
+//EVENTS
+//
+int	mouse_event(int keycode, int x, int y, t_data *mlx);
+int	key_event(int keycode, t_data *mlx);
+
+//HELP MESS
+//
 void	help_msg(t_data *f);
-void	commands_list(t_data *fractal);
+void	commands_list();
+void	print_color_options(void);
+void	print_fractal_options(void);
+
+//FRACTOL UTILS & Args
+//
+double	ft_atof(char *str);
+void	get_color(t_data *f, int ac, char **av);
+int	end_fractol(t_data *mlx);
+void	clean_exit(int exit_code, t_data *f);
+int	message(char *str1, char *str2, int errnum);
+
+//Fractols
+//
+int	julia_shift(int x, int y, t_data *f);
+int	burning_ship(double cr, double ci);
+int	julia(t_data *f, double zr, double zi);
+int	mandelbrot(double cr, double ci);
+
+//COLORS SCHEMES
+//
+void	set_color_multiple(t_data *f, int colors[4], int n);
+void	set_color_mono(t_data *f, int color);
+void	set_color_graphic(t_data *f, int color);
+void	set_color_contrasted(t_data *f, int color);
+void	set_color_opposites(t_data *f, int color);
+void	set_color_tetra(t_data *f, int color);
+void	set_color_triad(t_data *f, int color);
+void	set_color_zebra(t_data *f, int color);
 int	get_percent_color(int color, double percent);
 
 #endif

@@ -78,4 +78,7 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 int				ft_printf(const char *input, ...);
 void			*x_calloc(size_t size);
+int				ft_ishexdigit(int c);
+int				ft_isspace(int c);
+
 #endif

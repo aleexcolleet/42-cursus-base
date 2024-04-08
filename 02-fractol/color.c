@@ -1,25 +1,40 @@
 # include "fractol.h"
 
-/*	Extension of the color_shift function. Changes the color pattern.
-*	The fractal can then be rendered again with different color
-*	effects.
-*/
-static void	color_shift_striped(t_data *f)
+static void	color_shift_special(t_data *f)
+{
+	int	alt_color;
+
+	if (f->color == 0xFFFFFF)
+		alt_color = 0xCCCCCC;
+	else
+		alt_color = f->color;
+	if (f->color_pattern == 5)
+		set_color_contrasted(f, alt_color);
+	else if (f->color_pattern == 6)
+		set_color_opposites(f, f->color);
+	else if (f->color_pattern == 7)
+		set_color_graphic(f, f->color);
+	else if (f->color_pattern == 8)
+		set_color_multiple(f, (int [8]){0xFF0000, 0xFF7F00, 0xFFFF00,
+			0x00FF00, 0x0000FF, 0x4B0082, 0x9400D3, 0xFFFFFF}, 8);
+}
+
+//simply the extension of color shift function
+static void	color_shift_stripped(t_data *f)
 {
 	if (f->color_pattern == 2)
 		set_color_zebra(f, f->color);
 	else if (f->color_pattern == 3)
 		set_color_triad(f, f->color);
-	else 
+	else if (f->color_pattern == 4)
 		set_color_tetra(f, f->color);
+	else
+		color_shift_special(f);
 }
 
-/*
-* 	Reinitializes the MLX image and changes the color pattern.
-*	The fractal can then be rendered again with different color
-*	effects.
-*/
-
+//Reinitializes the color pattern
+//So that when render acts again, the colors
+//are different;
 void	color_shift(t_data *f)
 {
 	int	alt_color;
@@ -36,11 +51,5 @@ void	color_shift(t_data *f)
 		set_color_multiple(f, (int [4]){0x000000, alt_color,
 			get_percent_color(f->color, 50), 0xFFFFFF}, 4);
 	else
-		color_shift_striped(f);
-}
-
-void	get_color(t_data *f, int ac)
-{
-	if (ac == 2 ||  (f->set == JULIA && ac == 4))
-		f->color = 0x9966FF;
+		color_shift_stripped(f);
 }

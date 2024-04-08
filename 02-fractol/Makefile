@@ -1,35 +1,64 @@
+#FANCY
+RESET = \033[0m
+RED = \033[31m
 GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+MAGENTA = \033[35m
+CYAN = \033[36m
 WHITE = \033[37m
+BOLD = \033[1m
+SILENCE = --no-print-directory
 
+#PROG NAME
 NAME = fractol
 ARCHIVE = fractol.a
-SRCS = fractol.c \
-       color.c \
-       events.c \
-       fractol_utils.c \
-       init.c \
-       mandelbrot.c \
-       julia.c \
-       render.c \
-	   color_interpolated.c \
-	   color_striped.c \
- 
-OBJS = $(SRCS:.c=.o)
-INCLUD = ./minilibx_opengl_20191021/mlx.h \ ./libft/libft.h
-CC = gcc
+# COMPILER
+CC		= gcc
+FLAGS	= -Werror -Wextra -Wall -MMD -g
 MAKE_LIB = ar -rcs
-FLAGS = -Wall -Wextra -Werror -MMD -g
 LIB = -L. -lmlx -framework OpenGL -framework AppKit
-DEPS = $(SRCS:.c=.d)
+
+#Minilibx
+MLX_PATH	= minilibx_opengl_20191021/
+MLX_NAME	= libmlx.a
+MLX			= $(MLX_PATH)$(MLX_NAME)
+
+#libft
+LIBFT_NAME	= libft.a
+LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
+
+#includes
+INCLUDES	= ./minilibx_opengl_20191021/mlx.h keys.h ./libft/libft.h fractol.h
+
+#sources
+SRCS			=	fractol.c \
+				init.c \
+				fractal_utils.c \
+				events.c \
+				render.c \
+				color.c \
+				passing_args.c\
+				help_msg.c \
+				fractals/mandelbrot.c \
+				fractals/julia.c \
+				fractals/burning_ship.c \
+				colors_schemes/color_interpolated.c \
+				colors_schemes/color_special.c \
+				colors_schemes/color_striped.c
+
+#Objects
+OBJS		= $(SRCS:.c=.o)
+DEPS		= $(SRCS:.c=.d)
 SILENCE = --no-print-directory
 
 all: $(NAME)
 
-$(NAME) : $(ARCHIVE) fractol.h Makefile ./libft/libft.h
-	@echo "$(WHITE) $(NAME) $(RESET) $(GREEN) ok $(RESET)"
-	@echo "\n${GREEN} Minilibx compilando: $(DEF_COLOR)\n"
-	@make -C ./minilibx_opengl_20191021 all
+$(NAME) : $(OBJS) $(DEPS) $(ARCHIVE) fractol.h keys.h Makefile ./libft/libft.h
+	@echo "$(WHITE) Compiling ---> $(NAME) $(RESET)"
+	@make -C ./minilibx_opengl_20191021/ all
 	@cp ./minilibx_opengl_20191021/libmlx.a .
+	@echo "$(WHITE) Minilibx DONE $(RESET)"
 	@make -C ./libft all $(SILENCE)
 	@cp ./libft/libft.a .
 	@$(CC) -o $(NAME) $(ARCHIVE) libft.a $(LIB)
@@ -37,20 +66,22 @@ $(NAME) : $(ARCHIVE) fractol.h Makefile ./libft/libft.h
 $(ARCHIVE) : $(OBJS)
 	@$(MAKE_LIB) $(ARCHIVE) $^
 
-%.o	:	%.c
+%.o : %.c
 	@$(CC) $(FLAGS) -c $< -o $@
-	@echo "$(GREEN) ok $(RESET) $(CYAN)$(BOLD) $<$(RESET)"
 
 clean:
-	@echo "$(MAGENTA) Eliminando .o  ... $(RESET)"
-	@make -C ./minilibx_opengl_20191021 clean
+	@echo "$(YELLOW) Cleaning... $(RESET)"
+	@make -C ./minilibx_opengl_20191021/ clean
 	@make -C ./libft clean
-	@rm -f $(OBJS) $(DEPS) libmlx.a libft.a
-	@echo "$(GREEN) cleaning DONE  $(RESET)"
+	@rm -f $(OBJS) $(DEPS) libmlx.a libft.a fractol.a
+	@echo "$(YELLOW) clean DONE  $(RESET)"
 
 fclean: clean
-	@rm -f fractol.a $(NAME)
-	@echo "$(GREEN) fclean OK  $(RESET)"
+	@echo "$(YELLOW) FCleaning ... $(RESET)"
+	@make -C ./minilibx_opengl_20191021 clean
+	@make -C ./libft fclean
+	@rm -f $(NAME) $(DEPS) libmlx.a libft.a fractol.a
+	@echo "$(GREEN) FCleaning DONE  $(RESET)"
 
 re: fclean all
 

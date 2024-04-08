@@ -1,6 +1,7 @@
-# include "fractol.h"
+#include "fractol.h"
 
-static int	type_cmp(char *av, char *str)
+//simply checks the posible options for each set
+static int	type_cmp(char *av, char *str, char c, char n)
 {
 	int	i;
 
@@ -12,21 +13,27 @@ static int	type_cmp(char *av, char *str)
 	}
 	if (!ft_strcmp(av, str))
 		return (1);
+	else if (av[1] == '\0' && (av[0] == c || av[0] == n))
+		return (1);
 	return (0);
 }
 
+//realizes the actual set wanted(1, 2, 3)
 static void	get_set(t_data *f, char **av)
 {
-
-	if (type_cmp(av[1], "mandelbrot"))
+	if (type_cmp(av[1], "mandelbrot", 'm', '1'))
 		f->set = MANDELBROT;
-	else if (type_cmp(av[1], "julia"))
+	else if (type_cmp(av[1], "julia", 'j', '2'))
 		f->set = JULIA;
+	else if (type_cmp(av[1], "burning ship", 'b', '3'))
+		f->set = BURNING_SHIP;
 	else
 		help_msg(f);
 }
 
-static void	gen_julia_st_va(t_data *f, int ac, char **av)
+//Checks for staring values. If not sets default ones
+//If values are not valid. Returns error message
+static void	get_julia_starting_values(t_data *f, int ac, char **av)
 {
 	if (f->set != JULIA || ac == 2)
 	{
@@ -48,29 +55,39 @@ static void	gen_julia_st_va(t_data *f, int ac, char **av)
 		help_msg(f);
 }
 
+//Takes julia params and colors if wanted
 static void	handle_args(t_data *f, int ac, char **av)
 {
 	get_set(f, av);
 	if (f->set != JULIA && ac > 3)
 		help_msg(f);
-	gen_julia_st_va(f, ac, av);
-	f->color = 0x9966FF;
+	else if (f->set == JULIA && ac > 5)
+		help_msg(f);
+	get_julia_starting_values(f, ac, av);
+	get_color(f, ac, av);
 }
-
-int	main(int as, char **av)
+//Initializes fractol data structure, prints program controls,
+//opens new window and registers hooks to react to key presses.
+//Loops infinetely until esc is pressed
+//
+int	main(int ac, char **av)
 {
-	t_data	fractol;
 
-	if (as < 2)
-		help_msg(&fractol);
-	init_structure(&fractol);
-	handle_args(&fractol, as, av);
-	mlx_setup(&fractol);
-	render(&fractol);
-	commands_list(&fractol);
-	mlx_hook(fractol.win_con, EVENT_CLOSE_BTN, 0, end_fractol, &fractol);
-	mlx_key_hook(fractol.win_con, handle_keys, &fractol);
-	mlx_mouse_hook(fractol.win_con, mouse_event, &fractol);
-	mlx_loop(fractol.mlx_con);
+	t_data	f;
+
+	if (ac < 2)
+	{
+		ft_printf("Error: Missing Params\n");
+		return (2);
+	}
+	init_structure(&f);
+	handle_args(&f, ac, av);
+	init(&f);
+	render(&f);
+	commands_list();
+	mlx_hook(f.win, ON_EVENT_CLOSE_BUTTON, 0, end_fractol, &f);
+	mlx_key_hook(f.win, key_event, &f);
+	mlx_mouse_hook(f.win, mouse_event, &f);
+	mlx_loop(f.mlx);
 	return (0);
 }
