@@ -15,7 +15,7 @@ NAME = fractol
 ARCHIVE = fractol.a
 # COMPILER
 CC		= gcc
-FLAGS	= -Werror -Wextra -Wall -MMD -g
+FLAGS	= -Werror -Wextra -Wall -MMD
 MAKE_LIB = ar -rcs
 LIB = -L. -lmlx -framework OpenGL -framework AppKit
 

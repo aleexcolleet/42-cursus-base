@@ -86,4 +86,5 @@ int	main(int ac, char **av)
 	mlx_key_hook(f.win, key_event, &f);
 	mlx_mouse_hook(f.win, mouse_event, &f);
 	mlx_loop(f.mlx);
+	return (0);
 }

@@ -13,7 +13,7 @@ void	clean_exit(int exit_code, t_data *f)
 	if (f->win)
 		mlx_destroy_window(f->mlx, f->win);
 	ft_printf("\nPsychodelic trip ended. See you next time!\nx)\n");
-	exit(0);
+	exit(exit_code);
 }
 
 //This returns an error message to the standard error.
