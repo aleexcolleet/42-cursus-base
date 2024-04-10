@@ -1,5 +1,10 @@
 #include "philo.h"
-
+/*
+void	clean_exit(t_data *p)
+{
+	free(p);
+}
+*/
 void	help_params(void)
 {
 	printf("Params must be:\n\n");
@@ -12,12 +17,13 @@ void	help_params(void)
 	printf("\033[0m");
 }
 
-void	help_msg(size_t i)
+void	help_msg(size_t i, t_data *p)
 {
 	printf("\n+--------------------------------------------------+\n");
 	printf("	PHILOSOPHERS HELP SHEET\n");
 	printf("+--------------------------------------------------+\n\n");
 	
-	if (1 == i)
+	if (-1 == i)
 		help_params();
+	//clean_exit(p); //TODO
 }
