@@ -55,6 +55,6 @@ typedef struct t_data
 void	help_params(void);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_calloc(size_t num_elements, size_t element_size);
-void	help_msg(size_t i, t_data *p);
+void	help_msg(int i);
 long	ft_atol(const char *str, t_data *p);
 # endif

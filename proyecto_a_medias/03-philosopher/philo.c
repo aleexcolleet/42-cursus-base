@@ -2,9 +2,6 @@
 
 static void	passing_args(int as, char **av, t_data *p)
 {
-	int i;
-
-	i = -1;
 	p->error = 0;
 	p->num_philo = ft_atol(av[1], p);
 	p->time_to_die = ft_atol(av[2], p) * 1e3;
@@ -41,7 +38,7 @@ int	main(int as, char **av)
 
 	if (as < 5 || as > 6)
 	{
-		help_msg(-1, p);
+		help_msg(-1);
 		return (2);
 	}
 	p = malloc(sizeof(t_data));
@@ -50,7 +47,7 @@ int	main(int as, char **av)
 	passing_args(as, av, p);
 	if (p->error == -1)
 	{
-		help_msg(-1, p);
+		help_msg(-1);
 		free(p); //falta arreglar
 		return (2);
 	}
