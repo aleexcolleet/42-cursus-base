@@ -31,6 +31,7 @@ SRCS			=	philo.c \
 				passing_args.c \
 				philo_utils.c \
 				help_msg.c \
+				safety_guard.c \
 
 #Objects
 OBJS		= $(SRCS:.c=.o)

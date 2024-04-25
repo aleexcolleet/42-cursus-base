@@ -12,9 +12,9 @@ static void	passing_args(int as, char **av, t_data *p)
 		|| p->time_to_sleep < 6e4)
 		p->error = -1;
 	if (as == 6)
-		p->how_many_eats = ft_atol(av[5], p);
+		p->how_many_meals = ft_atol(av[5], p);
 	else
-		p->how_many_eats = -1;
+		p->how_many_meals = -1;
 }
 
 //args (number of philosophers)(time to die)(time_to_sleep) *opcional(time each philo must eat)
@@ -22,7 +22,6 @@ static void	passing_args(int as, char **av, t_data *p)
 //Red
 //all args must be numeric
 //check for INT_MAX
-//check if I need to take all args with split
 //
 /* INPUT 
  * [0] ./philo
@@ -34,26 +33,25 @@ static void	passing_args(int as, char **av, t_data *p)
 */
 int	main(int as, char **av)
 {
-	t_data *p;
+	t_data *data;
 
 	if (as < 5 || as > 6)
 	{
 		help_msg(-1);
 		return (2);
 	}
-	p = malloc(sizeof(t_data));
-	if (!p)
+	data = malloc(sizeof(t_data));
+	if (!data)
 		return (2);
-	passing_args(as, av, p);
-	if (p->error == -1)
+	passing_args(as, av, data);
+	init_structure(data);
+	if (data->error == -1)
 	{
 		help_msg(-1);
-		free(p); //falta arreglar
+		leaving_safely(data); //falta arreglar
 		return (2);
 	}
 
-	//if (!verify_args(as, &av, &p));
-	//	return (2);
-	free(p);	
+	leaving_safely(data);
 	return (0);
 }
