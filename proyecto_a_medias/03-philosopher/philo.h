@@ -78,7 +78,7 @@ struct s_data
 	t_mtx	write_mutex;
 	pthread_t	monitor;
 
-	//struct s_list *next;
+	//general lists
 	long	num_philo;
 	long	time_to_die;
 	long	time_to_eat;
@@ -86,7 +86,7 @@ struct s_data
 	long	how_many_meals;
 	long	start_simulation;
 	bool	end_simulation;
-	bool	all_threads_ready;
+	bool	all_threads_ready; //to then syncro philos
 	long	threads_running_nbr;
 	int		error;
 	t_fork	*forks;
