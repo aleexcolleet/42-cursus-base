@@ -9,7 +9,7 @@ void	*dinner_simulation(void *data)
 	t_philo *philo;
 
 	philo = (t_philo *)data;
-	waiting_for_all_threads(philo->table);
+	waiting_all_threads(philo->data);
 
 	return (NULL);
 }
@@ -32,12 +32,11 @@ void	dinner_must_beggin(t_data *data)
 	i = 0;
 	if (0 == data->how_many_meals)
 		return;
-	else if (1 == data->num_philo)
-		;//TODO
+//	else if (1 == data->num_philo)
+//		;//TODO
 	else
 		while(++i < data->num_philo)
 			safe_thread_handle(&data->philos[i].thread_id,
-				dinner_simulation, &data->philo[i], CREATE);
-	//now all threads have been made
-		
+				dinner_simulation, &data->philos[i], CREATE);
+	set_bool(&data->table_mutex, &data->all_threads_ready, true);
 }

@@ -32,6 +32,9 @@ SRCS			=	philo.c \
 				philo_utils.c \
 				help_msg.c \
 				safety_guard.c \
+				dinner.c \
+				getters_setters.c \
+				synchro_utils.c \
 
 #Objects
 OBJS		= $(SRCS:.c=.o)

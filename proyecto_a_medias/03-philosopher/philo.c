@@ -51,7 +51,7 @@ int	main(int as, char **av)
 		leaving_safely(data); //falta arreglar
 		return (2);
 	}
-
+	dinner_must_beggin(data);
 	leaving_safely(data);
 	return (0);
 }

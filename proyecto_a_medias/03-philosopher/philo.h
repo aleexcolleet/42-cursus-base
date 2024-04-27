@@ -95,21 +95,39 @@ struct s_data
 };
 
 void	help_params(void);
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_calloc(size_t num_elements, size_t element_size);
 void	help_msg(int i);
 long	ft_atol(const char *str, t_data *p);
 
-//SAFETY_GUARD
-//
-void	*safe_malloc(size_t bytes, t_data *data);
 //INIT and safe functions
 //
 void	init_structure(t_data *data);
 void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data);
-
+void	*safe_malloc(size_t bytes, t_data *data);
+void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
+		void *data, t_opcode opcode);
 //Philo_utils
 void	error_exit(const char *error);
 void	leaving_safely(t_data *data);
+
+//DINNING
+//
+void	dinner_must_beggin(t_data *data);
+void	*dinner_simulation(void *data);
+
+//error
+//
+void	error_exit(const char *error);
+void	leaving_safely(t_data *data);
+
+//getters and setters
+//
+bool	simulation_finished(t_data *data);
+void	set_long(t_mtx *mutex, long *dest, long value);
+long	get_long(t_mtx *mutex, long *value);
+bool	get_bool(t_mtx *mtx, bool *value);
+void	set_bool(t_mtx *mutex, bool *dest, bool value);
+
+//synchro utils
+void	waiting_all_threads(t_data *data);
 
 # endif
