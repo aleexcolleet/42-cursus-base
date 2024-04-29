@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <errno.h> //for errors managing
 
+//for the debug write function
 # ifndef DEBUG_MODE
 #  define DEBUG_MODE 0
 # endif
@@ -30,6 +31,14 @@ typedef enum e_status
 	TAKE_SECOND_FORK,
 	DIED,
 }			t_philo_status;
+
+//CODES FOR GET_TIME
+typedef enum e_time_code
+{
+	SECOND,
+	MILLISECOND,
+	MICROSECOND,
+}			t_time_code;
 
 
 
@@ -95,39 +104,41 @@ struct s_data
 };
 
 void	help_params(void);
-void	help_msg(int i);
+void	help_msg(void);
 long	ft_atol(const char *str, t_data *p);
 
 //INIT and safe functions
-//
 void	init_structure(t_data *data);
 void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data);
 void	*safe_malloc(size_t bytes, t_data *data);
-void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
+int		safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 		void *data, t_opcode opcode);
 //Philo_utils
 void	error_exit(const char *error);
 void	leaving_safely(t_data *data);
-
+long	get_time(t_time_code time_code);
 //DINNING
 //
-void	dinner_must_beggin(t_data *data);
-void	*dinner_simulation(void *data);
+int		dinner_must_beggin(t_data *data);
+long	get_time(t_time_code time_code);
+void	precise_usleep(long usec, t_data *data);
 
 //error
-//
 void	error_exit(const char *error);
 void	leaving_safely(t_data *data);
 
 //getters and setters
-//
 bool	simulation_finished(t_data *data);
-void	set_long(t_mtx *mutex, long *dest, long value);
-long	get_long(t_mtx *mutex, long *value);
-bool	get_bool(t_mtx *mtx, bool *value);
-void	set_bool(t_mtx *mutex, bool *dest, bool value);
+void	set_long(t_mtx *mutex, long *dest, long value, t_data *data);
+long	get_long(t_mtx *mutex, long *value, t_data *data);
+bool	get_bool(t_mtx *mtx, bool *value, t_data *data);
+void	set_bool(t_mtx *mutex, bool *dest, bool value, t_data *data);
 
 //synchro utils
 void	waiting_all_threads(t_data *data);
+
+//WRITE functions
+void write_status(t_philo_status status, t_philo *philo);
+
 
 # endif

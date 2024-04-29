@@ -33,7 +33,6 @@ static void	philosophers_init(t_data *data)
 		philo->full = false;
 		philo->meals_counter = 0;
 		philo->data = data;
-
 		assigning_forks(philo, data->forks, i);
 	}
 

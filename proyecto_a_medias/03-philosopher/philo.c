@@ -37,7 +37,7 @@ int	main(int as, char **av)
 
 	if (as < 5 || as > 6)
 	{
-		help_msg(-1);
+		help_msg();
 		return (2);
 	}
 	data = malloc(sizeof(t_data));
@@ -47,11 +47,15 @@ int	main(int as, char **av)
 	init_structure(data);
 	if (data->error == -1)
 	{
-		help_msg(-1);
+		help_msg();
 		leaving_safely(data); //falta arreglar
 		return (2);
 	}
-	dinner_must_beggin(data);
+	if (0 != dinner_must_beggin(data))
+	{
+		leaving_safely(data);
+		return (2);
+	}
 	leaving_safely(data);
 	return (0);
 }

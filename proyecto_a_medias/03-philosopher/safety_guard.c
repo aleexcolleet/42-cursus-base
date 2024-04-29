@@ -84,7 +84,7 @@ void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data)
 	}
 }
 
-void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
+int	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 		void *data, t_opcode opcode)
 {
 	if (CREATE == opcode)
@@ -94,6 +94,10 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 	else if (DETACH == opcode)
 		handle_thread_error(pthread_detach(*thread), opcode);
 	else
+	{
 		error_exit("Wrong opcode for thread_handle:"
 			" use <CREATE> <JOIN> <DETACH>");
+		return (-1);
+	}
+	return (0);
 }
