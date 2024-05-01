@@ -18,7 +18,7 @@ void	*dinner_simulation(void *data)
 			break;
 	//	eat(philo); //TODO
 		//sleeping : write_status & precise usleep✅
-	write_status(SLEEPING, philo, DEBUG_MODE);
+	write_status(SLEEPING, philo);
 	precise_usleep(philo->data->time_to_sleep, philo->data);
 	//	thinking(philo); //TODO
 	}

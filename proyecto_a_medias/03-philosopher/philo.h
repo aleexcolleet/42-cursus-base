@@ -138,7 +138,6 @@ void	set_bool(t_mtx *mutex, bool *dest, bool value, t_data *data);
 void	waiting_all_threads(t_data *data);
 
 //WRITE functions
-void write_status(t_philo_status status, t_philo *philo);
-
+void write_status(t_philo_status status, t_philo *philo, t_data *data);
 
 # endif
