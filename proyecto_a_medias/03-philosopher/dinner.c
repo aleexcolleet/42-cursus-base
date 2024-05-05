@@ -1,5 +1,38 @@
 #include "philo.h"
 
+static void	thinking(t_philo *philo, t_data *data)
+{
+	write_status(THINKING, philo, data);
+}
+
+/*
+ * eat routine
+ * 1) grab the forks: here first & second fork is handy
+ *		i don't worry about left right
+ *	2) eat: write eat, update last meal and meals counter
+ *		eventually bool full
+ *	3) release the forks
+ */
+static void	eat(t_philo *philo, t_data *data)
+{
+	safe_mutex_handle(&philo->first_fork->fork, LOCK, data);
+	write_status(TAKE_FIRST_FORK, philo, data);
+	safe_mutex_handle(&philo->second_fork->fork, LOCK, data);
+	write_status(TAKE_SECOND_FORK, philo, data);
+
+	set_long(&philo->philo_mutex, &philo->last_meal_time,
+		  get_time(MILLISECOND), data);
+	philo->meals_counter++;
+	write_status(EATING, philo, data);
+	precise_usleep(philo->data->time_to_eat, data);
+	if (philo->data->how_many_meals > 0
+		&& philo->meals_counter == philo->data->how_many_meals)
+		set_bool(&philo->philo_mutex, &philo->full, true, data);
+
+	safe_mutex_handle(&philo->first_fork->fork, UNLOCK, data);
+	safe_mutex_handle(&philo->first_fork->fork, UNLOCK, data);
+}
+
 /*
 *	1_ wait all philos, then synchro starts
 *	2_ endless loop philo
@@ -16,11 +49,11 @@ void	*dinner_simulation(void *data)
 	{
 		if (philo->full) //TODO thread safe
 			break;
-	//	eat(philo); //TODO
+		eat(philo, data);
 		//sleeping : write_status & precise usleep✅
-	write_status(SLEEPING, philo);
+	write_status(SLEEPING, philo, data);
 	precise_usleep(philo->data->time_to_sleep, philo->data);
-	//	thinking(philo); //TODO
+		thinking(philo, data);
 	}
 	return (NULL);
 }

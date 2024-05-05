@@ -17,11 +17,6 @@
 # include <limits.h>
 # include <errno.h> //for errors managing
 
-//for the debug write function
-# ifndef DEBUG_MODE
-#  define DEBUG_MODE 0
-# endif
-
 typedef enum e_status
 {
 	EATING,
@@ -40,8 +35,6 @@ typedef enum e_time_code
 	MICROSECOND,
 }			t_time_code;
 
-
-
 //ENUM OPCODE
 //
 typedef enum e_opcode
@@ -49,7 +42,7 @@ typedef enum e_opcode
 	LOCK,
 	UNLOCK,
 	INIT,
-	DESTROY,
+	DESTROY,	
 	CREATE,
 	JOIN,
 	DETACH,
@@ -76,7 +69,7 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	t_fork			*first_fork;
 	t_fork			*second_fork;
-	t_mtx			philo_mutex;
+	t_mtx			philo_mutex; //useful for races with the monitor
 	t_data			*data;
 
 }	t_philo;
@@ -88,7 +81,7 @@ struct s_data
 	pthread_t	monitor;
 
 	//general lists
-	long	num_philo;
+	long	num_philo;	
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
@@ -138,6 +131,5 @@ void	set_bool(t_mtx *mutex, bool *dest, bool value, t_data *data);
 void	waiting_all_threads(t_data *data);
 
 //WRITE functions
-void write_status(t_philo_status status, t_philo *philo, t_data *data);
-
+void	write_status(t_philo_status status, t_philo *philo, t_data *data);
 # endif
