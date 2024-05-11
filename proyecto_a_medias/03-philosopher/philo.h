@@ -17,8 +17,8 @@
 # include <limits.h>
 # include <errno.h> //for errors managing
 
-# ifndef DEBUG_MODE
-#  define DEBUG_MODE 0
+# ifndef PHILO_MAX
+#  define PHILO_MAX 200 
 # endif
 
 typedef enum e_status
@@ -31,7 +31,13 @@ typedef enum e_status
 	DIED,
 }			t_philo_status;
 
-
+//CODES FOR GET_TIME
+typedef enum e_time_code
+{
+	SECOND,
+	MILLISECOND,
+	MICROSECOND,
+}			t_time_code;
 
 //ENUM OPCODE
 //
@@ -40,11 +46,11 @@ typedef enum e_opcode
 	LOCK,
 	UNLOCK,
 	INIT,
-	DESTROY,
+	DESTROY,	
 	CREATE,
 	JOIN,
 	DETACH,
-}	t_opcode;
+}		t_opcode;
 
 typedef pthread_mutex_t t_mtx;
 typedef struct s_data t_data;
@@ -67,7 +73,7 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	t_fork			*first_fork;
 	t_fork			*second_fork;
-	t_mtx			philo_mutex;
+	t_mtx			philo_mutex; //useful for races with the monitor
 	t_data			*data;
 
 }	t_philo;
@@ -79,7 +85,7 @@ struct s_data
 	pthread_t	monitor;
 
 	//general lists
-	long	num_philo;
+	long	num_philo;	
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
@@ -95,39 +101,39 @@ struct s_data
 };
 
 void	help_params(void);
-void	help_msg(int i);
+void	help_msg(void);
 long	ft_atol(const char *str, t_data *p);
 
 //INIT and safe functions
-//
 void	init_structure(t_data *data);
 void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data);
 void	*safe_malloc(size_t bytes, t_data *data);
-void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
+int		safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 		void *data, t_opcode opcode);
 //Philo_utils
 void	error_exit(const char *error);
 void	leaving_safely(t_data *data);
-
+long	get_time(t_time_code time_code);
 //DINNING
 //
-void	dinner_must_beggin(t_data *data);
-void	*dinner_simulation(void *data);
+int		dinner_must_beggin(t_data *data);
+long	get_time(t_time_code time_code);
+void	precise_usleep(long usec, t_data *data);
 
 //error
-//
 void	error_exit(const char *error);
 void	leaving_safely(t_data *data);
 
 //getters and setters
-//
 bool	simulation_finished(t_data *data);
-void	set_long(t_mtx *mutex, long *dest, long value);
-long	get_long(t_mtx *mutex, long *value);
-bool	get_bool(t_mtx *mtx, bool *value);
-void	set_bool(t_mtx *mutex, bool *dest, bool value);
+void	set_long(t_mtx *mutex, long *dest, long value, t_data *data);
+long	get_long(t_mtx *mutex, long *value, t_data *data);
+bool	get_bool(t_mtx *mtx, bool *value, t_data *data);
+void	set_bool(t_mtx *mutex, bool *dest, bool value, t_data *data);
 
 //synchro utils
 void	waiting_all_threads(t_data *data);
 
+//WRITE functions
+void	write_status(t_philo_status status, t_philo *philo, t_data *data);
 # endif

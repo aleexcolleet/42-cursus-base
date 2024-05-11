@@ -14,7 +14,8 @@ void	*safe_malloc(size_t bytes, t_data *data)
 	return (ret);
 }
 
-//status == 0 --> everything is correct
+//if there is succes, all mutex and thread functons will
+//return zero, otherwise an error number specified.
 static void	handle_mutex_error(int status, t_opcode opcode, t_data *data)
 {
 	int i;
@@ -22,7 +23,7 @@ static void	handle_mutex_error(int status, t_opcode opcode, t_data *data)
 	i = 0;
 	if (0 == status)
 		return ;
-	else if (EINVAL == status && (LOCK == opcode || UNLOCK == opcode))
+	if (EINVAL == status && (LOCK == opcode || UNLOCK == opcode))
 		error_exit("The value specified by mutex is invalid.\n");
 	else if (EINVAL == status && INIT == opcode)
 		error_exit("The value specified by attr is invalid\n");
@@ -39,6 +40,7 @@ static void	handle_mutex_error(int status, t_opcode opcode, t_data *data)
 	if (0 == i)
 		data->error = -3;
 }
+//thread errors
 
 static void	handle_thread_error(int status, t_opcode opcode)
 {
@@ -74,6 +76,7 @@ void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data)
 		handle_mutex_error(pthread_mutex_unlock(mutex), opcode, data);
 	else if (INIT == opcode)
 		handle_mutex_error(pthread_mutex_init(mutex, NULL), opcode, data);
+
 	else if (DESTROY == opcode)
 		handle_mutex_error(pthread_mutex_destroy(mutex), opcode, data);
 	else
@@ -84,7 +87,7 @@ void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data)
 	}
 }
 
-void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
+int	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 		void *data, t_opcode opcode)
 {
 	if (CREATE == opcode)
@@ -94,6 +97,10 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 	else if (DETACH == opcode)
 		handle_thread_error(pthread_detach(*thread), opcode);
 	else
+	{
 		error_exit("Wrong opcode for thread_handle:"
 			" use <CREATE> <JOIN> <DETACH>");
+		return (-1);
+	}
+	return (0);
 }

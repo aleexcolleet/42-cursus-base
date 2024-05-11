@@ -23,12 +23,10 @@ void	help_params(void)
 
 }
 
-void	help_msg(int i)
+void	help_msg(void)
 {
 	printf("\033[32;1m\n+--------------------------------------------------+\n");
 	printf("	PHILOSOPHERS HELP SHEET\n");
 	printf("+--------------------------------------------------+\n\n\033[0m");
-	if (-1 == i)
-		help_params();
-	//clean_exit(p); //TODO
+	help_params();
 }

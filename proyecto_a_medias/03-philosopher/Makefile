@@ -35,6 +35,7 @@ SRCS			=	philo.c \
 				dinner.c \
 				getters_setters.c \
 				synchro_utils.c \
+				write.c \
 
 #Objects
 OBJS		= $(SRCS:.c=.o)
