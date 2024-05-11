@@ -17,6 +17,10 @@
 # include <limits.h>
 # include <errno.h> //for errors managing
 
+# ifndef PHILO_MAX
+#  define PHILO_MAX 200 
+# endif
+
 typedef enum e_status
 {
 	EATING,
@@ -46,7 +50,7 @@ typedef enum e_opcode
 	CREATE,
 	JOIN,
 	DETACH,
-}	t_opcode;
+}		t_opcode;
 
 typedef pthread_mutex_t t_mtx;
 typedef struct s_data t_data;

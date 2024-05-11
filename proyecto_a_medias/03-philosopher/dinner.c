@@ -19,18 +19,16 @@ static void	eat(t_philo *philo, t_data *data)
 	write_status(TAKE_FIRST_FORK, philo, data);
 	safe_mutex_handle(&philo->second_fork->fork, LOCK, data);
 	write_status(TAKE_SECOND_FORK, philo, data);
-
 	set_long(&philo->philo_mutex, &philo->last_meal_time,
 		  get_time(MILLISECOND), data);
 	philo->meals_counter++;
 	write_status(EATING, philo, data);
-	precise_usleep(philo->data->time_to_eat, data);
+	precise_usleep(philo->data->time_to_eat, philo->data);
 	if (philo->data->how_many_meals > 0
 		&& philo->meals_counter == philo->data->how_many_meals)
 		set_bool(&philo->philo_mutex, &philo->full, true, data);
-
 	safe_mutex_handle(&philo->first_fork->fork, UNLOCK, data);
-	safe_mutex_handle(&philo->first_fork->fork, UNLOCK, data);
+	safe_mutex_handle(&philo->second_fork->fork, UNLOCK, data);
 }
 
 /*
@@ -51,8 +49,8 @@ void	*dinner_simulation(void *data)
 			break;
 		eat(philo, data);
 		//sleeping : write_status & precise usleep✅
-	write_status(SLEEPING, philo, data);
-	precise_usleep(philo->data->time_to_sleep, philo->data);
+		write_status(SLEEPING, philo, data);
+		precise_usleep(philo->data->time_to_sleep, philo->data);
 		thinking(philo, data);
 	}
 	return (NULL);
@@ -78,10 +76,10 @@ int	dinner_must_beggin(t_data *data)
 	if (0 == data->how_many_meals)
 		return (0);
 //	else if (1 == data->num_philo) TODO		
-	else
-		while(++i < data->num_philo)
-			if (0 > safe_thread_handle(&data->philos[i].thread_id, dinner_simulation, &data->philos[i], CREATE))
-				return (-1);
+	
+	while(++i < data->num_philo)
+		if (0 > safe_thread_handle(&data->philos[i].thread_id, dinner_simulation, &data->philos[i], CREATE))
+			return (-1);
 	//BEGGIN THE simulation
 	data->start_simulation = get_time(MILLISECOND);
 	//now all threads are ready

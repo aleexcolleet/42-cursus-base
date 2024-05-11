@@ -7,6 +7,12 @@ static void	passing_args(int as, char **av, t_data *p)
 	p->time_to_die = ft_atol(av[2], p) * 1e3;
 	p->time_to_eat = ft_atol(av[3], p) * 1e3;
 	p->time_to_sleep = ft_atol(av[4], p) * 1e3;
+	if (p->num_philo > PHILO_MAX)
+	{
+		printf("There can't be more than 200 philos\n");
+		p->error = -1;
+		return ;
+	}
 	if (p->time_to_die < 6e4
 		|| p->time_to_eat < 6e4
 		|| p->time_to_sleep < 6e4)
@@ -44,6 +50,8 @@ int	main(int as, char **av)
 	if (!data)
 		return (2);
 	passing_args(as, av, data);
+
+	//hasta aqui todo piola
 	init_structure(data);
 	if (data->error == -1)
 	{
@@ -53,7 +61,7 @@ int	main(int as, char **av)
 	}
 	if (0 != dinner_must_beggin(data))
 	{
-		leaving_safely(data);
+		printf("HOLAAAA\n");
 		return (2);
 	}
 	leaving_safely(data);

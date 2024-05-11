@@ -76,6 +76,7 @@ void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data)
 		handle_mutex_error(pthread_mutex_unlock(mutex), opcode, data);
 	else if (INIT == opcode)
 		handle_mutex_error(pthread_mutex_init(mutex, NULL), opcode, data);
+
 	else if (DESTROY == opcode)
 		handle_mutex_error(pthread_mutex_destroy(mutex), opcode, data);
 	else
