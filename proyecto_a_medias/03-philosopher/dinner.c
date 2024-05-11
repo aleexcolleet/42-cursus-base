@@ -74,29 +74,27 @@ int	dinner_must_beggin(t_data *data)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (0 == data->how_many_meals)
 		return (0);
-//	else if (1 == data->num_philo)
-//		;//TODO
+//	else if (1 == data->num_philo) TODO		
 	else
 		while(++i < data->num_philo)
-			if (0 > safe_thread_handle(&data->philos[i].thread_id,
-							  dinner_simulation, &data->philos[i], CREATE))
+			if (0 > safe_thread_handle(&data->philos[i].thread_id, dinner_simulation, &data->philos[i], CREATE))
 				return (-1);
-
 	//BEGGIN THE simulation
 	data->start_simulation = get_time(MILLISECOND);
 	//now all threads are ready
 	set_bool(&data->table_mutex, &data->all_threads_ready, true, data);
-
 	i = -1;
 	while (++i < data->num_philo)
-		safe_thread_handle(&data->philos[i].thread_id, NULL, NULL, JOIN);
-	//if we manage to reach this line, all philos are FULL;
-	
-	
-	
-
+		if (0 > safe_thread_handle(&data->philos[i].thread_id, NULL, NULL, JOIN))
+		{
+			data->error = 2;
+			error_exit("thread managing error\n");
+			return (2);
+		}
+	set_bool(&data->table_mutex, &data->end_simulation, true, data);
+	safe_thread_handle(&data->monitor, NULL, NULL, JOIN);
 	return (0);
 }

@@ -14,7 +14,8 @@ void	*safe_malloc(size_t bytes, t_data *data)
 	return (ret);
 }
 
-//status == 0 --> everything is correct
+//if there is succes, all mutex and thread functons will
+//return zero, otherwise an error number specified.
 static void	handle_mutex_error(int status, t_opcode opcode, t_data *data)
 {
 	int i;
@@ -22,7 +23,7 @@ static void	handle_mutex_error(int status, t_opcode opcode, t_data *data)
 	i = 0;
 	if (0 == status)
 		return ;
-	else if (EINVAL == status && (LOCK == opcode || UNLOCK == opcode))
+	if (EINVAL == status && (LOCK == opcode || UNLOCK == opcode))
 		error_exit("The value specified by mutex is invalid.\n");
 	else if (EINVAL == status && INIT == opcode)
 		error_exit("The value specified by attr is invalid\n");
@@ -39,6 +40,7 @@ static void	handle_mutex_error(int status, t_opcode opcode, t_data *data)
 	if (0 == i)
 		data->error = -3;
 }
+//thread errors
 
 static void	handle_thread_error(int status, t_opcode opcode)
 {

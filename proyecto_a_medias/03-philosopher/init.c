@@ -8,15 +8,12 @@ static void	assigning_forks(t_philo *philo, t_fork *forks, int position)
 	int	philo_nbr;
 	
 	philo_nbr = philo->data->num_philo;
+	philo->first_fork = &forks[position];
+	philo->second_fork = &forks[(position + 1) % philo_nbr];
 	if (philo->id % 2 != 0)
 	{
 		philo->second_fork = &forks[position];
 		philo->first_fork = &forks[(position + 1) % philo_nbr];
-	}
-	else
-	{
-		philo->first_fork = &forks[position];
-		philo->second_fork = &forks[(position + 1) % philo_nbr];
 	}
 }
 
@@ -32,8 +29,8 @@ static void	philosophers_init(t_data *data)
 		philo->id = i + 1;
 		philo->full = false;
 		philo->meals_counter = 0;
-		philo->data = data;
 		safe_mutex_handle(&philo->philo_mutex, INIT, data);
+		philo->data = data;
 		assigning_forks(philo, data->forks, i);
 	}
 
