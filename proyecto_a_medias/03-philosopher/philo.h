@@ -133,7 +133,12 @@ void	set_bool(t_mtx *mutex, bool *dest, bool value, t_data *data);
 
 //synchro utils
 void	waiting_all_threads(t_data *data);
-
+bool	all_threads_running(t_mtx *mutex, long *threads,
+		long philo_nbr, t_data *data);
+void	increase_long(t_mtx *mutex, long *value, t_data *data);
 //WRITE functions
 void	write_status(t_philo_status status, t_philo *philo, t_data *data);
+//monitor
+void	*monitor_dinner(void *data);
+
 # endif

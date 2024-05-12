@@ -41,7 +41,8 @@ void	*dinner_simulation(void *data)
 
 	philo = (t_philo *)data;
 	waiting_all_threads(philo->data);
-
+	increase_long(&philo->data->table_mutex,
+				&philo->data->threads_running_nbr, data);
 	//set last meal time
 	while (!simulation_finished(philo->data))
 	{
@@ -75,11 +76,17 @@ int	dinner_must_beggin(t_data *data)
 	i = -1;
 	if (0 == data->how_many_meals)
 		return (0);
-//	else if (1 == data->num_philo) TODO		
-	
-	while(++i < data->num_philo)
-		if (0 > safe_thread_handle(&data->philos[i].thread_id, dinner_simulation, &data->philos[i], CREATE))
-			return (-1);
+	else if (1 == data->num_philo)
+		; //TODO
+	else
+	{	
+		while(++i < data->num_philo)
+			if (0 > safe_thread_handle(&data->philos[i].thread_id,
+								 dinner_simulation, &data->philos[i], CREATE))
+				return (-1);
+	}
+	//MONITOR 💀
+	safe_thread_handle(&data->monitor, monitor_dinner, data, CREATE); //TODO
 	//BEGGIN THE simulation
 	data->start_simulation = get_time(MILLISECOND);
 	//now all threads are ready
