@@ -41,18 +41,21 @@ void	*dinner_simulation(void *data)
 
 	philo = (t_philo *)data;
 	waiting_all_threads(philo->data);
+
+	set_long(&philo->philo_mutex, &philo->last_meal_time,
+		  get_time(MILLISECOND), data);
+	//set time last meal
 	increase_long(&philo->data->table_mutex,
 				&philo->data->threads_running_nbr, data);
-	//set last meal time
+
 	while (!simulation_finished(philo->data))
 	{
 		if (philo->full) //TODO thread safe
 			break;
 		eat(philo, data);
-		//sleeping : write_status & precise usleep✅
 		write_status(SLEEPING, philo, data);
 		precise_usleep(philo->data->time_to_sleep, philo->data);
-		thinking(philo, data);
+		thinking(philo, data); //todo
 	}
 	return (NULL);
 }

@@ -75,8 +75,8 @@ typedef struct s_philo
 	t_fork			*second_fork;
 	t_mtx			philo_mutex; //useful for races with the monitor
 	t_data			*data;
-
-}	t_philo;
+}
+	t_philo;
 
 struct s_data
 {
@@ -133,8 +133,7 @@ void	set_bool(t_mtx *mutex, bool *dest, bool value, t_data *data);
 
 //synchro utils
 void	waiting_all_threads(t_data *data);
-bool	all_threads_running(t_mtx *mutex, long *threads,
-		long philo_nbr, t_data *data);
+bool	all_threads_running(t_mtx *mutex, long *threads, long philo_nbr, t_data *data);
 void	increase_long(t_mtx *mutex, long *value, t_data *data);
 //WRITE functions
 void	write_status(t_philo_status status, t_philo *philo, t_data *data);
