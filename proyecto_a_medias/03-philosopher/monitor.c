@@ -9,7 +9,7 @@ static bool	philo_died(t_philo *philo, t_data *data)
 		return (false);
 	elapsed = get_time(MILLISECOND) - get_long(&philo->philo_mutex,
 										   &philo->last_meal_time, data);
-	t_to_die = philo->data->time_to_die;
+	t_to_die = philo->data->time_to_die / 1e3;
 	if (elapsed > t_to_die)
 		return (true);
 	return (false);

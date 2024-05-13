@@ -1,8 +1,48 @@
 #include "philo.h"
 
-static void	thinking(t_philo *philo, t_data *data)
+//here we trying to make the slower philo get an odd to 
+//take forks before others that haven't thinked as much.
+//We make this last start to think arbitrary.
+void	thinking(t_philo *philo, t_data *data, bool pre_simulation)
 {
+	long	t_eat;
+	long	t_sleep;
+	long	t_think;
+
+	if (!pre_simulation)
+		write_status(THINKING, philo, philo->data);
 	write_status(THINKING, philo, data);
+	if  (philo->data->num_philo % 2 == 0)
+		return ;
+	t_eat = philo->data->time_to_eat;
+	t_sleep = philo->data->time_to_sleep;
+	t_think = t_eat * 2 - t_sleep;
+	if (t_think < 0)
+		t_think = 0;
+	precise_usleep(t_think * 0.42, philo->data);
+
+}
+
+//1) fake to lock the fork
+//2)Sleep unitl the monitor will bust it
+//
+//so basically as the last meal time is never
+//going to be updated, it just sleeps until finish.
+void *lone_philo(void *arg)
+{
+	t_philo *philo;
+	t_data *data;
+
+	data = 0;
+	philo = (t_philo *)arg;
+	waiting_all_threads(philo->data);
+	set_long(&philo->philo_mutex, &philo->last_meal_time, get_time(MILLISECOND), data);
+	increase_long(&philo->data->table_mutex, &philo->data->threads_running_nbr, data);
+	write_status(TAKE_FIRST_FORK, philo, data);
+	while (!simulation_finished(philo->data))
+		usleep(200);
+	return (NULL);
+
 }
 
 /*
@@ -48,6 +88,11 @@ void	*dinner_simulation(void *data)
 	increase_long(&philo->data->table_mutex,
 				&philo->data->threads_running_nbr, data);
 
+	//in order to get a fair job, meaning the same philo
+	//doesn't eat two times, consequently ending the program. 
+	//We need to impose an arbitrary solution for odd num of philos.
+	//So, we desynchronize philos before the actual loop.
+	de_shyncronize_philos(philo);
 	while (!simulation_finished(philo->data))
 	{
 		if (philo->full) //TODO thread safe
@@ -55,7 +100,7 @@ void	*dinner_simulation(void *data)
 		eat(philo, data);
 		write_status(SLEEPING, philo, data);
 		precise_usleep(philo->data->time_to_sleep, philo->data);
-		thinking(philo, data); //todo
+		thinking(philo, data, false); //todo
 	}
 	return (NULL);
 }
@@ -80,7 +125,7 @@ int	dinner_must_beggin(t_data *data)
 	if (0 == data->how_many_meals)
 		return (0);
 	else if (1 == data->num_philo)
-		; //TODO
+		safe_thread_handle(&data->philos[0].thread_id, lone_philo, &data->philos[0], CREATE);
 	else
 	{	
 		while(++i < data->num_philo)

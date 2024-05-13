@@ -78,26 +78,17 @@ void	precise_usleep(long usec, t_data *data)
 	}
 }
 
-/*
-bool is_al_num(char *str)
+//make the sistem fair
+void de_shyncronize_philos(t_philo *philo)
 {
-    while (*str)
+	if (philo->data->num_philo % 2 == 0)
 	{
-        if (!ft_isdigit(*str))
-            return (false);
-        str++;
-    }
-    return (true);
- 
+		if (philo->id % 2 == 0)
+			precise_usleep(3e4, philo->data);
+	}
+	else
+	{
+		if (philo->id % 2)
+			thinking(philo, philo->data, true);
+	}
 }
-
-
-bool verify_args(int as, char **av, t_data *p)
-{
-	
-
-	
-
-	help_msg();
-}*/
-

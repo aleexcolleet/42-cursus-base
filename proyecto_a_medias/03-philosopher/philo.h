@@ -108,8 +108,7 @@ long	ft_atol(const char *str, t_data *p);
 void	init_structure(t_data *data);
 void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data);
 void	*safe_malloc(size_t bytes, t_data *data);
-int		safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
-		void *data, t_opcode opcode);
+int		safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode);
 //Philo_utils
 void	error_exit(const char *error);
 void	leaving_safely(t_data *data);
@@ -119,7 +118,8 @@ long	get_time(t_time_code time_code);
 int		dinner_must_beggin(t_data *data);
 long	get_time(t_time_code time_code);
 void	precise_usleep(long usec, t_data *data);
-
+void	*lone_philo(void *arg);
+void	thinking(t_philo *philo, t_data *data, bool pre_simulation);
 //error
 void	error_exit(const char *error);
 void	leaving_safely(t_data *data);
@@ -134,6 +134,7 @@ void	set_bool(t_mtx *mutex, bool *dest, bool value, t_data *data);
 //synchro utils
 void	waiting_all_threads(t_data *data);
 bool	all_threads_running(t_mtx *mutex, long *threads, long philo_nbr, t_data *data);
+void	de_shyncronize_philos(t_philo *philo);
 void	increase_long(t_mtx *mutex, long *value, t_data *data);
 //WRITE functions
 void	write_status(t_philo_status status, t_philo *philo, t_data *data);
