@@ -12,7 +12,7 @@ bool	all_threads_running(t_mtx *mutex, long *threads,
 		long philo_nbr, t_data *data)
 {
 	bool	ret;
-	
+
 	ret = false;
 	safe_mutex_handle(mutex, LOCK, data);
 	if (*threads == philo_nbr)

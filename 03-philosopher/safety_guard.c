@@ -18,7 +18,7 @@ void	*safe_malloc(size_t bytes, t_data *data)
 //return zero, otherwise an error number specified.
 static void	handle_mutex_error(int status, t_opcode opcode, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (0 == status)
@@ -28,11 +28,11 @@ static void	handle_mutex_error(int status, t_opcode opcode, t_data *data)
 	else if (EINVAL == status && INIT == opcode)
 		error_exit("The value specified by attr is invalid\n");
 	else if (EDEADLK == status)
-		error_exit("A deadock would occur if the thread blocked waiting for mutex\n");
+		error_exit("A deadock would occur if the thread blocked\n");
 	else if (EPERM == status)
 		error_exit("The current thread does not hold a lock on mutex\n");
 	else if (ENOMEM == status)
-		error_exit("The procces cannoc allocate enought memory to create another mutex\n");
+		error_exit("The procces cannoc allocate enought memory for mutex\n");
 	else if (EBUSY == status)
 		error_exit("Mutex is locked\n");
 	else
@@ -76,14 +76,13 @@ void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data)
 		handle_mutex_error(pthread_mutex_unlock(mutex), opcode, data);
 	else if (INIT == opcode)
 		handle_mutex_error(pthread_mutex_init(mutex, NULL), opcode, data);
-
 	else if (DESTROY == opcode)
 		handle_mutex_error(pthread_mutex_destroy(mutex), opcode, data);
 	else
 	{
 		printf("Wrong opcode for mutex\n");
 		data->error = -3;
-		return;
+		return ;
 	}
 }
 

@@ -6,7 +6,7 @@
 static void	assigning_forks(t_philo *philo, t_fork *forks, int position)
 {
 	int	philo_nbr;
-	
+
 	philo_nbr = philo->data->num_philo;
 	philo->first_fork = &forks[(position + 1) % philo_nbr];
 	philo->second_fork = &forks[position];
@@ -21,7 +21,7 @@ static void	philosophers_init(t_data *data)
 {
 	int		i;
 	t_philo	*philo;
-	
+
 	i = -1;
 	while (++i < data->num_philo)
 	{
@@ -33,7 +33,6 @@ static void	philosophers_init(t_data *data)
 		philo->data = data;
 		assigning_forks(philo, data->forks, i);
 	}
-
 }
 
 void	init_structure(t_data *data)
@@ -55,4 +54,3 @@ void	init_structure(t_data *data)
 	}
 	philosophers_init(data);
 }
-	

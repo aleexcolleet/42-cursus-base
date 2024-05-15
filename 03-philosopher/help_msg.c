@@ -20,13 +20,12 @@ void	help_params(void)
 	printf("Time to die, eat and sleep must be more than 60ms\n");
 	printf("Valid example: ./philo 5 800 200 200\n");
 	printf("----------------------------------------------------\n");
-
 }
 
 void	help_msg(void)
 {
-	printf("\033[32;1m\n+--------------------------------------------------+\n");
+	printf("\033[32;1m\n+-----------------------------------------------+\n");
 	printf("	PHILOSOPHERS HELP SHEET\n");
-	printf("+--------------------------------------------------+\n\n\033[0m");
+	printf("+-----------------------------------------------+\n\n\033[0m");
 	help_params();
 }
