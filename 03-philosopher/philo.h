@@ -105,7 +105,7 @@ void	help_msg(void);
 long	ft_atol(const char *str, t_data *p);
 
 //INIT and safe functions
-void	init_structure(t_data *data);
+int		init_structure(t_data *data);
 void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode, t_data *data);
 void	*safe_malloc(size_t bytes, t_data *data);
 int		safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode);

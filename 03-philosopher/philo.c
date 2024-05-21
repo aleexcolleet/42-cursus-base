@@ -18,7 +18,11 @@ static void	passing_args(int as, char **av, t_data *p)
 		|| p->time_to_sleep < 6e4)
 		p->error = -1;
 	if (as == 6)
+	{
 		p->how_many_meals = ft_atol(av[5], p);
+		if (p->how_many_meals < 0)
+			p->error = -1;
+	}
 	else if (p->num_philo == 0)
 		p->error = -1;
 	else
@@ -52,8 +56,9 @@ int	main(int as, char **av)
 	if (!data)
 		return (2);
 	passing_args(as, av, data);
-	init_structure(data);
-	if (data->error == -1)
+	if (2 == init_structure(data))
+		return (2);
+	if (-1 == data->error)
 	{
 		help_msg();
 		leaving_safely(data); 

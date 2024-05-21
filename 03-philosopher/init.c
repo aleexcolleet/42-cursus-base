@@ -35,7 +35,7 @@ static void	philosophers_init(t_data *data)
 	}
 }
 
-void	init_structure(t_data *data)
+int	init_structure(t_data *data)
 {
 	int	y;
 
@@ -43,6 +43,11 @@ void	init_structure(t_data *data)
 	data->end_simulation = false;
 	data->all_threads_ready = false;
 	data->threads_running_nbr = 0;
+	if (data->num_philo < 0)
+	{
+		help_msg();
+		return (2);
+	}
 	data->philos = safe_malloc(data->num_philo * sizeof(t_philo), data);
 	data->forks = safe_malloc(data->num_philo * sizeof(t_fork), data);
 	safe_mutex_handle(&data->write_mutex, INIT, data);
@@ -53,4 +58,5 @@ void	init_structure(t_data *data)
 		data->forks[y].fork_id = y;
 	}
 	philosophers_init(data);
+	return (0);
 }
