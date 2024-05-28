@@ -15,7 +15,7 @@ NAME = fractol
 ARCHIVE = fractol.a
 # COMPILER
 CC		= gcc
-FLAGS	= -Werror -Wextra -Wall -MMD -g
+FLAGS	= -Werror -Wextra -Wall -MMD
 MAKE_LIB = ar -rcs
 LIB = -L. -lmlx -framework OpenGL -framework AppKit
 
@@ -68,6 +68,8 @@ $(ARCHIVE) : $(OBJS)
 
 %.o : %.c
 	@$(CC) $(FLAGS) -c $< -o $@
+
+bonus: all
 
 clean:
 	@echo "$(YELLOW) Cleaning... $(RESET)"
