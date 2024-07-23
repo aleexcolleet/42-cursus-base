@@ -1,60 +1,38 @@
 #include "get_next_line.h"
 
-int ft_strlen(char *str, char c)
+//ft_strcpy takes a dst and src string and copies it. Doesn't returnanything cause it changes directly the pointer
+void	ft_strcpy(char *dst, const char *src)
 {
-	int i = 0;
-
-	while (str[i] && str[i] != c)
-		i++;
-	if (str[i] == '\n')
-		i++;
-	return (i);
+	while (*src)
+		*dst++ = *src++;
+	*dst = '\0';
 }
 
-char *ft_strdup(char *str, char c)
+//ft_strdup allocates memory and returns a char *
+char *ft_strdup(const char *src)
 {
-	int i = 0;
-	char *res;
+	size_t	len = ft_strlen(src);
+	char	*dst = malloc(len * sizeof(char));
 
-	if (!(res = malloc(sizeof(char) * ft_strlen(str, c) + 1)))
+	if (dst == NULL)
 		return (NULL);
-	while (str[i] && str[i] != c)
-	{
-		res[i] = str[i];
-		i++;
-	}
-	res[i] = 0;
-	return (res);
-}
-
-int	ft_check_n(char *buff)
-{
-	int i = 0;
-	while (buf[i])
-	{
-		if (buf[i] == '\n')
-			return (i);
-		i++;
-	}
-	return (-1);
+	ft_strcpy(dst, src);
+	return (dst);
 }
 
 char *get_next_line(int fd)
 {
-	static char buff[BUFFER_SIZE + 1];
-	char *line;
-	int readv;
+	static char	buf[BUFFER_SIZE + 1];
+	char		*line;
+	char		*newline;
+	int			countread;
+	int			to_copy;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (!(line = ft_strdup("", 0)))
-		return (NULL);
-	while (ft_check_n(buff) == -1)
+	line = ft_strdup(buf);
+	while (!(newline = ft_strchr(line, '\n')) && (countread = read(fd, buf, BUFFER_SIZE)))
 	{
-		
-
+		buf[countread] = '\0';
+		line = ft_strjoin(line, buf);
 	}
-	
-	return (line);
+	return (0);
 }
-
