@@ -1,3 +1,0 @@
-Visualizer for philosophers.
-You can copy the program output and paste it on the web:
-https://nafuka11.github.io/philosophers-visualizer/
